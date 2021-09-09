@@ -1,46 +1,34 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			api: "https://3001-sapphire-cuckoo-5rd1lc8f.ws-eu16.gitpod.io",
+			isAuthenticate: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
+			sign_in: (email, password) => {
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+				fetch(`${store.api}/api/login`, {
+					method: "POST",
+					body: JSON.stringify({
+						email: email,
+						password: password
+					}),
+					headers: {
+						"Content-type": "application/json"
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => {
+						localStorage.setItem("token", data.token);
+						setStore({ isAuthenticate: true });
+					})
+					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			}
 		}
 	};

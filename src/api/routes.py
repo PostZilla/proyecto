@@ -8,11 +8,34 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route('/register', methods=['POST'])
+def sign_up():
+    body = request.get_json()
+    if body is None:
+        return jsonify({"msg": "Body is empty or null"})
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
+    email = body["email"]
+    password = body["password"]
+    is_active = body["is_active"]
 
-    return jsonify(response_body), 200
+    User.create(email, password, is_active)
+
+    return jsonify({"msg": "User created"}), 200
+
+
+@api.route('/login', methods=['POST'])
+def sign_in():
+    body = request.get_json()
+    if body is None:
+        return jsonify({"error": "Body is empty or null"}), 400
+
+    email = body['email']
+    password = body['password']
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if User is None:
+        return jsonify({"msg": "Email or password is wrong"}), 401
+    
+    token = create_access_token(identity=user.id)
+    print(token)
+    return jsonify({"token": token}), 200
