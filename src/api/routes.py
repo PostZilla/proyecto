@@ -41,12 +41,3 @@ def sign_in():
     print(token)
     return jsonify({"token": token}), 200
 
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user(email):
-
-    user = User.get_user(email)
-    if user is None:
-        return jsonify({"msg":"no user found"})
-
-    return jsonify(user), 200
