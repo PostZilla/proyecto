@@ -18,9 +18,8 @@ def sign_up():
 
     email = body["email"]
     password = body["password"]
-    is_active = body["is_active"]
 
-    User.create(email, password, is_active)
+    User.create(email, password)
 
     return jsonify({"msg": "User created"}), 200
 
