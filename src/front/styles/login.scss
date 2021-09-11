@@ -1,0 +1,26 @@
+.principal-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    margin-top: 100px
+}
+
+.myform {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0px 14px 80px rgba(34, 55, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+}
+.log{
+    background-color:  #F2E91D;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

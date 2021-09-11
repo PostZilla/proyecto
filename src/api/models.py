@@ -23,6 +23,11 @@ class User(db.Model):
         user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
+    
+    def get_user(username, email, password):
+        user = User.query.filter_by(username=username, email=email, password=password).first()
+        return user
+    
 
     def randomPassword(email):
         user = User.query.filter_by(email=email).first()

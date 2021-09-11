@@ -39,3 +39,12 @@ def sign_in():
     token = create_access_token(identity=user.id)
     print(token)
     return jsonify({"token": token}), 200
+
+@api.route('/user', methods=['GET'])
+def get_user(email):
+
+    user = User.get_user(email)
+    if user is None:
+        return jsonify({"msg":"no user found"})
+
+    return jsonify(user), 200

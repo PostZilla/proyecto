@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/login.scss";
 
 const Login = () => {
 	const { store, actions } = useContext(Context);
@@ -20,31 +21,31 @@ const Login = () => {
 	return (
 		<div className="principal-container text-center">
 			<div className="myform">
-				<h4>Log in</h4>
+				<h4>Iniciar Sesión</h4>
 				<div className="form-group">
-					<label>Email address</label>
+					<label>Correo Electronico</label>
 					<input
 						type="email"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 						className="form-control"
-						placeholder="Your email here!"
+						placeholder="Ingresa tu correo electronico"
 					/>
 				</div>
 				<div className="form-group">
-					<label>Password</label>
+					<label>Contraseña</label>
 					<input
 						type="password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
 						className="form-control"
-						placeholder="Your password"
+						placeholder="Ingresa tu contraseña"
 					/>
 				</div>
-				<button onClick={() => actions.sign_in(email, password)} className="btn btn-primary btn-block">
-					Submit
+				<button onClick={() => actions.sign_in(email, password)} className="btn log btn-block">
+					Ingresar
 				</button>
-				You are not registered? <Link to={"/sign-up"}>Sign up!</Link>{" "}
+				O <Link to={"/sign-up"}>registrate!</Link>{" "}
 			</div>
 		</div>
 	);
