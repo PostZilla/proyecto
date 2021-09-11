@@ -18,7 +18,7 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
-    
+    #inteto de push Bryan
     def create(username, email, password):
         user = User(username=username, email=email, password=password)
         db.session.add(user)
