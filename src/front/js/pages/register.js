@@ -18,6 +18,7 @@ const Register = () => {
 	useEffect(
 		() => {
 			if (store.isRegitred) {
+
 				history.goBack(-1);
 			}
 		},
@@ -91,6 +92,7 @@ const Register = () => {
 						placeholder="Contraseña"
 					/>
 				</div>
+
 				<div className="form-select">
 					<label>País</label>
 					<select
@@ -113,6 +115,7 @@ const Register = () => {
 						Ingresar
 					</button>
 				</div>
+
 				¿Ya estás registrado? <Link to={"/"}>Inicia Sesión!</Link>{" "}
 			</div>
 		</div>

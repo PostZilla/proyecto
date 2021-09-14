@@ -1,9 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+
 			api: "https://3001-sapphire-cuckoo-5rd1lc8f.ws-eu16.gitpod.io",
 			isAuthenticate: false,
 			isRegistred: false
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
