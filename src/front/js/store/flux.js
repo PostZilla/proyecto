@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			api: "https://3001-sapphire-cuckoo-5rd1lc8f.ws-eu16.gitpod.io",
+			api: "https://3001-peach-tahr-01wknfzj.ws-eu16.gitpod.io",
 			isAuthenticate: false
 		},
 		actions: {
@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
 			register: (email, password, username, name, last_name, country) => {
+				const store = getStore();
 				fetch(`${store.api}/api/register`, {
 					method: "POST",
 					body: JSON.stringify({
@@ -56,24 +57,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
-			Post: ()=>{
+			Post: () => {
 				const store = getStore();
 				fetch(`${store.api}/post`, {
 					method: "POST",
-					headers:{
+					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
 					}
 				})
-				.then(resp => {
-					if (resp.ok){
-						return resp.json();
-					}else{
-						console.error("[Error response]", resp);
-					}
-				}).then(data => setStore({ posts: data }))
-				.catch(error => console.error("[ERROR TO GET POSTS]", error));
-				
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						} else {
+							console.error("[Error response]", resp);
+						}
+					})
+					.then(data => setStore({ posts: data }))
+					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
 			getPosts: () => {
 				const store = getStore();

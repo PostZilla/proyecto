@@ -15,21 +15,18 @@ def create():
     body = request.get_json()
     if body is None:
         return jsonify({"msg": "Body is empty or null"})
-
-    email = body["email"]
-    password = body["password"]
-
-    username = body["username"]
     name = body["name"]
     last_name = body["last_name"]
+    username = body["username"]
+    email = body["email"]
+    password = body["password"]
     country = body["country"]
 
-    User.create(email, password, username, name, last_name, country)
+    User.create(name,last_name, username,email,password, country)
 
 
-    token = create_access_token(identity=user.id)
-    print(token)
-    return jsonify({"token": token}), 200
+    
+    return jsonify({"msg":"user created"}), 200
 
 
 @api.route('/login', methods=['POST'])
