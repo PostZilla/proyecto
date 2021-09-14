@@ -5,7 +5,6 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), unique = True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(120),unique=False, nullable = False)
@@ -30,8 +29,8 @@ class User(db.Model):
         db.session.add(user)
         db.session.commit()
     
-    def get_user(username, email, password):
-        user = User.query.filter_by(username=username, email=email, password=password).first()
+    def get_user(email, password):
+        user = User.query.filter_by( email=email, password=password).first()
         return user
     
     def delete_user(id):

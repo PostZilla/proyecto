@@ -18,12 +18,14 @@ def create():
 
     email = body["email"]
     password = body["password"]
+
     username = body["username"]
     name = body["name"]
     last_name = body["last_name"]
     country = body["country"]
 
     User.create(email, password, username, name, last_name, country)
+
 
     token = create_access_token(identity=user.id)
     print(token)
@@ -81,3 +83,4 @@ def get_all_post():
     posts = Post.get_all_post()
 
     return jsonify(posts), 200
+
