@@ -42,10 +42,10 @@ const Login = () => {
 						placeholder="Ingresa tu contraseña"
 					/>
 				</div>
-				<button onClick={() => actions.sign_in(email, password)} className="btn log btn-block">
+				<button onClick={() => actions.sign_in(email, password)} className="btn sub btn-block">
 					Ingresar
 				</button>
-				O <Link to={"/sign-up"}>registrate!</Link>{" "}
+				O <Link to={"/register"}>registrate!</Link>{" "}
 			</div>
 		</div>
 	);

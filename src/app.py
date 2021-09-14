@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.models import db, User, Post
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
