@@ -18,7 +18,6 @@ def create():
 
     email = body["email"]
     password = body["password"]
-
     username = body["username"]
     name = body["name"]
     last_name = body["last_name"]
@@ -26,10 +25,7 @@ def create():
 
     User.create(email, password, username, name, last_name, country)
 
-
-    token = create_access_token(identity=user.id)
-    print(token)
-    return jsonify({"token": token}), 200
+    return jsonify({"msg":"user is created"}), 200
 
 
 @api.route('/login', methods=['POST'])

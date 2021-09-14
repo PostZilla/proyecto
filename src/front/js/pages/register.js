@@ -12,89 +12,108 @@ const Register = () => {
 	const [name, setName] = useState("");
 	const [last_name, setLast_name] = useState("");
 	const [country, setCountry] = useState("");
-	const [history, setHistory] = useState("");
+	const history = useHistory();
+	const [countries, setCountries] = useState([]);
 
 	useEffect(
 		() => {
-			if (store.isAuthenticate) {
-				history.push("/private");
+			if (store.isRegitred) {
+				history.goBack(-1);
 			}
 		},
-		[store.isAuthenticate]
+		[store.isRegitred]
 	);
+	useEffect(
+		() => {
+			fetch("https://restcountries.eu/rest/v2/all")
+				.then(resp => {
+					if (resp.ok) {
+						return resp.json();
+					}
+				})
+				.then(data => setCountries(data))
+				.catch(error => console.error("[ERROR GET COUNTRIES]", error));
+		},
+		[countries]
+	);
+	
 	return (
 		<div className="principal-container text-center">
 			<div className="myform">
-				<form>
-					<h4>Registrate!</h4>
-					<div className="form-group">
-						<label>Nombre</label>
-						<input
-							type="text"
-							value={name}
-							onChange={e => setName(e.target.value)}
-							className="form-control"
-							placeholder="Nombre"
-						/>
-					</div>
-					<div className="form-group">
-						<label>Apellido</label>{" "}
-						<input
-							type="text"
-							value={last_name}
-							onChange={e => setLast_name(e.target.value)}
-							className="form-control"
-							placeholder="Apellido"
-						/>
-					</div>
-					<div className="form-group">
-						<label>User</label>
-						<input
-							type="text"
-							value={username}
-							onChange={e => setUsername(e.target.value)}
-							className="form-control"
-							placeholder="User"
-						/>
-					</div>
-					<div className="form-group">
-						<label>Correo Electronico</label>
-						<input
-							type="email"
-							value={email}
-							onChange={e => setEmail(e.target.value)}
-							className="form-control"
-							placeholder="Correo Electrónico"
-						/>
-					</div>
-					<div className="form-group">
-						<label>Contraseña</label>
-						<input
-							type="password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
-							className="form-control"
-							placeholder="Contraseña"
-						/>
-					</div>
-					<div className="form-group">
-						<label>País</label>
-						<input
-							type="text"
-							value={country}
-							onChange={e => setCountry(e.target.value)}
-							className="form-control"
-							placeholder="País"
-						/>
-					</div>
+				<h4>Registrate!</h4>
+				<div className="form-group">
+					<label>Nombre</label>
+					<input
+						type="text"
+						value={name}
+						onChange={e => setName(e.target.value)}
+						className="form-control"
+						placeholder="Nombre"
+					/>
+				</div>
+				<div className="form-group">
+					<label>Apellido</label>{" "}
+					<input
+						type="text"
+						value={last_name}
+						onChange={e => setLast_name(e.target.value)}
+						className="form-control"
+						placeholder="Apellido"
+					/>
+				</div>
+				<div className="form-group">
+					<label>User</label>
+					<input
+						type="text"
+						value={username}
+						onChange={e => setUsername(e.target.value)}
+						className="form-control"
+						placeholder="User"
+					/>
+				</div>
+				<div className="form-group">
+					<label>Correo Electronico</label>
+					<input
+						type="email"
+						value={email}
+						onChange={e => setEmail(e.target.value)}
+						className="form-control"
+						placeholder="Correo Electrónico"
+					/>
+				</div>
+				<div className="form-group">
+					<label>Contraseña</label>
+					<input
+						type="password"
+						value={password}
+						onChange={e => setPassword(e.target.value)}
+						className="form-control"
+						placeholder="Contraseña"
+					/>
+				</div>
+				<div className="form-select">
+					<label>País</label>
+					<select
+						className="form-control"
+						aria-label="Default select example"
+						value={country}
+						onChange={e => setCountry(e.target.value)}>
+						{countries.map(item => (
+							<option key={item.alpha2Code} value={item.alpha2Code}>
+								{item.name}
+							</option>
+						))}
+					</select>
+				</div>
+				<div>
 					<button
 						onClick={() => actions.register(email, password, username, name, last_name, country)}
 						type="submit"
 						className="btn subre btn-block">
 						Ingresar
 					</button>
-					¿Ya estás registrado? <Link to={"/"}>Inicia Sesión!</Link>{" "}
-				</form>
+				</div>
+				¿Ya estás registrado? <Link to={"/"}>Inicia Sesión!</Link>{" "}
 			</div>
 		</div>
 	);
