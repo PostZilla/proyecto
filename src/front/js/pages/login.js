@@ -12,11 +12,11 @@ const Login = () => {
 
 	useEffect(
 		() => {
-			if (store.isAuthenticate) {
+			if (store.isRegister) {
 				history.push("/home");
 			}
 		},
-		[store.isAuthenticate]
+		[store.isRegister]
 	);
 	return (
 		<div className="principal-container text-center">

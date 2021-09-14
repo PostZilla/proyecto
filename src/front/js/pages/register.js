@@ -12,16 +12,32 @@ const Register = () => {
 	const [name, setName] = useState("");
 	const [last_name, setLast_name] = useState("");
 	const [country, setCountry] = useState("");
-	let history = useHistory();
+	const history = useHistory();
+	const [countries, setCountries] = useState([]);
 
 	useEffect(
 		() => {
-			if (store.isAuthenticate) {
+			if (store.isRegitred) {
+
 				history.goBack(-1);
 			}
 		},
-		[store.isAuthenticate]
+		[store.isRegitred]
 	);
+	useEffect(
+		() => {
+			fetch("https://restcountries.eu/rest/v2/all")
+				.then(resp => {
+					if (resp.ok) {
+						return resp.json();
+					}
+				})
+				.then(data => setCountries(data))
+				.catch(error => console.error("[ERROR GET COUNTRIES]", error));
+		},
+		[countries]
+	);
+	
 	return (
 		<div className="principal-container text-center">
 			<div className="myform">
@@ -76,21 +92,30 @@ const Register = () => {
 						placeholder="Contraseña"
 					/>
 				</div>
-				<div className="form-group">
+
+				<div className="form-select">
 					<label>País</label>
-					<input
-						type="text"
-						value={country}
-						onChange={e => setCountry(e.target.value)}
+					<select
 						className="form-control"
-						placeholder="País"
-					/>
+						aria-label="Default select example"
+						value={country}
+						onChange={e => setCountry(e.target.value)}>
+						{countries.map(item => (
+							<option key={item.alpha2Code} value={item.alpha2Code}>
+								{item.name}
+							</option>
+						))}
+					</select>
 				</div>
-				<button
-					onClick={() => actions.register(email, password, username, name, last_name, country)}
-					className="btn subre btn-block">
-					Ingresar
-				</button>
+				<div>
+					<button
+						onClick={() => actions.register(email, password, username, name, last_name, country)}
+						type="submit"
+						className="btn subre btn-block">
+						Ingresar
+					</button>
+				</div>
+
 				¿Ya estás registrado? <Link to={"/"}>Inicia Sesión!</Link>{" "}
 			</div>
 		</div>

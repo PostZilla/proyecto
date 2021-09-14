@@ -1,8 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			api: "https://3001-moccasin-chicken-yjthdl6n.ws-eu16.gitpod.io",
-			isAuthenticate: false
+
+			api: "https://3001-sapphire-cuckoo-5rd1lc8f.ws-eu16.gitpod.io",
+			isAuthenticate: false,
+			isRegistred: false
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -51,10 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return resp.json();
 						}
 					})
-					.then(data => {
-						localStorage.setItem("token", data.token);
-						setStore({ isAuthenticate: true });
-					})
+					.then(data => ({ data, isRegistred: true }))
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
 			Post: () => {

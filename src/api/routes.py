@@ -15,6 +15,7 @@ def create():
     body = request.get_json()
     if body is None:
         return jsonify({"msg": "Body is empty or null"})
+
     name = body["name"]
     last_name = body["last_name"]
     username = body["username"]
@@ -24,9 +25,8 @@ def create():
 
     User.create(name,last_name, username,email,password, country)
 
-
-    
     return jsonify({"msg":"user created"}), 200
+
 
 
 @api.route('/login', methods=['POST'])

@@ -5,6 +5,7 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), unique = True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(120),unique=False, nullable = False)
@@ -25,13 +26,14 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
     #inteto de push Bryan
-    def create(name,last_name,username,email, password, country):
-        user = User(name=name, last_name=last_name,username=username, email=email, password=password, country=country)
+
+    def create(email, password, username, name, last_name, country):
+        user = User(username=username, email=email, password=password, name=name, last_name=last_name, country=country)
         db.session.add(user)
         db.session.commit()
     
-    def get_user(email, password):
-        user = User.query.filter_by( email=email, password=password).first()
+    def get_user(username, email, password):
+        user = User.query.filter_by(username=username, email=email, password=password).first()
         return user
     
     def delete_user(id):
