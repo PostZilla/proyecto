@@ -12,11 +12,11 @@ const Login = () => {
 
 	useEffect(
 		() => {
-			if (store.isRegister) {
+			if (store.isAuthenticate) {
 				history.push("/home");
 			}
 		},
-		[store.isRegister]
+		[store.isAuthenticate]
 	);
 	return (
 		<div className="principal-container text-center">
@@ -42,10 +42,11 @@ const Login = () => {
 						placeholder="Ingresa tu contraseña"
 					/>
 				</div>
+				<Link to={"/new-password"}>Recuperar Contraseña</Link>
 				<button onClick={() => actions.sign_in(email, password)} className="btn sub btn-block">
 					Ingresar
 				</button>
-				O <Link to={"/register"}>registrate!</Link>{" "}
+				<Link to={"/register"}>Registrate!</Link>
 			</div>
 		</div>
 	);
