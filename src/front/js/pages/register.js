@@ -17,6 +17,7 @@ const Register = () => {
 
 	useEffect(
 		() => {
+
 			if (store.isRegitred && store.msg !== undefined) {
 				history.goBack();
 				alert(store.msg);
