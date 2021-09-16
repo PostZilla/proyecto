@@ -1,18 +1,21 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-export const Password = () =>{
-    const { store, actions } = useContext(Context);
+
+export const Password = () => {
+	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showForgotPassword, setShowForgotPassword] = useState(false);
 	const [emailForgot, setEmailForgot] = useState("");
+
 
     const forgotPassword = () => {
 		actions.forgotPassword(emailForgot);
 		setEmailForgot("");
 		setShowForgotPassword(!showForgotPassword);
 	};
+
     return(
                <div>
                 <input
@@ -28,3 +31,4 @@ export const Password = () =>{
                 </div>
                 )
 }
+
