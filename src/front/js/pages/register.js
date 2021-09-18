@@ -110,7 +110,7 @@ const Register = () => {
 					<button
 						onClick={() => actions.register(email, password, username, name, last_name, country)}
 						type="submit"
-						className="btn subre btn-block">
+						className="btn sub btn-block">
 						Ingresar
 					</button>
 				</div>

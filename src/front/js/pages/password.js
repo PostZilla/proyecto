@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+import "../../styles/login.scss";
 
 export const Password = () => {
 	const { store, actions } = useContext(Context);
@@ -14,17 +16,20 @@ export const Password = () => {
 		setShowForgotPassword(!showForgotPassword);
 	};
 	return (
-		<div>
+		<div className="principal-container text-center">
 			<input
 				type="email"
-				placeholder="Ingresar correo electronico"
+				placeholder="Correo Electronico"
+				className="form-control"
 				value={emailForgot}
 				onChange={e => setEmailForgot(e.target.value)}
 			/>
-			<button onClick={() => forgotPassword()}>Recuperar contraseña</button>
-			<p style={{ cursor: "pointer" }} onClick={() => setShowForgotPassword(!showForgotPassword)}>
-				Iniciar sesión
-			</p>
+			<button className="btn subpass btn-block" onClick={() => forgotPassword()}>
+				Recuperar contraseña
+			</button>
+			<Link to={"/"} onClick={() => setShowForgotPassword(!showForgotPassword)}>
+				Inicia Sesión!
+			</Link>
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "694ba1787a6d2d988b02fc998db0384dfef7f8b1b65fb5f3e645b6d1d76dfcfc"
+            "sha256": "fac9b31de83754f212b1bf2ddf9fc73e26c3261d92520717b2680c3b60e54369"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,11 +18,23 @@
     "default": {
         "alembic": {
             "hashes": [
-                "sha256:25f996b7408b11493d6a2d669fd9d2ff8d87883fe7434182bc7669d6caa526ab",
-                "sha256:aea964d3dcc9c205b8759e4e9c1c3935ea3afeee259bffd7ed8414f8085140fb"
+                "sha256:bc5bdf03d1b9814ee4d72adc0b19df2123f6c50a60c1ea761733f3640feedb8d",
+                "sha256:d0c580041f9f6487d5444df672a83da9be57398f39d6c1802bbedec6fefbeef6"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.7.1"
+            "version": "==1.7.3"
+        },
+        "barenecessities": {
+            "hashes": [
+                "sha256:b702013af3ea2913b5cfc7d7ed008083a4bf62ad75d5df1af1fe9e6f47a06a03"
+            ],
+            "version": "==0.2.8"
+        },
+        "blinker": {
+            "hashes": [
+                "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"
+            ],
+            "version": "==1.4"
         },
         "certifi": {
             "hashes": [
@@ -76,6 +88,13 @@
             ],
             "index": "pypi",
             "version": "==4.3.0"
+        },
+        "flask-mail": {
+            "hashes": [
+                "sha256:22e5eb9a940bf407bcf30410ecc3708f3c56cc44b29c34e1726fe85006935f41"
+            ],
+            "index": "pypi",
+            "version": "==0.9.1"
         },
         "flask-migrate": {
             "hashes": [
@@ -188,6 +207,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==3.0.1"
+        },
+        "mail": {
+            "hashes": [
+                "sha256:04e69aaba47d45c6853c7b8dcec74896153e7ce38a512d2eb96a13650633e720"
+            ],
+            "index": "pypi",
+            "version": "==2.1.0"
         },
         "mako": {
             "hashes": [
