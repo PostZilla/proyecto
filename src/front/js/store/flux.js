@@ -1,7 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			api: "https://3001-red-baboon-63qec09r.ws-eu16.gitpod.io",
+
+			api: "https://3001-green-canid-ho2vc1ul.ws-eu16.gitpod.io",
+
 			isAuthenticate: false,
 			isRegitred: false,
 			msg: undefined
