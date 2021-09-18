@@ -59,7 +59,7 @@ def get_user(email):
 @api.route('/user', methods=['DELETE'])
 @jwt_required()
 def delete_user(id):
-    people = User.delete_user(id)
+    user = User.delete_user(id)
     return jsonify(user),200
 
 @api.route('/post', methods=['POST'])

@@ -23,6 +23,14 @@ app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "PostZilla"
 jwt = JWTManager(app)
 
+app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'apikey'
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_DEFAULT_SENDER'] = 'stearanza13@gmail.com'
+mail = Mail(app)
+
 
 
 # database condiguration
@@ -34,13 +42,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db)
 db.init_app(app)
-app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'PostZilla'
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_DEFAULT_SENDER'] = 'stearanza13@gmail.com'
-mail = Mail(app)
+
 
 # Allow CORS requests to this API
 CORS(app)
