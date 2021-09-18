@@ -11,13 +11,9 @@ from api.models import db, User, Post
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-<<<<<<< HEAD
-from flask_mail import Mail
-=======
 from flask_mail import Mail, Message
 
 
->>>>>>> cc5f19910bc623bc95be9d249ec2e03c65fef861
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
