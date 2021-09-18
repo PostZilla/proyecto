@@ -26,9 +26,9 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
     #inteto de push Bryan
-
-    def create(email, password, username, name, last_name, country):
-        user = User(username=username, email=email, password=password, name=name, last_name=last_name, country=country)
+    
+    def create(name, last_name, username, email, password, country):
+        user = User(name=name, last_name=last_name, username=username, email=email, password=password, country=country)
         db.session.add(user)
         db.session.commit()
     
