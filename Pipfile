@@ -18,10 +18,7 @@ gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
 flask-jwt-extended = "*"
-<<<<<<< HEAD
 mail = "*"
-=======
->>>>>>> cc5f19910bc623bc95be9d249ec2e03c65fef861
 flask-mail = "*"
 
 [requires]

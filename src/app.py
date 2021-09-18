@@ -22,13 +22,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "PostZilla"
 jwt = JWTManager(app)
-app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_DEFAULT_SENDER'] = 'magustico@gmail.com'
-mail = Mail(app)
+
 
 
 # database condiguration
@@ -44,7 +38,7 @@ app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'PostZilla'
-app.config['MAIL_PASSWORD'] = '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'
+app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_DEFAULT_SENDER'] = 'stearanza13@gmail.com'
 mail = Mail(app)
 
