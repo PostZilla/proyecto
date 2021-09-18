@@ -11,7 +11,13 @@ from api.models import db, User, Post
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+<<<<<<< HEAD
 from flask_mail import Mail
+=======
+from flask_mail import Mail, Message
+
+
+>>>>>>> cc5f19910bc623bc95be9d249ec2e03c65fef861
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
@@ -20,6 +26,13 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "PostZilla"
 jwt = JWTManager(app)
+app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'apikey'
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_DEFAULT_SENDER'] = 'magustico@gmail.com'
+mail = Mail(app)
 
 
 # database condiguration

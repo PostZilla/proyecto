@@ -12,8 +12,12 @@ const Login = () => {
 
 	useEffect(
 		() => {
+
+
 			if (store.isAuthenticate) {
+
 				history.push("/home");
+				alert(store.msg);
 			}
 		},
 		[store.isAuthenticate]

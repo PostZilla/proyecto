@@ -1,9 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+
 			api: "https://3001-indigo-lungfish-t7mmx0gq.ws-eu16.gitpod.io",
 			isAuthenticate: false,
-			isRegistred: false
+			isRegitred: false,
+			msg: undefined
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -52,8 +55,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return resp.json();
 						}
 					})
-					.then(data => ({ data, isRegistred: true }))
+					.then(data => {
+						setStore({ isRegitred: true, msg: data.msg });
+						console.log(data);
+					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
+			},
+			forgotPassword: email => {
+				const store = getStore();
+				fetch(`${store.api}/forgot-password`, {
+					method: "POST",
+					headers: {
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify({
+						email: email
+					})
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => setStore({ message: data.msg }))
+					.catch(error => console.error("[error when recovery password]", error));
 			},
 			Post: () => {
 				const store = getStore();
