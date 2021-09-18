@@ -1,7 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+
 			api: "https://3001-green-canid-ho2vc1ul.ws-eu16.gitpod.io",
+
 			isAuthenticate: false,
 			isRegitred: false,
 			msg: undefined
@@ -54,8 +56,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ isRegitred: true, msg: data.msg });
 						console.log(data);
+						setStore({ isRegitred: true, msg: data.msg });
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
