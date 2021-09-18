@@ -1,17 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			api: "https://3001-indigo-lungfish-t7mmx0gq.ws-eu16.gitpod.io",
 			isAuthenticate: false,
 			isRegitred: false,
-			msg: undefined
+			msg: " "
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			sign_in: (email, password) => {
 				const store = getStore();
 
-				fetch(`${store.api}/api/login`, {
+				fetch(process.env.BACKEND_URL + "/api/login", {
 					method: "POST",
 					body: JSON.stringify({
 						email: email,
@@ -34,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			register: (email, password, username, name, last_name, country) => {
 				const store = getStore();
-				fetch(`${store.api}/api/register`, {
+				fetch(process.env.BACKEND_URL + "/api/register", {
 					method: "POST",
 					body: JSON.stringify({
 						email: email,
@@ -61,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			forgotPassword: email => {
 				const store = getStore();
-				fetch(`${store.api}/forgot-password`, {
+				fetch(process.env.BACKEND_URL + "/forgot-password", {
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -80,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			Post: () => {
 				const store = getStore();
-				fetch(`${store.api}/post`, {
+				fetch(process.env.BACKEND_URL + "/post", {
 					method: "POST",
 					headers: {
 						"Content-type": "application/json",
@@ -99,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPosts: () => {
 				const store = getStore();
-				fetch(`${store.api}/post`, {
+				fetch(process.env.BACKEND_URL + "/post", {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
