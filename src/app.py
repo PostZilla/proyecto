@@ -43,9 +43,9 @@ db.init_app(app)
 app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = ''
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_DEFAULT_SENDER'] = '@gmail.com'
+app.config['MAIL_USERNAME'] = 'PostZilla'
+app.config['MAIL_PASSWORD'] = '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'
+app.config['MAIL_DEFAULT_SENDER'] = 'stearanza13@gmail.com'
 mail = Mail(app)
 
 # Allow CORS requests to this API
