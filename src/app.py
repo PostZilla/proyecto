@@ -12,7 +12,7 @@ from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_mail import Mail, Message
-
+import random
 
 #from models import Person
 
@@ -74,6 +74,22 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+@app.route('/forgot-password', methods=['POST'])
+
+def recovery_password():
+    body = request.get_json()
+    if body is None:
+        return jsonify({"msg": "Body is empty or null"})
+
+    email = body["email"]
+    print("email", email)
+    password = User.randomPassword(email)
+ 
+    msg = Message('Recuperar contraseña', recipients=[email])
+    msg.body = 'Su contraseña temporal es: ' + password
+    mail.send(msg)
+
+    return jsonify({"msg": "Correo enviado"}), 200    
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
