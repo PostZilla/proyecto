@@ -1,16 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-
+import logo from "../../img/logo.jpg";
+import "../../styles/navbar.scss";
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
+		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
+			<div className="container">
+				<Link className="navbar-brand" to={"/"}>
+					<img src={logo} width="70" height="60" />
 				</Link>
+				<div className="collapse navbar-collapse" id="navbarToggle">
+					{!store.isAuthenticate ? (
+						<ul className="navbar-nav ml-auto">
+							<li className="nav-item">
+								<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+									Iniciar sesión
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="navbar-brand navbtn btn btn-outline-light" to={"/register"}>
+									Registrarse
+								</Link>
+							</li>
+						</ul>
+					) : (
+						<>
+							<input
+								className="form-control mr-sm-2"
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+							/>
+							<button className="navbtn btn btn-light my-2 my-sm-0" type="submit">
+								Search
+							</button>
+							<ul className="navbar-nav ml-auto ">
+								<li className="nav-item">
+									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+										Cerrar sesión
+									</Link>
+								</li>
+							</ul>
+						</>
+					)}
+				</div>
 			</div>
 		</nav>
 	);

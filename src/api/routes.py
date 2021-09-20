@@ -25,7 +25,7 @@ def create():
 
     User.create(name,last_name, username,email,password, country)
 
-    return jsonify({"msg":"user created"}), 200
+    return jsonify({"msg":"Usuario creado! Ahora, inicia sesión."}), 200
 
 
 
