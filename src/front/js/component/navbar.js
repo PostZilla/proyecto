@@ -38,10 +38,9 @@ export const Navbar = () => {
 							</button>
 							<ul className="navbar-nav ml-auto ">
 								<li className="nav-item">
-								{store.isAuthenticate ? (
-					           <button onClick={() => actions.signOut()}>Cerrar sesión</button>
-				                        ) : (
-									
+									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+										Cerrar sesión
+									</Link>
 								</li>
 							</ul>
 						</>
