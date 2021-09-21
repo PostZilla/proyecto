@@ -1,10 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.jpg";
 import "../../styles/navbar.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+	const [usernames, setUsernames] = useState([]);
+	const [text, setText] = useState("");
+	const [suggestions, setSuggestions] = useState([]);
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/api/usernames")
+			.then(resp => {
+				if (resp.ok) {
+					return resp.json();
+				}
+			})
+			.then(json => setUsernames(json.data));
+	}, []);
+
+	const onChangeHandler = text => {
+		let matches = [];
+		if (text.length > 0) {
+			matches = usernames.filter(user => {
+				const regex = new RegExp(`${text}`, "gi");
+				return user.username.match(regex);
+			});
+		}
+		setSuggestions(matches);
+		setText(text);
+	};
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
@@ -32,10 +56,20 @@ export const Navbar = () => {
 								type="search"
 								placeholder="Search"
 								aria-label="Search"
+								onChange={e => onChangeHandler(e.target.value)}
+								value={text}
+								onBlur={() => setSuggestions([])}
 							/>
-							<button className="navbtn btn btn-light my-2 my-sm-0" type="submit">
-								Search
-							</button>
+
+							{suggestions &&
+								suggestions.map((suggestion, i) => (
+									<div
+										onClick={() => setText(suggestion.usernames)}
+										key={i}
+										className="suggestion col-md-12 justify-content-md-center"
+									/>
+								))}
+
 							<ul className="navbar-nav ml-auto ">
 								<li className="nav-item">
 									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>

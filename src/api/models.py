@@ -37,8 +37,13 @@ class User(db.Model):
         user = User.query.filter_by(username=username, email=email, password=password).first()
         return user
     
+    def get_all_user(username):
+        usernames = User.query.all()
+        usernames = list(map(lambda username: username.serialize(), usernames))
+        return usernames
+    
     def delete_user(id):
-        iser = User.query.get(id)
+        user = User.query.get(id)
         db.session.delete(user)
         db.session.commit()
     
