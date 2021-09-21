@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import logo from "../../img/logo.jpg";
+import PostZilla from "../../img/PostZilla.png";
 import "../../styles/navbar.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -9,7 +9,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
 				<Link className="navbar-brand" to={"/"}>
-					<img src={logo} width="70" height="60" />
+					<img src={PostZilla} width="80" height="70" />
 				</Link>
 				<div className="collapse navbar-collapse" id="navbarToggle">
 					{!store.isAuthenticate ? (
@@ -38,9 +38,10 @@ export const Navbar = () => {
 							</button>
 							<ul className="navbar-nav ml-auto ">
 								<li className="nav-item">
-									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
-										Cerrar sesión
-									</Link>
+								{store.isAuthenticate ? (
+					           <button onClick={() => actions.signOut()}>Cerrar sesión</button>
+				                        ) : (
+									
 								</li>
 							</ul>
 						</>
