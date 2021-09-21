@@ -38,7 +38,10 @@ export const Navbar = () => {
 							</button>
 							<ul className="navbar-nav ml-auto ">
 								<li className="nav-item">
-									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+									<Link
+										onClick={() => actions.signOut()}
+										className="navbar-brand navbtn btn btn-light"
+										to={"/"}>
 										Cerrar sesión
 									</Link>
 								</li>
