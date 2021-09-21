@@ -58,6 +58,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
+			signOut: () => {
+				localStorage.removeItem("token");
+				setStore({ isAuthenticate: false });
+			},
+
+			verifySession: () => {
+				let token = localStorage.getItem("token");
+				if (token && token.length > 0) {
+					setStore({ isAuthenticate: true });
+				} else {
+					setStore({ isAuthenticate: false });
+				}
+			},
 			forgotPassword: email => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/forgot-password", {
