@@ -15,7 +15,10 @@ export const Navbar = () => {
 					return resp.json();
 				}
 			})
-			.then(json => setUsernames(json.data));
+			.then(json => {
+				console.log(json.data);
+				setUsernames(json.data);
+			});
 	}, []);
 
 	const onChangeHandler = text => {
@@ -52,7 +55,7 @@ export const Navbar = () => {
 					) : (
 						<>
 							<input
-								className="form-control mr-sm-2"
+								className="search form-control mr-sm-2"
 								type="search"
 								placeholder="Search"
 								aria-label="Search"
@@ -66,8 +69,10 @@ export const Navbar = () => {
 									<div
 										onClick={() => setText(suggestion.usernames)}
 										key={i}
-										className="suggestion col-md-12 justify-content-md-center"
-									/>
+										className="suggestion justify-content-md-center">
+										{" "}
+										{suggestion.username}
+									</div>
 								))}
 
 							<ul className="navbar-nav ml-auto ">
