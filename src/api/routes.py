@@ -56,6 +56,13 @@ def get_user(email):
 
     return jsonify(user), 200
 
+@api.route('/usernames', methods=["GET"])
+def get_all_user():
+
+    usernames = User.get_all_user()
+
+    return jsonify({"data": usernames})
+
 @api.route('/user', methods=['DELETE'])
 @jwt_required()
 def delete_user(id):
