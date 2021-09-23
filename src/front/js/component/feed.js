@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function widgets() {
+export default function feed() {
     return (
         <div>
             
