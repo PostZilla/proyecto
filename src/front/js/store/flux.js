@@ -92,11 +92,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			Post: () => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/post", {
+				fetch(process.env.BACKEND_URL + "/api/post", {
 					method: "POST",
 					headers: {
-						"Content-type": "application/json",
-						Authorization: `Bearer ${localStorage.getItem("token")}`
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+						"Content-type": "application/json"
 					}
 				})
 					.then(resp => {
@@ -106,12 +106,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.error("[Error response]", resp);
 						}
 					})
-					.then(data => setStore({ posts: data }))
+					.then(data => {
+						console.log("post", data);
+						setStore({ post: data });
+					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
 			getPosts: () => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/post", {
+				fetch(process.env.BACKEND_URL + "/api/post", {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
