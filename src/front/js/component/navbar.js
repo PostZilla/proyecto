@@ -9,14 +9,18 @@ export const Navbar = () => {
 	const [text, setText] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/api/usernames")
+		fetch(process.env.BACKEND_URL + "/api/usernames", {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				"Content-type": "application/json"
+			}
+		})
 			.then(resp => {
 				if (resp.ok) {
 					return resp.json();
 				}
 			})
 			.then(json => {
-				console.log(json.data);
 				setUsernames(json.data);
 			});
 	}, []);

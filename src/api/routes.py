@@ -57,8 +57,9 @@ def get_user(email):
     return jsonify(user), 200
 
 @api.route('/usernames', methods=["GET"])
+@jwt_required()
 def get_all_user():
-
+    
     usernames = User.get_all_user()
 
     return jsonify({"data": usernames})
@@ -77,7 +78,10 @@ def create_post():
         return {"error": "The body is null or undefined"}, 400
 
     user_id = get_jwt_identity()
-    Post.create_post(user_id, body['Post'], body['Imagen'])
+    text = body ["text"]
+    img = body ["img"]
+
+    Post.create_post(user_id, text, img)
     
     return {"message": "post created"}, 200
 
