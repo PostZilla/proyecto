@@ -24,19 +24,19 @@ const Register = () => {
 		},
 		[store.isRegitred]
 	);
-	useEffect(
-		() => {
-			fetch("https://restcountries.eu/rest/v2/all")
-				.then(resp => {
-					if (resp.ok) {
-						return resp.json();
-					}
-				})
-				.then(data => setCountries(data))
-				.catch(error => console.error("[ERROR GET COUNTRIES]", error));
-		},
-		[countries]
-	);
+	useEffect(() => {
+		fetch("https://countriesnow.space/api/v0.1/countries")
+			.then(resp => {
+				if (resp.ok) {
+					return resp.json();
+				}
+			})
+			.then(data => {
+				console.log(data);
+				setCountries(data.data);
+			})
+			.catch(error => console.error("[ERROR GET COUNTRIES]", error));
+	}, []);
 
 	return (
 		<div className="principal-container text-center">
@@ -99,11 +99,12 @@ const Register = () => {
 						aria-label="Default select example"
 						value={country}
 						onChange={e => setCountry(e.target.value)}>
-						{countries.map(item => (
-							<option key={item.alpha2Code} value={item.alpha2Code}>
-								{item.name}
-							</option>
-						))}
+						{countries.length > 0 &&
+							countries.map((item, key) => (
+								<option key={key} value={item.country}>
+									{item.country}
+								</option>
+							))}
 					</select>
 				</div>
 				<div>
