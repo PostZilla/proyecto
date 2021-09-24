@@ -81,7 +81,7 @@ def create_post():
     text = body ["text"]
     img = body ["img"]
 
-    Post.create_post(user_id, text, img)
+    Post.create_post(user_id=user_id, text=text, img=img)
     
     return {"message": "post created"}, 200
 

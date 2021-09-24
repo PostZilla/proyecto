@@ -21,7 +21,7 @@ export const Home = () => {
 			<button type="button" className="btn btn-light">
 				<i className="far fa-images" />
 			</button>
-			<button onClick={() => actions.Post()} type="button" className="btn btn-light">
+			<button onClick={() => actions.Post(text)} type="button" className="btn btn-light">
 				Post
 			</button>
 		</div>
