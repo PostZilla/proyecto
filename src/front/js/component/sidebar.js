@@ -13,7 +13,7 @@ function Sidebar() {
 				<FontAwesomeIcon icon={faHome} /> Home
 			</div>
 			<div className="Explore">
-			<FontAwesomeIcon icon={faSearch} /> Explore
+				<FontAwesomeIcon icon={faSearch} /> Explore
 			</div>
 			<FontAwesomeIcon icon={faBell} /> Notification
 			<FontAwesomeIcon icon={faEnvelope} /> Messages

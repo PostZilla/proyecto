@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			isAuthenticate: false,
 			isRegitred: false,
-			msg: " "
+			msg: " ",
+			post: " "
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -90,14 +91,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.msg }))
 					.catch(error => console.error("[error when recovery password]", error));
 			},
-			Post: () => {
+			Post: text => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/post", {
+				fetch(process.env.BACKEND_URL + "/api/post", {
 					method: "POST",
 					headers: {
-						"Content-type": "application/json",
-						Authorization: `Bearer ${localStorage.getItem("token")}`
-					}
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify({
+						text: text
+					})
 				})
 					.then(resp => {
 						if (resp.ok) {
@@ -106,12 +110,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.error("[Error response]", resp);
 						}
 					})
-					.then(data => setStore({ posts: data }))
+					.then(data => {
+						console.log("dataa", data);
+						setStore({ post: data });
+					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
 			getPosts: () => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/post", {
+				fetch(process.env.BACKEND_URL + "/api/post", {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`

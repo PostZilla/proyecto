@@ -46,6 +46,24 @@ def sign_in():
     print(token)
     return jsonify({"token": token}), 200
 
+@api.route('/profile/image/', methods=["POST"])
+def upload_image():
+    
+    image = request.files['File']
+
+    if image is None:
+        return jsonify({"msg": "Error to get image"}), 400
+    
+    upload_result = cloudinary.uploader.upload(image)
+
+    user = User.query.get(1)
+
+    user.profile_image_url = upload_result['secure_url']
+
+    db.session.commit()
+
+    return jsonify({"msg": "image upload fine"}), 200
+
 @api.route('/user', methods=['GET'])
 @jwt_required()
 def get_user(email):
@@ -57,8 +75,9 @@ def get_user(email):
     return jsonify(user), 200
 
 @api.route('/usernames', methods=["GET"])
+@jwt_required()
 def get_all_user():
-
+    
     usernames = User.get_all_user()
 
     return jsonify({"data": usernames})
@@ -73,11 +92,16 @@ def delete_user(id):
 @jwt_required()
 def create_post():
     body = request.get_json()
+    print(body)
     if body is None:
         return {"error": "The body is null or undefined"}, 400
 
     user_id = get_jwt_identity()
-    Post.create_post(user_id, body['Post'], body['Imagen'])
+
+    text = body["text"]
+    img = " "
+
+    Post.create_post(user_id=user_id, text=text, img=img)
     
     return {"message": "post created"}, 200
 

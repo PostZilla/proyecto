@@ -8,18 +8,25 @@ export const Navbar = () => {
 	const [usernames, setUsernames] = useState([]);
 	const [text, setText] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
-	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/api/usernames")
-			.then(resp => {
-				if (resp.ok) {
-					return resp.json();
+	useEffect(
+		() => {
+			fetch(process.env.BACKEND_URL + "/api/usernames", {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`,
+					"Content-type": "application/json"
 				}
 			})
-			.then(json => {
-				console.log(json.data);
-				setUsernames(json.data);
-			});
-	}, []);
+				.then(resp => {
+					if (resp.ok) {
+						return resp.json();
+					}
+				})
+				.then(json => {
+					setUsernames(json.data);
+				});
+		},
+		[store.isAuthenticate]
+	);
 
 	const onChangeHandler = text => {
 		let matches = [];

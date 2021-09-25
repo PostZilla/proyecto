@@ -12,6 +12,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     country = db.Column(db.String(120),unique=False, nullable = False)
+    profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     post = db.relationship("Post", back_populates="user")
     def __repr__(self):
         return '<User %r>' % self.username
@@ -23,7 +24,8 @@ class User(db.Model):
             "name": self.name,
             "username": self.username,
             "last_name": self.last_name,
-            "country": self.country
+            "country": self.country,
+            "profile_image_url": self.profile_image_url
             # do not serialize the password, its a security breach
         }
     #inteto de push Bryan
