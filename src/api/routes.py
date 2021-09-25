@@ -46,6 +46,24 @@ def sign_in():
     print(token)
     return jsonify({"token": token}), 200
 
+@api.route('/profile/image/', methods=["POST"])
+def upload_image():
+    
+    image = request.files['File']
+
+    if image is None:
+        return jsonify({"msg": "Error to get image"}), 400
+    
+    upload_result = cloudinary.uploader.upload(image)
+
+    user = User.query.get(1)
+
+    user.profile_image_url = upload_result['secure_url']
+
+    db.session.commit()
+
+    return jsonify({"msg": "image upload fine"}), 200
+
 @api.route('/user', methods=['GET'])
 @jwt_required()
 def get_user(email):
