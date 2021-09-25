@@ -10,20 +10,29 @@ function Sidebar() {
 		<div className="sidebar">
 			<FontAwesomeIcon icon={faDragon} />
 			<div className="Home">
-				<FontAwesomeIcon icon={faHome} /> Home
+				<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 			</div>
 			<div className="Explore">
-				<FontAwesomeIcon icon={faSearch} /> Explore
+				<FontAwesomeIcon icon={faSearch} /> <div className="Space">Explore</div>
 			</div>
-			<FontAwesomeIcon icon={faBell} /> Notification
-			<FontAwesomeIcon icon={faEnvelope} /> Messages
-			<FontAwesomeIcon icon={faBookmark} />
-			Bookmarks
-			<FontAwesomeIcon icon={faListAlt} />
-			List
-			<FontAwesomeIcon icon={faUser} />
-			Profile
-			<FontAwesomeIcon icon={faEllipsisH} /> More
+			<div className="Notification">
+				<FontAwesomeIcon icon={faBell} /> <div className="Space">Notification</div>
+			</div>
+			<div className="Messages">
+				<FontAwesomeIcon icon={faEnvelope} /> <div className="Space">Messages</div>
+			</div>
+			<div className="Bookmark">
+				<FontAwesomeIcon icon={faBookmark} /> <div className="Space">Bookmark</div>
+			</div>
+			<div className="List">
+				<FontAwesomeIcon icon={faListAlt} /> <div className="Space">List</div>
+			</div>
+			<div className="Profile">
+				<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
+			</div>
+			<div className="More">
+				<FontAwesomeIcon icon={faEllipsisH} /> <div className="Space">More</div>
+			</div>
 		</div>
 	);
 }

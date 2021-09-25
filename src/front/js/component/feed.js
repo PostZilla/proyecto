@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.scss";
+import "../../styles/feed.scss";
 
 export const Feed = () => {
 	const { store, actions } = useContext(Context);

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import "../../styles/home.scss";
+import { Feed } from "../component/feed";
 import Sidebar from "../component/sidebar";
 
 export const Home = () => {
@@ -8,7 +9,7 @@ export const Home = () => {
 			<h1 />
 
 			<Sidebar />
-			{/*feed*/}
+			<Feed />
 			{/*widgets*/}
 		</div>
 	);
