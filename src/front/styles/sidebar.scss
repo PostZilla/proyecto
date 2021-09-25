@@ -1,13 +1,139 @@
 .sidebar {
-    border-right: 1px solid var(--twitter-background);
-    flex: 0.3;
-    width: 250px; 
-    margin-top: 50px;
-    padding-left: 20px;
-    padding-right: 700px;
-  }
+ margin-top: 30px;
+ padding: 20px;
+ display:inline-block;
+ padding-right: 40px;
+
+}
+
+
 .Home{
+  font-size: 20px;
+  font-weight: 800;
   align-items: center;
   display: flex;
   cursor: pointer;
+  padding-top: 25px;
+
+ 
+   
+}
+.Home:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.Space{
+margin-left: 15px;
+
+}
+.Explore{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.Explore:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+  
+}
+.Notification{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.Notification:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.Messages{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.Messages:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.Bookmark{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.Bookmark:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.List{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.List:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.Profile{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+}
+.Profile:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
+}
+.More{
+  font-size: 20px;
+  font-weight: 800;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-top: 25px;
+  
+}
+
+.More:hover{
+  background-color: #fff314;
+  border-radius: 10px;
+  width: 160px;
+  color: #4d4d00
+ 
 }
