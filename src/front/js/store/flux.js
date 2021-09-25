@@ -91,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.msg }))
 					.catch(error => console.error("[error when recovery password]", error));
 			},
-			Post: (user_id, text, img) => {
+			Post: text => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/api/post", {
 					method: "POST",
@@ -100,9 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-type": "application/json"
 					},
 					body: JSON.stringify({
-						user_id: user_id,
-						text: text,
-						img: img
+						text: text
 					})
 				})
 					.then(resp => {
