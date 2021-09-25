@@ -5,19 +5,25 @@ import { faBookmark, faDragon, faEllipsisH, faEnvelope, faListAlt, faUser } from
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-import Sidebar2 from "./sidebar2";
 function Sidebar() {
 	return (
 		<div className="sidebar">
-			<Sidebar2 Icon={faDragon} />
-			<Sidebar2 Icon={faHome} text="Home" />
-			<FontAwesomeIcon icon={faSearch} />
-			<FontAwesomeIcon icon={faBell} />
-			<FontAwesomeIcon icon={faEnvelope} />
+			<FontAwesomeIcon icon={faDragon} />
+			<div className="Home">
+				<FontAwesomeIcon icon={faHome} /> Home
+			</div>
+			<div className="Explore">
+			<FontAwesomeIcon icon={faSearch} /> Explore
+			</div>
+			<FontAwesomeIcon icon={faBell} /> Notification
+			<FontAwesomeIcon icon={faEnvelope} /> Messages
 			<FontAwesomeIcon icon={faBookmark} />
+			Bookmarks
 			<FontAwesomeIcon icon={faListAlt} />
+			List
 			<FontAwesomeIcon icon={faUser} />
-			<FontAwesomeIcon icon={faEllipsisH} />
+			Profile
+			<FontAwesomeIcon icon={faEllipsisH} /> More
 		</div>
 	);
 }

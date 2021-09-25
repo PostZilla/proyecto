@@ -2,7 +2,12 @@
     border-right: 1px solid var(--twitter-background);
     flex: 0.3;
     width: 250px; 
-    margin-top: 20px;
+    margin-top: 50px;
     padding-left: 20px;
     padding-right: 700px;
   }
+.Home{
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
