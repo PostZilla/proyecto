@@ -74,12 +74,14 @@ def delete_user(id):
 @jwt_required()
 def create_post():
     body = request.get_json()
+    print(body)
     if body is None:
         return {"error": "The body is null or undefined"}, 400
 
     user_id = get_jwt_identity()
-    text = body ["text"]
-    img = body ["img"]
+
+    text = body["text"]
+    img = " "
 
     Post.create_post(user_id=user_id, text=text, img=img)
     
