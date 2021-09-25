@@ -128,17 +128,23 @@ const Register = () => {
 							))}
 					</select>
 				</div>
-				<div className="form-select">
-					<form onSubmit={uploadImage}>
-						<input type="file" name="file" onChange={e => setFile(e.target.files[0])} />
-						<button>Subir imagen.</button>
-					</form>
+				<div className="form-group imgbox">
+					<label>Ponte cara</label>
+					<input
+						className="form-control-file"
+						type="file"
+						name="file"
+						onChange={e => setFile(e.target.files[0])}
+					/>
+					<button className="btn btnimg btn-light" onSubmit={uploadImage}>
+						Subir imagen.
+					</button>
 				</div>
 				<div>
 					<button
 						onClick={() => actions.register(email, password, username, name, last_name, country)}
 						type="submit"
-						className="btn sub btn-block">
+						className="btn  sub btn-block">
 						Ingresar
 					</button>
 				</div>
