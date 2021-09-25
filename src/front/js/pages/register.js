@@ -14,6 +14,27 @@ const Register = () => {
 	const [country, setCountry] = useState("");
 	const history = useHistory();
 	const [countries, setCountries] = useState([]);
+	const [file, setFile] = useState();
+
+	const uploadImage = evt => {
+		evt.preventDefault();
+		console.log(file);
+
+		const formData = new FormData();
+		formData.append("File", file);
+
+		fetch(process.env.BACKEND_URL + "/api/profile/image", {
+			method: "POST",
+			body: formData
+		})
+			.then(resp => {
+				if (resp.ok) {
+					return resp.json();
+				}
+			})
+			.then(data => console.log("dataa", data))
+			.catch(error => console.error("[ERROR TO UPLOAD FILE]", error));
+	};
 
 	useEffect(
 		() => {
@@ -106,6 +127,12 @@ const Register = () => {
 								</option>
 							))}
 					</select>
+				</div>
+				<div className="form-select">
+					<form onSubmit={uploadImage}>
+						<input type="file" name="file" onChange={e => setFile(e.target.files[0])} />
+						<button>Subir imagen.</button>
+					</form>
 				</div>
 				<div>
 					<button
