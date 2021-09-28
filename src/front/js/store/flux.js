@@ -32,21 +32,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
-			register: (email, password, username, name, last_name, country) => {
+			register: formData => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/api/register", {
 					method: "POST",
-					body: JSON.stringify({
-						email: email,
-						password: password,
-						username: username,
-						name: name,
-						last_name: last_name,
-						country: country
-					}),
-					headers: {
-						"Content-type": "application/json"
-					}
+					body: formData
 				})
 					.then(resp => {
 						if (resp.ok) {
