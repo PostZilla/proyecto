@@ -3,9 +3,8 @@ import "../../styles/feed2.scss";
 
 function feed2() {
 	return (
-		<div>
-			{/*header*/}
-			<div className="feed">
+		<div className="feed">
+			<div className="feed_header">
 				<h2>Home</h2>
 			</div>
 			{/*PostziBox*/}
@@ -14,6 +13,35 @@ function feed2() {
 			{/*Post*/}
 			{/*Post*/}
 			{/*Post*/}
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
+			<h3>hola mundo</h3>
 		</div>
 	);
 }
