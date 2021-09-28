@@ -5,10 +5,13 @@ import { faBookmark, faDragon, faEllipsisH, faEnvelope, faListAlt, faUser } from
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import PostZilla from "../../img/PostZilla.png";
 function Sidebar() {
 	return (
 		<div className="sidebar">
-			<FontAwesomeIcon icon={faDragon} />
+			<div className="Postzilla_icon">
+				<img src={PostZilla} width="80" height="70" color="blue" />
+			</div>
 			<div className="Home">
 				<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 			</div>
@@ -33,6 +36,7 @@ function Sidebar() {
 			<div className="More">
 				<FontAwesomeIcon icon={faEllipsisH} /> <div className="Space">More</div>
 			</div>
+			<button className="sidebar_postzi">Postzi</button>
 		</div>
 	);
 }
