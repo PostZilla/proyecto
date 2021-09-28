@@ -13,17 +13,19 @@ api = Blueprint('api', __name__)
 
 @api.route('/register', methods=['POST'])
 def create():
-    body = request.get_json()
-    if body is None:
-        return jsonify({"msg": "Body is empty or null"})
+    image = request.files['File']
 
-    name = body["name"]
-    last_name = body["last_name"]
-    username = body["username"]
-    email = body["email"]
-    password = body["password"]
-    country = body["country"]
-    profile_image_url= body["profile_image_url"]
+    if image is None:
+        return jsonify({"msg": "Error to get image"}), 400
+
+    name = request.form["name"]
+    last_name = request.form["last_name"]
+    username = request.form["username"]
+    email = request.form["email"]
+    password = request.form["password"]
+    country = request.form["country"]
+    upload_result= cloudinary.uploader.upload(image)
+    profile_image_url= upload_result["secure_url"]
 
     User.create(name,last_name, username,email,password, country, profile_image_url)
 

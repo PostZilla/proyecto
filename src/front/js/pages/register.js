@@ -15,13 +15,20 @@ const Register = () => {
 	const history = useHistory();
 	const [countries, setCountries] = useState([]);
 	const [file, setFile] = useState();
-
+	const register = () => {
+		const formData = new FormData();
+		formData.append("email", email);
+		formData.append("password", password);
+		formData.append("username", username);
+		formData.append("name", name);
+		formData.append("last_name", last_name);
+		formData.append("country", country);
+		formData.append("File", file);
+		actions.register(formData);
+	};
 	const uploadImage = evt => {
 		evt.preventDefault();
 		console.log(file);
-
-		const formData = new FormData();
-		formData.append("File", file);
 
 		fetch(process.env.BACKEND_URL + "/api/profile/image", {
 			method: "POST",
@@ -136,15 +143,9 @@ const Register = () => {
 						name="file"
 						onChange={e => setFile(e.target.files[0])}
 					/>
-					<button className="btn btnimg btn-light" onClick={() => uploadImage()}>
-						Subir imagen.
-					</button>
 				</div>
 				<div>
-					<button
-						onClick={() => actions.register(email, password, username, name, last_name, country)}
-						type="submit"
-						className="btn  sub btn-block">
+					<button onClick={() => register()} type="submit" className="btn  sub btn-block">
 						Ingresar
 					</button>
 				</div>

@@ -41,59 +41,61 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
-				<Link className="navbar-brand" to={"/"}>
-					<img src={PostZilla} width="80" height="70" />
-				</Link>
-				<div className="collapse navbar-collapse" id="navbarToggle">
-					{!store.isAuthenticate ? (
-						<ul className="navbar-nav ml-auto">
-							<li className="nav-item">
-								<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
-									Iniciar sesión
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link className="navbar-brand navbtn btn btn-outline-light" to={"/register"}>
-									Registrarse
-								</Link>
-							</li>
-						</ul>
-					) : (
-						<>
-							<input
-								className="search form-control mr-sm-2"
-								type="search"
-								placeholder="Search"
-								aria-label="Search"
-								onChange={e => onChangeHandler(e.target.value)}
-								value={text}
-								onBlur={() => setSuggestions([])}
-							/>
-
-							{suggestions &&
-								suggestions.map((suggestion, i) => (
-									<div
-										onClick={() => setText(suggestion.usernames)}
-										key={i}
-										className="suggestion justify-content-md-center">
-										{" "}
-										{suggestion.username}
-									</div>
-								))}
-
-							<ul className="navbar-nav ml-auto ">
+				{!store.isAuthenticate ? (
+					<>
+						<Link className="navbar-brand" to={"/"}>
+							<img src={PostZilla} width="80" height="70" />
+						</Link>
+						<div className="collapse navbar-collapse" id="navbarToggle">
+							<ul className="navbar-nav ml-auto">
 								<li className="nav-item">
-									<Link
-										onClick={() => actions.signOut()}
-										className="navbar-brand navbtn btn btn-light"
-										to={"/"}>
-										Cerrar sesión
+									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+										Iniciar sesión
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link className="navbar-brand navbtn btn btn-outline-light" to={"/register"}>
+										Registrarse
 									</Link>
 								</li>
 							</ul>
-						</>
-					)}
-				</div>
+						</div>
+					</>
+				) : (
+					<>
+						<input
+							className="search form-control mr-sm-2"
+							type="search"
+							placeholder="Search"
+							aria-label="Search"
+							onChange={e => onChangeHandler(e.target.value)}
+							value={text}
+							onBlur={() => setSuggestions([])}
+						/>
+
+						{suggestions &&
+							suggestions.map((suggestion, i) => (
+								<div
+									onClick={() => setText(suggestion.usernames)}
+									key={i}
+									className="suggestion justify-content-md-center">
+									{" "}
+									{suggestion.username}
+								</div>
+							))}
+
+						<ul className="navbar-nav ml-auto ">
+							<li className="nav-item">
+								<Link
+									onClick={() => actions.signOut()}
+									className="navbar-brand navbtn btn btn-light"
+									to={"/"}>
+									Cerrar sesión
+								</Link>
+							</li>
+						</ul>
+					</>
+				)}
 			</div>
 		</nav>
 	);
