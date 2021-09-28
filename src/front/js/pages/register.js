@@ -136,7 +136,7 @@ const Register = () => {
 						name="file"
 						onChange={e => setFile(e.target.files[0])}
 					/>
-					<button className="btn btnimg btn-light" onSubmit={uploadImage}>
+					<button className="btn btnimg btn-light" onClick={() => uploadImage()}>
 						Subir imagen.
 					</button>
 				</div>

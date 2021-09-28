@@ -5,7 +5,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Post
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-
+import cloudinary
+import cloudinary.uploader
 
 api = Blueprint('api', __name__)
 
@@ -22,8 +23,9 @@ def create():
     email = body["email"]
     password = body["password"]
     country = body["country"]
+    profile_image_url= body["profile_image_url"]
 
-    User.create(name,last_name, username,email,password, country)
+    User.create(name,last_name, username,email,password, country, profile_image_url)
 
     return jsonify({"msg":"Usuario creado! Ahora, inicia sesión."}), 200
 
@@ -58,7 +60,7 @@ def upload_image():
 
     user = User.query.get(1)
 
-    user.profile_image_url = upload_result['secure_url']
+    User.profile_image_url = upload_result['secure_url']
 
     db.session.commit()
 
@@ -75,7 +77,6 @@ def get_user(email):
     return jsonify(user), 200
 
 @api.route('/usernames', methods=["GET"])
-@jwt_required()
 def get_all_user():
     
     usernames = User.get_all_user()

@@ -30,8 +30,8 @@ class User(db.Model):
         }
     #inteto de push Bryan
     
-    def create(name, last_name, username, email, password, country):
-        user = User(name=name, last_name=last_name, username=username, email=email, password=password, country=country)
+    def create(name, last_name, username, email, password, country, profile_image_url):
+        user = User(name=name, last_name=last_name, username=username, email=email, password=password, country=country, profile_image_url=profile_image_url)
         db.session.add(user)
         db.session.commit()
     
