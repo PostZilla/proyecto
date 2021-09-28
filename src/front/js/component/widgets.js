@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function widgets() {
-    return (
-        <div>
-            
-        </div>
-    )
+	return (
+		<div>
+			<h2>Widgets</h2>
+		</div>
+	);
 }

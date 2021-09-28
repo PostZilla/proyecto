@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/feed.scss";
+import PostZilla from "../../img/PostZilla.png";
 
 export const Feed = () => {
 	const { store, actions } = useContext(Context);

@@ -1,9 +1,8 @@
 .sidebar {
- margin-top: 30px;
- padding: 20px;
- display:inline-block;
- padding-right: 40px;
-
+ border-right: 1px solid black;
+ margin-top: 20px;
+ padding-left: 20px;
+ padding-right: 20px;
 }
 
 
@@ -136,4 +135,21 @@ margin-left: 15px;
   width: 160px;
   color: #4d4d00
  
+}
+.sidebar_postzi {
+  background-color: #fff314;
+  border: none;
+  color:black;
+  font-weight: 900; 
+  text-transform: inherit ;
+  border-radius: 30px ;
+  height: 50px;
+  margin-top: 20px ;
+  width: 160px;
+}
+.Postzilla_icon{
+  margin-left: 20px;
+  margin-bottom: 20px;
+  size: 30px;
+
 }
