@@ -12,7 +12,6 @@ export const Navbar = () => {
 		() => {
 			fetch(process.env.BACKEND_URL + "/api/usernames", {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
 					"Content-type": "application/json"
 				}
 			})
