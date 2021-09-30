@@ -41,13 +41,29 @@
     margin-bottom: 10px;
 }
 
-.btnimg{
-    background-color:  #fff314;
-    border-radius: 10px;
-    width: 150px;
-    margin-top: 20px;
-    
+.btn-profile {
+    margin-top: 30px;
+    overflow: hidden;
+    position: relative;
+    background: #fff314;
+    border-radius: 5px;
+   
 }
-.imgbox{
-    margin-top: 15px;
+.btn-profile input[type="file"]{
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity= 0);
+    opacity: 0;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    
+
+   
 }
