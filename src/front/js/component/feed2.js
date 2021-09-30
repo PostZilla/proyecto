@@ -11,9 +11,9 @@ function feed2() {
 			</div>
 			<Postzibox />
 			<Post />
-			{/*Post*/}
-			{/*Post*/}
-			{/*Post*/}
+			<Post />
+			<Post />
+			<Post />
 			{/*Post*/}
 		</div>
 	);
