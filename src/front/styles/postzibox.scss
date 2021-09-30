@@ -1,0 +1,42 @@
+.postzibox{
+    padding-bottom: 10px;
+    border-bottom: 8px solid #E1E8ED;
+    padding-right: 10px;
+}
+.postzibox >form{
+    display: flex;
+    flex-direction: column;
+}
+
+.postzibox_input {
+    padding: 20px;
+    display: flex;
+
+}
+
+.postzibox_input >input{
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border:none
+
+}
+
+.postzibox_button{
+  background-color: #fff314;
+  border: none !important;
+  color:black !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  width: 80px;
+  height: 40px !important;
+  margin-top: 20px !important;
+  margin-left: auto!important;
+}
+
+.img{
+border-radius: 20%;
+height:"200px";
+width:"200px";
+}
