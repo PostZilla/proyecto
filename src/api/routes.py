@@ -62,6 +62,7 @@ def get_user(email):
     return jsonify(user), 200
 
 @api.route('/usernames', methods=["GET"])
+@jwt_required()
 def get_all_user():
     
     usernames = User.get_all_user()
@@ -77,24 +78,42 @@ def delete_user(id):
 @api.route('/post', methods=['POST'])
 @jwt_required()
 def create_post():
-    body = request.get_json()
-    print(body)
-    if body is None:
-        return {"error": "The body is null or undefined"}, 400
+    image = request.files['File']
+    
+    if image is None:
+        return jsonify ({"msg": "The body is null or undefined"}), 400
 
     user_id = get_jwt_identity()
 
-    text = body["text"]
-    img = " "
+    text = request.form["text"]
+    upload_result= cloudinary.uploader.upload(image)
+    img = upload_result["secure_url"]
 
-    Post.create_post(user_id=user_id, text=text, img=img)
+    Post.create_post(user_id, text, img)
     
     return {"message": "post created"}, 200
 
-@api.route('/post', methods=['GET'])
+@api.route('/posts', methods=['GET'])
 @jwt_required()
 def get_all_post():
     posts = Post.get_all_post()
 
     return jsonify(posts), 200
+@api.route('/image', methods=["POST"])
+def upload_image():
+    
+    image = request.files['File']
+
+    if image is None:
+        return jsonify({"msg": "Error to get image"}), 400
+    
+    upload_result = cloudinary.uploader.upload(image)
+
+    user = User.query.get(1)
+
+    user.profile_image_url = upload_result['secure_url']
+
+    db.session.commit()
+
+    return jsonify({"msg": "image upload fine"}), 200    
 

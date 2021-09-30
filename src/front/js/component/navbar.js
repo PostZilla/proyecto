@@ -10,19 +10,22 @@ export const Navbar = () => {
 	const [suggestions, setSuggestions] = useState([]);
 	useEffect(
 		() => {
-			fetch(process.env.BACKEND_URL + "/api/usernames", {
-				headers: {
-					"Content-type": "application/json"
-				}
-			})
-				.then(resp => {
-					if (resp.ok) {
-						return resp.json();
+			if (store.isAuthenticate) {
+				fetch(process.env.BACKEND_URL + "/api/usernames", {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+						"Content-type": "application/json"
 					}
 				})
-				.then(json => {
-					setUsernames(json.data);
-				});
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(json => {
+						setUsernames(json.data);
+					});
+			}
 		},
 		[store.isAuthenticate]
 	);
