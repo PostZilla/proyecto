@@ -30,7 +30,7 @@ const Layout = () => {
 							<Register />
 						</Route>
 						<Route exact path="/home">
-							<Posts />
+							<Home />
 						</Route>
 						<Route exact path="/new-password">
 							<Password />
