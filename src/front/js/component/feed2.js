@@ -15,7 +15,6 @@ function feed2() {
 			{/*Post*/}
 			{/*Post*/}
 			{/*Post*/}
-			<h3>hola mundo</h3>
 		</div>
 	);
 }
