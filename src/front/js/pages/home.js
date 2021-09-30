@@ -7,10 +7,10 @@ import Widgets from "../component/widgets";
 
 export const Home = () => {
 	return (
-		<>
+		<div className="App">
 			<Sidebar />
 			<Feed />
 			<Widgets />
-		</>
+		</div>
 	);
 };
