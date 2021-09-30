@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/feed.scss";
 
-export const Home = () => {
+export const Feed = () => {
 	const { store, actions } = useContext(Context);
 	const [text, setText] = useState("");
 	const [file, setFile] = useState("");

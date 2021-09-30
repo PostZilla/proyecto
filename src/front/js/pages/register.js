@@ -120,13 +120,15 @@ const Register = () => {
 					</select>
 				</div>
 				<div className="form-group imgbox">
-					<label>Ponte cara</label>
-					<input
-						className="form-control-file"
-						type="file"
-						name="file"
-						onChange={e => setFile(e.target.files[0])}
-					/>
+					<div className="btn btn-light btn-profile ">
+						Sube tu foto de perfil
+						<input
+							className="form-control-file"
+							type="file"
+							name="file"
+							onChange={e => setFile(e.target.files[0])}
+						/>
+					</div>
 				</div>
 				<div>
 					<button onClick={() => register()} type="submit" className="btn  sub btn-block">

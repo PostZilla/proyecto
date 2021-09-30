@@ -116,7 +116,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.error("[Error response]", resp);
 						}
 					})
-					.then(data => setStore({ posts: data }))
+					.then(data => {
+						setStore({ post: data });
+						console.log("post dataa", data);
+					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			}
 		}

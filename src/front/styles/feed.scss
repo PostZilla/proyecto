@@ -1,13 +1,14 @@
 .postbox{
-    width:300px ;
+    width:700px ;
     margin-top: 150px;
     margin-left: 400px;
     align-items: center;
 }
 .posttext{
-    height: 70px;
+    height: 80px;
 }
 .postbtn{
+    margin-top: 5px;
     float: right;
     background-color:  #fff314;
     border-radius: 20px;
@@ -17,9 +18,11 @@
     font-size: 18px;
 }
  .btn-file {
-   
+    margin-top: 2px;
     overflow: hidden;
     position: relative;
+    background: #fff314;
+    border-radius: 10px;
     
    
 }
@@ -36,8 +39,7 @@
     outline: none;
     cursor: pointer;
     display: block;
-    background: #fff314;
-    border-radius: 20px;
+    
 
    
 }
