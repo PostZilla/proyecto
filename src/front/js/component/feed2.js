@@ -10,11 +10,14 @@ function feed2() {
 				<h2>Home</h2>
 			</div>
 			<Postzibox />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			{/*Post*/}
+			<Post
+				displayName="Bryan Andres"
+				username="Bryanndres"
+				verified={true}
+				text="esta funcionando"
+				avatar="https://i.pinimg.com/564x/a5/0c/64/a50c6419a7da56be403a445d5dc3f8d4.jpg"
+				image="https://media2.giphy.com/media/13G7hmmFr9yuxG/giphy.gif"
+			/>
 		</div>
 	);
 }
