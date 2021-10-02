@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore/lite";
 import "../../styles/feed2.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
+import db from "./firebase";
 
 function feed2() {
+	const [posts, setPosts] = useState([]);
+	async function getPost(db) {
+		const citiesCol = collection(db, "post");
+		const citySnapshot = await getDocs(citiesCol);
+		const cityList = citySnapshot.docs.map(doc => doc.data());
+		console.log(cityList);
+		setPosts(cityList);
+		return cityList;
+	}
+	useEffect(
+		() => {
+			getPost(db);
+		},
+
+		[]
+	);
+
 	return (
 		<div className="feed">
 			<div className="feed_header">
 				<h2>Home</h2>
 			</div>
 			<Postzibox />
-			<Post
-				displayName="Bryan Andres"
-				username="Bryanndres"
-				verified={true}
-				text="esta funcionando"
-				avatar="https://i.pinimg.com/564x/a5/0c/64/a50c6419a7da56be403a445d5dc3f8d4.jpg"
-				image="https://media2.giphy.com/media/13G7hmmFr9yuxG/giphy.gif"
-			/>
+			{posts.map(post => (
+				<Post
+					key={post.text}
+					displayName={post.displayName}
+					username={post.username}
+					verified={post.verified}
+					text={post.text}
+					avatar={post.avatar}
+					image={post.image}
+				/>
+			))}
 		</div>
 	);
 }

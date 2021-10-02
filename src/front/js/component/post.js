@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -7,10 +8,7 @@ import PublishIcon from "@material-ui/icons/Publish";
 import React from "react";
 import "../../styles/post.scss";
 
-
-
-function post = fdds (
-({ displayName, username, verified, text, image, avatar }) =>{
+function Post({ displayName, username, verified, text, avatar, image }) {
 	return (
 		<div className="post">
 			<div className="post_avatar">
@@ -40,6 +38,13 @@ function post = fdds (
 			</div>
 		</div>
 	);
-   };
-);
-export default post;
+}
+Post.propTypes = {
+	displayName: PropTypes.string,
+	username: PropTypes.string,
+	verified: PropTypes.bool,
+	text: PropTypes.string,
+	avatar: PropTypes.string,
+	image: PropTypes.string
+};
+export default Post;
