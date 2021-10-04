@@ -5,7 +5,7 @@ import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 import db from "./firebase";
 
-function feed2() {
+function feed() {
 	const [posts, setPosts] = useState([]);
 	async function getPost(db) {
 		const citiesCol = collection(db, "post");
@@ -44,4 +44,4 @@ function feed2() {
 	);
 }
 
-export default feed2;
+export default feed;
