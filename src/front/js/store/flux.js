@@ -81,23 +81,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.msg }))
 					.catch(error => console.error("[error when recovery password]", error));
 			},
-			Post: text => {
+			Post: formData => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/api/post", {
 					method: "POST",
 					headers: {
-						Authorization: `Bearer ${localStorage.getItem("token")}`,
-						"Content-type": "application/json"
+						Authorization: `Bearer ${localStorage.getItem("token")}`
 					},
-					body: JSON.stringify({
-						text: text
-					})
+					body: formData
 				})
 					.then(resp => {
 						if (resp.ok) {
 							return resp.json();
-						} else {
-							console.error("[Error response]", resp);
 						}
 					})
 					.then(data => {
@@ -108,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPosts: () => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/api/post", {
+				fetch(process.env.BACKEND_URL + "/api/posts", {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -121,7 +116,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.error("[Error response]", resp);
 						}
 					})
-					.then(data => setStore({ posts: data }))
+					.then(data => {
+						setStore({ post: data });
+						console.log("post dataa", data);
+					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			}
 		}

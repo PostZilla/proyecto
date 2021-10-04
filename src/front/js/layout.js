@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import { Posts } from "./component/posts";
 import { Home } from "./pages/home";
 import { Password } from "./pages/password";
 import { Single } from "./pages/single";

@@ -26,22 +26,6 @@ const Register = () => {
 		formData.append("File", file);
 		actions.register(formData);
 	};
-	const uploadImage = evt => {
-		evt.preventDefault();
-		console.log(file);
-
-		fetch(process.env.BACKEND_URL + "/api/profile/image", {
-			method: "POST",
-			body: formData
-		})
-			.then(resp => {
-				if (resp.ok) {
-					return resp.json();
-				}
-			})
-			.then(data => console.log("dataa", data))
-			.catch(error => console.error("[ERROR TO UPLOAD FILE]", error));
-	};
 
 	useEffect(
 		() => {
@@ -136,13 +120,15 @@ const Register = () => {
 					</select>
 				</div>
 				<div className="form-group imgbox">
-					<label>Ponte cara</label>
-					<input
-						className="form-control-file"
-						type="file"
-						name="file"
-						onChange={e => setFile(e.target.files[0])}
-					/>
+					<div className="btn btn-light btn-profile ">
+						Sube tu foto de perfil
+						<input
+							className="form-control-file"
+							type="file"
+							name="file"
+							onChange={e => setFile(e.target.files[0])}
+						/>
+					</div>
 				</div>
 				<div>
 					<button onClick={() => register()} type="submit" className="btn  sub btn-block">
