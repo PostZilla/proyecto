@@ -1,23 +1,28 @@
-.postbox{
-    width:700px ;
-    margin-top: 150px;
-    margin-left: 400px;
-    align-items: center;
+.feed {
+flex: 0.4;
+border-right: 1px solid #E1E8ED;
+min-width: fit-content;
+overflow-y: scroll;
 }
-.posttext{
-    height: 80px;
+
+.feed::-webkit-scrollbar {
+    display: none;
 }
-.postbtn{
-    margin-top: 5px;
-    float: right;
-    background-color:  #fff314;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+.feed_header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid #E1E8ED;
+    padding: 15px 20px;
 }
- .btn-file {
+
+.feed_header> h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.btn-file {
     margin-top: 2px;
     overflow: hidden;
     position: relative;
@@ -39,7 +44,5 @@
     outline: none;
     cursor: pointer;
     display: block;
-    
 
-   
-}
+};
