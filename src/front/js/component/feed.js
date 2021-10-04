@@ -1,30 +1,47 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/feed.scss";
-import PostZilla from "../../img/PostZilla.png";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore/lite";
+import "../../styles/feed2.scss";
+import Postzibox from "./postzibox.js";
+import Post from "./post.js";
+import db from "./firebase";
 
-export const Feed = () => {
-	const { store, actions } = useContext(Context);
-	const [text, setText] = useState("");
+function feed2() {
+	const [posts, setPosts] = useState([]);
+	async function getPost(db) {
+		const citiesCol = collection(db, "post");
+		const citySnapshot = await getDocs(citiesCol);
+		const cityList = citySnapshot.docs.map(doc => doc.data());
+		console.log(cityList);
+		setPosts(cityList);
+		return cityList;
+	}
+	useEffect(
+		() => {
+			getPost(db);
+		},
+
+		[]
+	);
 
 	return (
-		<div className="postbox">
-			<div className="input-group">
-				<input
-					className="posttext form-control"
-					aria-label="With textarea"
-					type="text"
-					value={text}
-					onChange={e => setText(e.target.value)}
-					placeholder="Postea"
-				/>
+		<div className="feed">
+			<div className="feed_header">
+				<h2>Home</h2>
 			</div>
-			<button type="button" className="imgbtn btn btn-light">
-				<i className="far fa-images" />
-			</button>
-			<button onClick={() => actions.Post(text)} type="button" className="postbtn btn btn-light">
-				Post
-			</button>
+			<Postzibox />
+			{posts.map(post => (
+				<Post
+					key={post.text}
+					displayName={post.displayName}
+					username={post.username}
+					verified={post.verified}
+					text={post.text}
+					avatar={post.avatar}
+					image={post.image}
+				/>
+			))}
 		</div>
 	);
-};
+}
+
+export default feed2;
