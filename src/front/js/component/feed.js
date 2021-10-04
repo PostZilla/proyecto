@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore/lite";
-import "../../styles/feed2.scss";
+import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 import db from "./firebase";
