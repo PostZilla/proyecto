@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/feed2.scss";
+import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 
