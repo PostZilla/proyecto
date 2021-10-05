@@ -26,7 +26,7 @@ function Feed() {
 					img={value.img}
 					name={value.user.name}
 					userid={value.user.id}
-					postid={value.post.id}
+					postid={value.id}
 					key={index}
 				/>
 			))}

@@ -139,12 +139,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore({ follower: newFollower });
 			},
-			addLike: newItem =>{
+			addLike: newItem => {
 				let myStore = getStore();
 				let newLike = myStore.likes.concat(newItem);
-				setStore({likes : newLike, myLike:true})
-				},
-			deleteLike: delItem=>{
+				setStore({ likes: newLike, myLike: true });
+			},
+			deleteLike: delItem => {
 				let storeCopy = getStore();
 				let newLike = storeCopy.likes.filter((value, index) => {
 					return value != delItem;

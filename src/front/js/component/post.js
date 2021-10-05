@@ -17,7 +17,7 @@ function Post(props) {
 	return (
 		<div className="post">
 			<div className="post_avatar">
-				<Link to={{ pathname: `/username/${props.id}`, state: props.id }}>
+				<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>
 					<Avatar src={props.profileimg} />
 				</Link>
 			</div>
@@ -25,7 +25,9 @@ function Post(props) {
 				<div className="post_header">
 					<div className="post_headerText">
 						<h3>
-							<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>{props.name}</Link>
+							<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>
+								{props.name}
+							</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
 							{!store.myFollower ? (
@@ -54,9 +56,12 @@ function Post(props) {
 				</div>
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
-					<FavoriteBorderIcon fontSize="small"onClick={() =>
+					<FavoriteBorderIcon
+						fontSize="small"
+						onClick={() =>
 							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
-						}></FavoriteBorderIcon>
+						}
+					/>
 				</div>
 			</div>
 		</div>
@@ -72,7 +77,6 @@ Post.propTypes = {
 	postid: PropTypes.number,
 	addLike: PropTypes.func,
 	deleteLike: PropTypes.func
-	
 };
 
 export default Post;
