@@ -3,8 +3,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			isAuthenticate: false,
 			isRegitred: false,
+			myFollower: false,
+			myLike: false,
 			msg: " ",
-			post: []
+			post: [],
+			likes: [],
+			follower: [],
+			followed: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -121,6 +126,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("post dataa", data);
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			addFollower: newItem => {
+				let myStore = getStore();
+				let newFollower = myStore.follower.concat(newItem);
+				setStore({ follower: newFollower, myFollower: true });
+			},
+			delFollower: deletedItem => {
+				let storeCopy = getStore();
+				let newFollower = storeCopy.follower.filter((value, index) => {
+					return value != deletedItem;
+				});
+				setStore({ follower: newFollower });
+			},
+			addLike: newItem => {
+				let myStore = getStore();
+				let newLike = myStore.likes.concat(newItem);
+				setStore({ likes: newLike, myLike: true });
+			},
+			deleteLike: delItem => {
+				let storeCopy = getStore();
+				let newLike = storeCopy.likes.filter((value, index) => {
+					return value != delItem;
+				});
+				setStore({ follower: newLike });
 			}
 		}
 	};

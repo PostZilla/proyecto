@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import { Password } from "./pages/password";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
+import Profile from "./pages/profile";
 import { Navbar } from "./component/navbar";
 
 //create your first component

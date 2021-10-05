@@ -31,7 +31,7 @@ function postzibox() {
 					<input type="file" name="file" onChange={e => setFile(e.target.files[0])} />
 				</span>
 
-				<button onClick={() => post()} type="button" className="postbtn btn btn-light">
+				<button onClick={() => post()} type="button" className="postzibox_button">
 					Post
 				</button>
 			</div>
