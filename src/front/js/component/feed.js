@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/feed2.scss";
+import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 
-function Feed2() {
+function Feed() {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
@@ -24,7 +24,9 @@ function Feed2() {
 					username={value.user.username}
 					profileimg={value.user.profile_image_url}
 					img={value.img}
-					name={value.user.nameprops}
+					name={value.user.name}
+					userid={value.user.id}
+					postid={value.post.id}
 					key={index}
 				/>
 			))}
@@ -32,4 +34,4 @@ function Feed2() {
 	);
 }
 
-export default Feed2;
+export default Feed;

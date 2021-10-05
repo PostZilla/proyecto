@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import { Posts } from "./component/posts";
 import { Home } from "./pages/home";
 import { Password } from "./pages/password";
 import { Single } from "./pages/single";
@@ -35,9 +34,7 @@ const Layout = () => {
 						<Route exact path="/new-password">
 							<Password />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
+						<Route exact path="/chardetails/:theusername" component={Single} /> <Single />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
