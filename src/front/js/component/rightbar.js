@@ -24,7 +24,7 @@ export default function rightbar() {
 					src="https://raw.githubusercontent.com/safak/youtube/react-social-ui/public/assets/ad.png"
 					alt=""
 				/>
-				<h4 className="rightbarTitle"></h4>
+				<h4 className="rightbarTitle" />
 			</div>
 		</div>
 	);
