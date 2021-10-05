@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isAuthenticate: false,
 			isRegitred: false,
 			msg: " ",
-			post: " "
+			post: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

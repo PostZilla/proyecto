@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore/lite";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/feed2.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
-import db from "./firebase";
 
-function feed2() {
-	const [posts, setPosts] = useState([]);
-	async function getPost(db) {
-		const citiesCol = collection(db, "post");
-		const citySnapshot = await getDocs(citiesCol);
-		const cityList = citySnapshot.docs.map(doc => doc.data());
-		console.log(cityList);
-		setPosts(cityList);
-		return cityList;
-	}
-	useEffect(
-		() => {
-			getPost(db);
-		},
+function Feed2() {
+	const { store, actions } = useContext(Context);
 
-		[]
-	);
+	useEffect(() => {
+		actions.getPosts();
+	}, []);
 
 	return (
 		<div className="feed">
-			<div className="feed_header">
+			<div>
 				<h2>Home</h2>
 			</div>
 			<Postzibox />
-			{posts.map(post => (
+
+			{store.post.map((value, index) => (
 				<Post
-					key={post.text}
-					displayName={post.displayName}
-					username={post.username}
-					verified={post.verified}
-					text={post.text}
-					avatar={post.avatar}
-					image={post.image}
+					text={value.text}
+					username={value.user.username}
+					profileimg={value.user.profile_image_url}
+					img={value.img}
+					name={value.user.nameprops}
+					key={index}
 				/>
 			))}
 		</div>
 	);
 }
 
-export default feed2;
+export default Feed2;

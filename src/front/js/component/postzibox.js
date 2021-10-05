@@ -1,46 +1,40 @@
+import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
-import React, { useState } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/postzibox.scss";
-import db from "./firebase";
 
 function postzibox() {
-	const [postziMessage, setPostziMessage] = useState("");
-	const [postziImage, setPostziImage] = useState("");
-
-	const sendPostzi = e => {
-		e.preventDefault();
-
-		db.collection("post").add({
-			displayName: "Bryan Andres",
-			username: "bryanndres",
-			verified: true,
-			text: postziMessage
-		});
+	const { store, actions } = useContext(Context);
+	const [text, setText] = useState("");
+	const [file, setFile] = useState("");
+	const post = () => {
+		const formData = new FormData();
+		formData.append("text", text);
+		formData.append("File", file);
+		actions.Post(formData);
 	};
 
 	return (
 		<div className="postzibox">
-			<form>
-				<div className="postzibox_input">
-					<Avatar src="https://i.pinimg.com/564x/a5/0c/64/a50c6419a7da56be403a445d5dc3f8d4.jpg" />
-					<input
-						onChange={e => setPostziMessage(e.target.value)}
-						value={postziMessage}
-						placeholder="What´s happening?"
-						type="text"
-					/>
-				</div>
+			<div className="postzibox_input">
+				<Avatar src="https://i.pinimg.com/564x/a5/0c/64/a50c6419a7da56be403a445d5dc3f8d4.jpg" />
 				<input
-					value={postziImage}
-					onChange={e => setPostziImage(e.target.value)}
-					className="postzibox_imageInput"
-					placeholder="Optional Enter image URL"
+					onChange={e => setText(e.target.value)}
+					value={text}
+					placeholder="What´s happening?"
 					type="text"
 				/>
-				<button onClick={sendPostzi} type="submit" className="postzibox_button">
-					Postzi
+			</div>
+			<div>
+				<span className="btn btn-light btn-file">
+					<i className="fas fa-images" />
+					<input type="file" name="file" onChange={e => setFile(e.target.files[0])} />
+				</span>
+
+				<button onClick={() => post()} type="button" className="postbtn btn btn-light">
+					Post
 				</button>
-			</form>
+			</div>
 		</div>
 	);
 }
