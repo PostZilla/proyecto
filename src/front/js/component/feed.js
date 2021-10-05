@@ -4,7 +4,7 @@ import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 
-function Feed2() {
+function Feed() {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
@@ -32,4 +32,4 @@ function Feed2() {
 	);
 }
 
-export default Feed2;
+export default Feed;
