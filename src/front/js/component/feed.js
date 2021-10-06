@@ -18,18 +18,19 @@ function Feed() {
 			</div>
 			<Postzibox />
 
-			{store.post.map((value, index) => (
-				<Post
-					text={value.text}
-					username={value.user.username}
-					profileimg={value.user.profile_image_url}
-					img={value.img}
-					name={value.user.name}
-					userid={value.user.id}
-					postid={value.id}
-					key={index}
-				/>
-			))}
+			{!!store.post &&
+				store.post.map((value, index) => (
+					<Post
+						text={value.text}
+						username={value.user.username}
+						profileimg={value.user.profile_image_url}
+						img={value.img}
+						name={value.user.name}
+						userid={value.user.id}
+						postid={value.id}
+						key={index}
+					/>
+				))}
 		</div>
 	);
 }

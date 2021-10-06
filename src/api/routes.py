@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Post
+from api.models import db, User, Post, Follow
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import cloudinary
@@ -61,7 +61,7 @@ def get_user(email):
 
     return jsonify(user), 200
 
-@api.route('/usernames', methods=["GET"])
+@api.route('/search', methods=["GET"])
 @jwt_required()
 def get_all_user():
     
@@ -99,21 +99,19 @@ def get_all_post():
     posts = Post.get_all_post()
 
     return jsonify(posts), 200
-@api.route('/image', methods=["POST"])
-def upload_image():
+@api.route('/follows', methods=['POST'])
+@jwt_required()
+def new_follow():
+    body = request.get_json()
+    if body is None:
+        return {"error": "The body is null or undefined"}, 400
+
+    Follow.new_follow(user_id)
     
-    image = request.files['File']
+    return {"message": "seguidor agregado"}, 200
 
-    if image is None:
-        return jsonify({"msg": "Error to get image"}), 400
-    
-    upload_result = cloudinary.uploader.upload(image)
-
-    user = User.query.get(1)
-
-    user.profile_image_url = upload_result['secure_url']
-
-    db.session.commit()
-
-    return jsonify({"msg": "image upload fine"}), 200    
-
+@api.route('/follows/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_follow(id):
+    follow = Follow.delete_follow(id)
+    return jsonify(follow), 200

@@ -11,7 +11,7 @@ export const Navbar = () => {
 	useEffect(
 		() => {
 			if (store.isAuthenticate) {
-				fetch(process.env.BACKEND_URL + "/api/usernames", {
+				fetch(process.env.BACKEND_URL + "/api/search", {
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 						"Content-type": "application/json"

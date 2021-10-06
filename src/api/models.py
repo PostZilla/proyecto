@@ -14,6 +14,7 @@ class User(db.Model):
     country = db.Column(db.String(120),unique=False, nullable = False)
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     post = db.relationship("Post", back_populates="user")
+    follow = db.relationship("Follow", back_populates="user")
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -28,7 +29,7 @@ class User(db.Model):
             "profile_image_url": self.profile_image_url
             # do not serialize the password, its a security breach
         }
-    #inteto de push Bryan
+    
     
     def create(name, last_name, username, email, password, country, profile_image_url):
         user = User(name=name, last_name=last_name, username=username, email=email, password=password, country=country, profile_image_url=profile_image_url)
@@ -88,8 +89,28 @@ class Post(db.Model):
         post = Post.query.filter_by(user_id=user_id).first()
         return post
 
-    def delete_post(post_id):
-        post = Post.query.get(post_id)
+    def delete_post(id):
+        post = Post.query.get(id)
         db.session.delete(post)
         db.session.commit()
     
+class Follow(db.Model):
+    __tablename__ = 'follow'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User", back_populates="follow")
+
+    def new_follow(user_id):
+        follow = Follow(user_id=user_id)
+        db.session.add(follow)
+        db.session.commit()
+
+    def delete_follow(id):
+        follow = Follow.query.get(id)
+        db.session.delete(follow)
+        db.session.commit()
+    
+    def get_all_follows():
+        follows = Follow.query.all()
+        follows = list(map(lambda follow: follow.serialize(), follow))
+        return follows

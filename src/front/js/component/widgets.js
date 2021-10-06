@@ -15,14 +15,15 @@ export default function widgets() {
 			<div className="widgets_container">
 				<h2>Siguiendo</h2>
 
-				{store.follower.map((value, index) => {
-					return (
-						<li key={index} className="dropdown-item">
-							@{value}
-							<i className="fas fa-trash  float-right" onClick={() => actions.delFollower(value)} />
-						</li>
-					);
-				})}
+				{!!store.follower &&
+					store.follower.map((value, index) => {
+						return (
+							<li key={index}>
+								@{value}
+								<button onClick={() => actions.delFollower(value)}> X </button>
+							</li>
+						);
+					})}
 			</div>
 		</div>
 	);
