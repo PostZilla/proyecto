@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Post, Follow
+from api.models import db, User, Post
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import cloudinary
@@ -102,22 +102,50 @@ def new_follow():
     body = request.get_json()
     if body is None:
         return {"error": "The body is null or undefined"}, 400
+    friend_id = body["friend_id"]
+    friend= User.query.get(friend_id)
 
     user_id = get_jwt_identity()
+    user= User.query.get(user_id)
+    follow= user.addFollow(friend)
 
-    Follow.new_follow(user_id)
-    print(body)
+    print(follow)
+    db.session.add(follow)
+    db.session.commit()
     return {"message": "seguidor agregado"}, 200
 
 @api.route('/follows', methods=['GET'])
 @jwt_required()
 def get_all_follows():
-    follows = Follow.get_all_follows()
+    user_id = get_jwt_identity()
 
-    return jsonify(follows), 200
+    follower = User.getFollows(user_id)
+    print(follower)
+    return jsonify(follower)
+
+@api.route('/follower/<int:id>', methods=['GET'])
+@jwt_required()
+def is_following(id):
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+    follower = User.query.get(id)
+
+    following = user.is_following(follower)
+    return jsonify({following:following})
+
 
 @api.route('/follows/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_follow(id):
-    follow = Follow.delete_follow(id)
     return jsonify(follow), 200
+@api.route('/like', methods=['POST'])
+@jwt_required()
+def new_like():
+    body = request.get_json()
+    if body is None:
+        return {"error": "The body is null or undefined"}, 400
+
+    post_id = body['post_id']
+
+    Like.new_like(post_id)
+    return {"message": "seguidor agregado"}, 200

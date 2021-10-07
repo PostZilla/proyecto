@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -14,6 +14,9 @@ function Post(props) {
 	let heart = store.likes.find((value, index) => {
 		return value == props.postid;
 	});
+	useEffect(() => {
+		actions.is_following();
+	}, []);
 	return (
 		<div className="post">
 			<div className="post_avatar">
@@ -25,13 +28,7 @@ function Post(props) {
 				<div className="post_header">
 					<div className="post_headerText">
 						<h3>
-<<<<<<< HEAD
-							<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>
-								{props.name}
-							</Link>
-=======
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
->>>>>>> main
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
 							{!store.myFollower ? (
@@ -60,21 +57,12 @@ function Post(props) {
 				</div>
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
-<<<<<<< HEAD
 					<FavoriteBorderIcon
 						fontSize="small"
 						onClick={() =>
 							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
 						}
 					/>
-=======
-					<button
-						onClick={() =>
-							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
-						}>
-						<FavoriteBorderIcon fontSize="small" />
-					</button>
->>>>>>> main
 				</div>
 			</div>
 		</div>

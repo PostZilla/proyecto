@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			post: [],
 			likes: [],
 			follower: [],
-			followed: []
+			following: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -128,13 +128,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
-			addFollower: user => {
+			addFollower: friend_id => {
 				const store = getStore();
 
 				fetch(process.env.BACKEND_URL + "/api/follow", {
 					method: "POST",
 					body: JSON.stringify({
-						user: user
+						friend_id: friend_id
 					}),
 					headers: {
 						"Content-type": "application/json",
@@ -168,9 +168,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
+						console.log("follow nuevo", data);
 						setStore({ follower: data });
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			is_following: () => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/followers/<int:id>", {
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						} else {
+							console.error("[Error response]", resp);
+						}
+					})
+					.then(data => {
+						console.log("following", data);
+						setStore({ following: data, myFollower: true });
+					})
+					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			delFollow: () => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/follows/${id}", {
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+						"Content-type": "application/json"
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => {
+						setStore({ message: data.msg });
+					});
 			},
 
 			delFollower: deletedItem => {
