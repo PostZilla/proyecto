@@ -2,7 +2,11 @@ from flask_sqlalchemy import SQLAlchemy
 import random
 
 db = SQLAlchemy()
-
+user_following=db.Table(
+    'user_following',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +18,11 @@ class User(db.Model):
     country = db.Column(db.String(120),unique=False, nullable = False)
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     post = db.relationship("Post", back_populates="user")
-    follow = db.relationship("Follow", back_populates="user")
+    follow = db.relationship('User', secondary=user_following, 
+                               primaryjoin=(user_following.c.follower_id == id), 
+                               secondaryjoin=(user_following.c.followed_id == id), 
+                               backref=db.backref('user_following', lazy='dynamic'), 
+                               lazy='dynamic')
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -36,6 +44,24 @@ class User(db.Model):
         db.session.add(user)
         db.session.commit()
     
+    def addFollow(self,user):
+        if not self.is_following(user):
+            self.follow.append(user)
+            return self
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.follow.remove(user)
+            return self
+
+    def is_following(self, user):
+        return self.follow.filter(user_following.c.followed_id==user.id).count()>0
+
+    def getFollows(id):
+        user= User.query.get(id)
+        follows= list(map(lambda follow : follow.serialize(),user.follow))
+        return follows
+        
     def get_user(username, email, password):
         user = User.query.filter_by(username=username, email=email, password=password).first()
         return user
@@ -94,23 +120,3 @@ class Post(db.Model):
         db.session.delete(post)
         db.session.commit()
     
-class Follow(db.Model):
-    __tablename__ = 'follow'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship("User", back_populates="follow")
-
-    def new_follow(user_id):
-        follow = Follow(user_id=user_id)
-        db.session.add(follow)
-        db.session.commit()
-
-    def delete_follow(id):
-        follow = Follow.query.get(id)
-        db.session.delete(follow)
-        db.session.commit()
-    
-    def get_all_follows():
-        follows = Follow.query.all()
-        follows = list(map(lambda follow: follow.serialize(), follow))
-        return follows
