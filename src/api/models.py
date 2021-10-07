@@ -100,6 +100,13 @@ class Follow(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User", back_populates="follow")
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": User.serialize(self.user)
+
+        }
+
     def new_follow(user_id):
         follow = Follow(user_id=user_id)
         db.session.add(follow)
@@ -112,5 +119,6 @@ class Follow(db.Model):
     
     def get_all_follows():
         follows = Follow.query.all()
-        follows = list(map(lambda follow: follow.serialize(), follow))
+        follows = list(map(lambda follow: follow.serialize(), follows))
         return follows
+        

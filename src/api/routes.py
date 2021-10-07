@@ -80,9 +80,6 @@ def delete_user(id):
 def create_post():
     image = request.files['File']
     
-    if image is None:
-        return jsonify ({"msg": "The body is null or undefined"}), 400
-
     user_id = get_jwt_identity()
 
     text = request.form["text"]
@@ -99,16 +96,25 @@ def get_all_post():
     posts = Post.get_all_post()
 
     return jsonify(posts), 200
-@api.route('/follows', methods=['POST'])
+@api.route('/follow', methods=['POST'])
 @jwt_required()
 def new_follow():
     body = request.get_json()
     if body is None:
         return {"error": "The body is null or undefined"}, 400
 
+    user_id = get_jwt_identity()
+
     Follow.new_follow(user_id)
-    
+    print(body)
     return {"message": "seguidor agregado"}, 200
+
+@api.route('/follows', methods=['GET'])
+@jwt_required()
+def get_all_follows():
+    follows = Follow.get_all_follows()
+
+    return jsonify(follows), 200
 
 @api.route('/follows/<int:id>', methods=['DELETE'])
 @jwt_required()
