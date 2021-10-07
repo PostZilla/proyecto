@@ -3,7 +3,29 @@
     border-radius: 10px;
     
 }
+
+.searchInput{
+    align-items: inline-block;
+    background-color: #E1E8ED;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    border-radius: 10px;
+    width: 210px;
+    margin-left: 600px;
+    font-size: 1.25rem;
+    white-space: nowrap;
+    line-height: inherit;
+    color: rgba(0, 0, 0, 0.9);
+    
+
+}
 .search{
-    margin-left: 650px;
-    width: 200px;
+    width: 180px;
+    border: none;
+    background-color: #E1E8ED;
+ 
+    
+}
+.search_InputIcon{
+color: gray;
 }

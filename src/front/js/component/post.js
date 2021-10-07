@@ -8,6 +8,8 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PublishIcon from "@material-ui/icons/Publish";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
+import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import VerifiedUser from "@material-ui/icons/VerifiedUser";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -25,19 +27,13 @@ function Post(props) {
 				<div className="post_header">
 					<div className="post_headerText">
 						<h3>
-<<<<<<< HEAD
-							<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>
-								{props.name}
-							</Link>
-=======
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
->>>>>>> main
-
+							<VerifiedUser className="postBadge" />
 							<span className="post_headerSpecial Space">@{props.username}</span>
 							{!store.myFollower ? (
 								<button
 									type="button"
-									className="btn btn-light"
+									className="buttonFollow"
 									onClick={() => actions.addFollower(props.username)}>
 									Seguir
 								</button>
@@ -60,21 +56,12 @@ function Post(props) {
 				</div>
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
-<<<<<<< HEAD
 					<FavoriteBorderIcon
-						fontSize="small"
+						className="favorite"
 						onClick={() =>
 							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
 						}
 					/>
-=======
-					<button
-						onClick={() =>
-							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
-						}>
-						<FavoriteBorderIcon fontSize="small" />
-					</button>
->>>>>>> main
 				</div>
 			</div>
 		</div>
