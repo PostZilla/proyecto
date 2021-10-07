@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
 import "../../styles/navbar.scss";
+import SearchIcon from "@material-ui/icons/Search";
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [usernames, setUsernames] = useState([]);
@@ -66,16 +68,17 @@ export const Navbar = () => {
 					</>
 				) : (
 					<>
-						<input
-							className="search form-control mr-sm-2"
-							type="search"
-							placeholder="Search"
-							aria-label="Search"
-							onChange={e => onChangeHandler(e.target.value)}
-							value={text}
-							onBlur={() => setSuggestions([])}
-						/>
-
+						<div className="searchInput">
+							<SearchIcon className="search_InputIcon" />
+							<input
+								className="search "
+								type="text"
+								placeholder="Search Postzilla..."
+								onChange={e => onChangeHandler(e.target.value)}
+								value={text}
+								onBlur={() => setSuggestions([])}
+							/>
+						</div>
 						{suggestions &&
 							suggestions.map((suggestion, i) => (
 								<div
