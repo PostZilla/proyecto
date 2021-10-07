@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import { Password } from "./pages/password";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
+import Profile from "./pages/profile";
 import { Navbar } from "./component/navbar";
 
 //create your first component
@@ -34,7 +34,13 @@ const Layout = () => {
 						<Route exact path="/new-password">
 							<Password />
 						</Route>
+<<<<<<< HEAD
+						<Route exact path="/single/:theid">
+							<Single />
+						</Route>
+=======
 						<Route exact path="/userdetails/:theusername" component={Single} /> <Single />
+>>>>>>> main
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
