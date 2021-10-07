@@ -14,9 +14,6 @@ function Post(props) {
 	let heart = store.likes.find((value, index) => {
 		return value == props.postid;
 	});
-	useEffect(() => {
-		actions.is_following();
-	}, []);
 	return (
 		<div className="post">
 			<div className="post_avatar">
@@ -31,19 +28,19 @@ function Post(props) {
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
-							{!store.myFollower ? (
-								<button
-									type="button"
-									className="btn btn-light"
-									onClick={() => actions.addFollower(props.username)}>
-									Seguir
-								</button>
-							) : (
+							{actions.is_following(props.userid) ? (
 								<button
 									type="button"
 									className="btn btn-danger"
 									onClick={() => actions.delFollower(props.username)}>
 									Dejar de Seguir
+								</button>
+							) : (
+								<button
+									type="button"
+									className="btn btn-light"
+									onClick={() => actions.addFollower(props.username)}>
+									Seguir
 								</button>
 							)}
 						</h3>

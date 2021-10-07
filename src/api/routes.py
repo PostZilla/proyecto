@@ -131,7 +131,9 @@ def is_following(id):
     follower = User.query.get(id)
 
     following = user.is_following(follower)
-    return jsonify({following:following})
+    print(following)
+    
+    return jsonify(following)
 
 
 @api.route('/follows/<int:id>', methods=['DELETE'])
