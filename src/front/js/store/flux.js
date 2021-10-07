@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			post: [],
 			likes: [],
 			follower: [],
-			followed: []
+			following: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -100,6 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return resp.json();
 						}
 					})
+
 					.then(data => {
 						console.log("dataa", data);
 						setStore({ post: data });
@@ -122,12 +123,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ post: data });
 						console.log("post dataa", data);
+						setStore({ post: data });
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
-			addFollower: () => {
+			addFollower: friend_id => {
+				const store = getStore();
+
+				fetch(process.env.BACKEND_URL + "/api/follow", {
+					method: "POST",
+					body: JSON.stringify({
+						friend_id: friend_id
+					}),
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => {
+						console.log("folllow", data);
+						setStore({ follower: data, myFollower: true });
+					})
+					.catch(error => console.error("[ERROR IN LOGIN]", error));
+			},
+			getFollows: () => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/api/follows", {
 					headers: {
@@ -143,11 +168,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						store.follower.concat(data);
-						console.log("seguidor", data);
-						setStore({ follower: data, myFollower: true });
+						console.log("follow nuevo", data);
+						setStore({ follower: data });
 					})
-					.catch(error => console.error("[ERROR TO GET FOLLOWER]", error));
+					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			is_following: id => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/follower/" + id, {
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						} else {
+							console.error("[Error response]", resp);
+						}
+					})
+					.then(data => {
+						console.log("following", data);
+						return data.following;
+					})
+					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			delFollow: id => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/follows/"`${id}`, {
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+						"Content-type": "application/json"
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => {
+						setStore({ message: data.msg, myFollower: false });
+					});
 			},
 
 			delFollower: deletedItem => {
@@ -155,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let newFollower = storeCopy.follower.filter((value, index) => {
 					return value != deletedItem;
 				});
-				setStore({ follower: newFollower, myFollower: false });
+				setStore({ follower: newFollower });
 			},
 			addLike: newItem => {
 				let myStore = getStore();

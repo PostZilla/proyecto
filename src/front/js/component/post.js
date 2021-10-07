@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -8,6 +8,8 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PublishIcon from "@material-ui/icons/Publish";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
+import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import VerifiedUser from "@material-ui/icons/VerifiedUser";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -27,20 +29,28 @@ function Post(props) {
 						<h3>
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
+							<VerifiedUser className="postBadge" />
+
 							<span className="post_headerSpecial Space">@{props.username}</span>
-							{!store.myFollower ? (
+							{actions.is_following(props.userid) ? (
+								<button
+									type="button"
+
+									className="buttonFollow"
+									onClick={() => actions.addFollower(props.username)}>
+									Seguir
+
+									className="btn btn-danger"
+									onClick={() => actions.delFollower(props.username)}
+									Dejar de Seguir
+
+								</button>
+							) : (
 								<button
 									type="button"
 									className="btn btn-light"
 									onClick={() => actions.addFollower(props.username)}>
 									Seguir
-								</button>
-							) : (
-								<button
-									type="button"
-									className="btn btn-danger"
-									onClick={() => actions.delFollower(props.username)}>
-									Dejar de Seguir
 								</button>
 							)}
 						</h3>
@@ -54,12 +64,12 @@ function Post(props) {
 				</div>
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
-					<button
+					<FavoriteBorderIcon
+						className="favorite"
 						onClick={() =>
 							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
-						}>
-						<FavoriteBorderIcon fontSize="small" />
-					</button>
+						}
+					/>
 				</div>
 			</div>
 		</div>

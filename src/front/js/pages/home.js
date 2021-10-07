@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../../styles/home.scss";
 import Feed from "../component/feed";
 import Sidebar from "../component/sidebar";
 import Widgets from "../component/widgets";
+import { Context } from "../store/appContext";
 
 export const Home = () => {
 	return (
