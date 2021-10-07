@@ -25,13 +25,7 @@ function Post(props) {
 				<div className="post_header">
 					<div className="post_headerText">
 						<h3>
-<<<<<<< HEAD
-							<Link to={{ pathname: `/username/${props.userid}`, state: props.userid }}>
-								{props.name}
-							</Link>
-=======
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
->>>>>>> main
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
 							{!store.myFollower ? (
@@ -60,21 +54,12 @@ function Post(props) {
 				</div>
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
-<<<<<<< HEAD
-					<FavoriteBorderIcon
-						fontSize="small"
-						onClick={() =>
-							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
-						}
-					/>
-=======
 					<button
 						onClick={() =>
 							heart == undefined ? props.addLike(props.postid) : props.deleteLike(props.postid)
 						}>
 						<FavoriteBorderIcon fontSize="small" />
 					</button>
->>>>>>> main
 				</div>
 			</div>
 		</div>
