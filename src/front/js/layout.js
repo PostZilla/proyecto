@@ -34,9 +34,13 @@ const Layout = () => {
 						<Route exact path="/new-password">
 							<Password />
 						</Route>
+<<<<<<< HEAD
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
+=======
+						<Route exact path="/userdetails/:theusername" component={Single} /> <Single />
+>>>>>>> main
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

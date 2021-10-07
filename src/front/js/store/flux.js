@@ -127,17 +127,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
-			addFollower: newItem => {
-				let myStore = getStore();
-				let newFollower = myStore.follower.concat(newItem);
-				setStore({ follower: newFollower, myFollower: true });
+			addFollower: () => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/follows", {
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						} else {
+							console.error("[Error response]", resp);
+						}
+					})
+					.then(data => {
+						store.follower.concat(data);
+						console.log("seguidor", data);
+						setStore({ follower: data, myFollower: true });
+					})
+					.catch(error => console.error("[ERROR TO GET FOLLOWER]", error));
 			},
+
 			delFollower: deletedItem => {
 				let storeCopy = getStore();
 				let newFollower = storeCopy.follower.filter((value, index) => {
 					return value != deletedItem;
 				});
-				setStore({ follower: newFollower });
+				setStore({ follower: newFollower, myFollower: false });
 			},
 			addLike: newItem => {
 				let myStore = getStore();
