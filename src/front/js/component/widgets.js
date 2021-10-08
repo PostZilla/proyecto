@@ -1,9 +1,4 @@
-
-import React, { useContext } from "react";
-=======
 import React, { useContext, useDebugValue, useEffect } from "react";
-import SearchIcon from "@material-ui/icons/Search";
-
 import "../../styles/widgets.scss";
 import Follow from "./follow";
 import { Context } from "../store/appContext";

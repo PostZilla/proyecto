@@ -34,12 +34,7 @@ function Post(props) {
 							<span className="post_headerSpecial Space">@{props.username}</span>
 							{actions.is_following(props.userid) ? (
 								<button
-									type="button"
-
-									className="buttonFollow"
-									onClick={() => actions.addFollower(props.username)}>
-									Seguir
-
+									
 									className="btn btn-danger"
 									onClick={() => actions.delFollower(props.username)}>
 									Dejar de Seguir
