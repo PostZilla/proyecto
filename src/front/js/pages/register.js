@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/login.scss";
+import Loader from "react-loader-spinner";
 
 const Register = () => {
 	const { store, actions } = useContext(Context);
@@ -130,11 +131,15 @@ const Register = () => {
 						/>
 					</div>
 				</div>
-				<div>
-					<button onClick={() => register()} type="submit" className="btn  sub btn-block">
-						Ingresar
-					</button>
-				</div>
+				{store.isLoading ? (
+					<Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+				) : (
+					<div>
+						<button onClick={() => register()} type="submit" className="btn  sub btn-block">
+							Ingresar
+						</button>
+					</div>
+				)}
 				¿Ya estás registrado? <Link to={"/"}>Inicia Sesión!</Link>{" "}
 			</div>
 		</div>

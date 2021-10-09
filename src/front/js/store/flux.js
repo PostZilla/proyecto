@@ -11,7 +11,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			likes: [],
 			follower: [],
 			following: [],
-			singlePost: []
+			singlePost: [],
+			isLoading: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -46,13 +47,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: formData
 				})
 					.then(resp => {
+						setStore({ isLoading: true });
 						if (resp.ok) {
 							return resp.json();
 						}
 					})
 					.then(data => {
 						console.log(data);
-						setStore({ isRegitred: true, msg: data.msg });
+						setStore({ isRegitred: true, msg: data.msg, isLoading: false });
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
@@ -120,6 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: formData
 				})
 					.then(resp => {
+						setStore({ isLoading: true });
 						if (resp.ok) {
 							return resp.json();
 						}
@@ -127,7 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					.then(data => {
 						console.log("dataa", data);
-						setStore({ msg: data.message });
+						setStore({ msg: data.message, isLoading: false });
 
 						actions.getPosts();
 					})
@@ -176,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFollower: friend_id => {
 				const store = getStore();
-
+				const actions = getActions();
 				fetch(process.env.BACKEND_URL + "/api/follow", {
 					method: "POST",
 					body: JSON.stringify({
@@ -194,7 +197,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("folllow", data);
-						setStore({ follower: data, myFollower: true });
+						setStore({ msg: data.message, myFollower: true });
+						actions.getFollows();
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},

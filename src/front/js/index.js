@@ -11,5 +11,8 @@ import "../styles/index.scss";
 //import your own components
 import Layout from "./layout";
 
+//import style for loader
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 //render your react application
 ReactDOM.render(<Layout />, document.querySelector("#app"));
