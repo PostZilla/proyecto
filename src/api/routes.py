@@ -76,14 +76,21 @@ def delete_user(id):
 @api.route('/post', methods=['POST'])
 @jwt_required()
 def create_post():
-    image = request.files['File']
-    
+    filesLength = len(request.files)
+    img = ''
+    image = ''
+    if filesLength == 0:
+        img = ''
+    else:
+        image = request.files['File']
+        if image is None:
+            img = ''
+        else:
+            upload_result = cloudinary.uploader.upload(image)
+            img = upload_result["secure_url"]
+
     user_id = get_jwt_identity()
-
     text = request.form["text"]
-    upload_result= cloudinary.uploader.upload(image)
-    img = upload_result["secure_url"]
-
     Post.create_post(user_id, text, img)
     
     return {"message": "post created"}, 200

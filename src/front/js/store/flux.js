@@ -111,6 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			Post: formData => {
 				const store = getStore();
+				const actions = getActions();
 				fetch(process.env.BACKEND_URL + "/api/post", {
 					method: "POST",
 					headers: {
@@ -126,7 +127,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					.then(data => {
 						console.log("dataa", data);
-						setStore({ post: data });
+						setStore({ msg: data.message });
+
+						actions.getPosts();
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
@@ -147,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("post dataa", data);
-						setStore({ post: data });
+						setStore({ post: data.reverse() });
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},

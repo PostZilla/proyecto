@@ -17,9 +17,7 @@ function Post(props) {
 	let heart = store.likes.find((value, index) => {
 		return value == props.postid;
 	});
-	useEffect(() => {
-		actions.getPosts();
-	}, []);
+
 	return (
 		<div className="post">
 			<div className="post_avatar">
@@ -52,9 +50,14 @@ function Post(props) {
 						<p>{props.text}</p>
 					</div>
 				</div>
-				<div className="imgbox">
-					<img className="postimg" src={props.img} alt="" />
-				</div>
+				{props.img != "" ? (
+					<div className="imgbox">
+						<img className="postimg" src={props.img} alt="" />
+					</div>
+				) : (
+					<div />
+				)}
+
 				<div className="post_footer">
 					<ChatBubbleOutlineIcon fontSize="small" />
 					<FavoriteBorderIcon className="favorite" onClick={() => actions.addLike(props.postid)} />

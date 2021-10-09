@@ -13,6 +13,8 @@ function Postzibox(props) {
 		formData.append("text", text);
 		formData.append("File", file);
 		actions.Post(formData);
+		setFile("");
+		setText("");
 	};
 
 	return (
