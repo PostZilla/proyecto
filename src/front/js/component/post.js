@@ -2,14 +2,10 @@ import PropTypes from "prop-types";
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-import RepeatIcon from "@material-ui/icons/Repeat";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import PublishIcon from "@material-ui/icons/Publish";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
+import Like from "../../img/like.png";
+import Heart from "../../img/heart.png";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -38,7 +34,7 @@ function Post(props) {
 							) : (
 								<button
 									type="button"
-									className="btn btn-light"
+									className="buttonFollow"
 									onClick={() => actions.addFollower(props.userid)}>
 									Seguir
 								</button>
@@ -58,8 +54,10 @@ function Post(props) {
 				)}
 
 				<div className="post_footer">
-					<ChatBubbleOutlineIcon fontSize="small" />
-					<FavoriteBorderIcon className="favorite" onClick={() => actions.addLike(props.postid)} />
+					<div className="postBottomLeft">
+						<img className="likeIcon" src={Like} alt="" />
+						<img className="likeIcon" src={Heart} alt="" onClick={() => actions.addLike(props.postid)} />
+					</div>
 				</div>
 			</div>
 		</div>
