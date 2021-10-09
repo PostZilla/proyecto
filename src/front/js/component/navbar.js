@@ -10,6 +10,7 @@ export const Navbar = () => {
 	const [usernames, setUsernames] = useState([]);
 	const [text, setText] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
+
 	useEffect(
 		() => {
 			if (store.isAuthenticate) {
@@ -46,27 +47,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
-				{!store.isAuthenticate ? (
-					<>
-						<Link className="navbar-brand" to={"/"}>
-							<img src={PostZilla} width="80" height="70" />
-						</Link>
-						<div className="collapse navbar-collapse" id="navbarToggle">
-							<ul className="navbar-nav ml-auto">
-								<li className="nav-item">
-									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
-										Iniciar sesión
-									</Link>
-								</li>
-								<li className="nav-item">
-									<Link className="navbar-brand navbtn btn btn-outline-light" to={"/register"}>
-										Registrarse
-									</Link>
-								</li>
-							</ul>
-						</div>
-					</>
-				) : (
+				{store.isAuthenticate ? (
 					<>
 						<div className="searchInput">
 							<SearchIcon className="search_InputIcon" />
@@ -100,6 +81,26 @@ export const Navbar = () => {
 								</Link>
 							</li>
 						</ul>
+					</>
+				) : (
+					<>
+						<Link className="navbar-brand" to={"/"}>
+							<img src={PostZilla} width="80" height="70" />
+						</Link>
+						<div className="collapse navbar-collapse" id="navbarToggle">
+							<ul className="navbar-nav ml-auto">
+								<li className="nav-item">
+									<Link className="navbar-brand navbtn btn btn-light" to={"/"}>
+										Iniciar sesión
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link className="navbar-brand navbtn btn btn-outline-light" to={"/register"}>
+										Registrarse
+									</Link>
+								</li>
+							</ul>
+						</div>
 					</>
 				)}
 			</div>

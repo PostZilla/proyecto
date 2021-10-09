@@ -5,7 +5,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { Home } from "./pages/home";
 import { Password } from "./pages/password";
-import { Single } from "./pages/single";
+import { Single } from "./component/singlefeed";
 import injectContext from "./store/appContext";
 import Profile from "./pages/profile";
 import { Navbar } from "./component/navbar";
@@ -34,10 +34,8 @@ const Layout = () => {
 						<Route exact path="/new-password">
 							<Password />
 						</Route>
-						<Route exact path="/userdetails/:theusername" component={Single} /> <Single />
-						=======
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/:theid">
+							<Profile />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

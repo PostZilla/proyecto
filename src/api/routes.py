@@ -51,15 +51,13 @@ def sign_in():
     return jsonify({"token": token}), 200
 
 
-@api.route('/user', methods=['GET'])
+@api.route('/user/<int:id>', methods=['GET'])
 @jwt_required()
-def get_user(email):
+def get_user(id):
+    user= User.get_user(id)
 
-    user = User.get_user(email)
-    if user is None:
-        return jsonify({"msg":"no user found"})
-
-    return jsonify(user), 200
+    print (user)
+    return jsonify(user),200
 
 @api.route('/search', methods=["GET"])
 @jwt_required()
@@ -96,6 +94,16 @@ def get_all_post():
     posts = Post.get_all_post()
 
     return jsonify(posts), 200
+
+@api.route('/posts/<int:id>', methods=['GET'])
+@jwt_required()
+def get_post(user_id):
+
+    user_id = get_jwt_identity()
+
+    post = Post.get_post(user_id)
+    return post
+
 @api.route('/follow', methods=['POST'])
 @jwt_required()
 def new_follow():
@@ -132,7 +140,7 @@ def is_following(id):
 
     following = user.is_following(follower)
     print(following)
-    
+
     return jsonify(following)
 
 
@@ -140,14 +148,18 @@ def is_following(id):
 @jwt_required()
 def delete_follow(id):
     return jsonify(follow), 200
+
 @api.route('/like', methods=['POST'])
 @jwt_required()
 def new_like():
     body = request.get_json()
     if body is None:
         return {"error": "The body is null or undefined"}, 400
+ 
+    post= Post.query.get(id)
+    like= user.addLike(post)
 
-    post_id = body['post_id']
-
-    Like.new_like(post_id)
+    print(like)
+    db.session.add(like)
+    db.session.commit()
     return {"message": "seguidor agregado"}, 200

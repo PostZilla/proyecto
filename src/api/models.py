@@ -7,6 +7,11 @@ user_following=db.Table(
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
+post_liking=db.Table(
+    'post_liking',
+    db.Column('liker_id', db.Integer, db.ForeignKey('post.id')),
+    db.Column('liker_id', db.Integer, db.ForeignKey('post.id'))
+)
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +49,28 @@ class User(db.Model):
         db.session.add(user)
         db.session.commit()
     
+    def get_user(id):
+        user = User.query.filter_by(id=id).first()
+        return User.serialize(user)
+    
+    def get_all_user():
+        usernames = User.query.all()
+        usernames = list(map(lambda user: user.serialize(), usernames))
+        return usernames
+    
+    def delete_user(id):
+        user = User.query.get(id)
+        db.session.delete(user)
+        db.session.commit()
+    
+    def randomPassword(email):
+        user = User.query.filter_by(email=email).first()
+        password = ''.join((random.choice('abcdxyzpqr') for i in range(5)))
+        user.password = password
+        db.session.commit()
+
+        return password
+
     def addFollow(self,user):
         if not self.is_following(user):
             self.follow.append(user)
@@ -61,29 +88,11 @@ class User(db.Model):
         user= User.query.get(id)
         follows= list(map(lambda follow : follow.serialize(),user.follow))
         return follows
-        
-    def get_user(username, email, password):
-        user = User.query.filter_by(username=username, email=email, password=password).first()
-        return user
     
-    def get_all_user():
-        usernames = User.query.all()
-        usernames = list(map(lambda user: user.serialize(), usernames))
-        return usernames
-    
-    def delete_user(id):
-        user = User.query.get(id)
-        db.session.delete(user)
+    def delete_follow(id):
+        follow = User.query.get(id)
+        db.session.delete(follow)
         db.session.commit()
-    
-
-    def randomPassword(email):
-        user = User.query.filter_by(email=email).first()
-        password = ''.join((random.choice('abcdxyzpqr') for i in range(5)))
-        user.password = password
-        db.session.commit()
-
-        return password
 
 class Post(db.Model):
     __tablename__ = 'post'
@@ -92,6 +101,11 @@ class Post(db.Model):
     img = db.Column(db.String(255), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User", back_populates="post")
+    like = db.relationship('Post', secondary=post_liking, 
+                               primaryjoin=(post_liking.c.liker_id == id), 
+                               secondaryjoin=(post_liking.c.liker_id == id), 
+                               backref=db.backref('post_liking', lazy='dynamic'), 
+                               lazy='dynamic')
 
     def serialize(self):
         return {
@@ -105,6 +119,7 @@ class Post(db.Model):
         post = Post(user_id=user_id, text=text, img=img)
         db.session.add(post)
         db.session.commit()
+                    
     
     def get_all_post():
         posts = Post.query.all()
@@ -120,3 +135,12 @@ class Post(db.Model):
         db.session.delete(post)
         db.session.commit()
     
+    def addLike(self,id):
+        if not self.is_liking(id):
+            self.like.append(id)
+            return self
+
+    def unlike(self, post):
+        if self.is_following(user):
+            self.follow.remove(user)
+            return self
