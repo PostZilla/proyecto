@@ -239,8 +239,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						console.log("following", data);
-						return data.following;
+						console.log(data);
+						return { isFollowing: data };
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},

@@ -104,11 +104,9 @@ def get_all_post():
 
 @api.route('/posts/<int:id>', methods=['GET'])
 @jwt_required()
-def get_post(user_id):
+def get_post(id):
 
-    user_id = get_jwt_identity()
-
-    post = Post.get_post(user_id)
+    post = Post.get_post(id)
     return post
 
 @api.route('/follow', methods=['POST'])

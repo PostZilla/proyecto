@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -10,14 +10,13 @@ import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
 	let heart = store.likes.find((value, index) => {
 		return value == props.postid;
 	});
-
+	console.log(props);
 	return (
 		<div className="post">
 			<div className="post_avatar">
@@ -74,7 +73,8 @@ Post.propTypes = {
 	profileimg: PropTypes.string,
 	name: PropTypes.string,
 	userid: PropTypes.number,
-	postid: PropTypes.number
+	postid: PropTypes.number,
+	isFollowing: PropTypes.bool
 };
 
 export default Post;
