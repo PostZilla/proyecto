@@ -7,9 +7,12 @@ import Post from "./post.js";
 function Feed() {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getPosts();
-	}, []);
+	useEffect(
+		() => {
+			actions.getPosts();
+		},
+		[store.post]
+	);
 
 	return (
 		<div className="feed">

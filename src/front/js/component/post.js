@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -33,15 +34,15 @@ function Post(props) {
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
-							{actions.is_following(props.userid) ? (
-								<button className="btn btn-danger" onClick={() => actions.delFollow(props.username)}>
+							{false ? (
+								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
 								</button>
 							) : (
 								<button
 									type="button"
 									className="btn btn-light"
-									onClick={() => actions.addFollower(props.username)}>
+									onClick={() => actions.addFollower(props.userid)}>
 									Seguir
 								</button>
 							)}
