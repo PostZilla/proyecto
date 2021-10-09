@@ -15,7 +15,7 @@ function Widgets() {
 			<div className="widgets_container">
 				<h2>Siguiendo</h2>
 				{!!store.follower &&
-					store.follower.map((value, index) => <Follow username={value.username} key={index} />)}
+					store.follower.reverse().map((value, index) => <Follow username={value.username} key={index} />)}
 			</div>
 		</div>
 	);

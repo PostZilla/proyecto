@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
 import { Context } from "../store/appContext";
+import { PropTypes } from "prop-types";
 import "../../styles/postzibox.scss";
 
-function postzibox() {
+function Postzibox(props) {
 	const { store, actions } = useContext(Context);
 	const [text, setText] = useState("");
 	const [file, setFile] = useState("");
@@ -13,11 +14,13 @@ function postzibox() {
 		formData.append("File", file);
 		actions.Post(formData);
 	};
-
+	useEffect(() => {
+		actions.getPosts();
+	}, []);
 	return (
 		<div className="postzibox">
 			<div className="postzibox_input">
-				<Avatar src="https://i.pinimg.com/564x/a5/0c/64/a50c6419a7da56be403a445d5dc3f8d4.jpg" />
+				<Avatar src={props.profileimg} />
 				<input
 					onChange={e => setText(e.target.value)}
 					value={text}
@@ -38,5 +41,7 @@ function postzibox() {
 		</div>
 	);
 }
-
-export default postzibox;
+Postzibox.propTypes = {
+	profileimg: PropTypes.string
+};
+export default Postzibox;
