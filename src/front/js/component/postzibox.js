@@ -14,9 +14,7 @@ function Postzibox(props) {
 		formData.append("File", file);
 		actions.Post(formData);
 	};
-	useEffect(() => {
-		actions.getPosts();
-	}, []);
+
 	return (
 		<div className="postzibox">
 			<div className="postzibox_input">
@@ -34,7 +32,7 @@ function Postzibox(props) {
 					<input type="file" name="file" onChange={e => setFile(e.target.files[0])} />
 				</span>
 
-				<button onClick={() => post()} type="button" className="postzibox_button">
+				<button onClick={() => post()} className="postzibox_button">
 					Post
 				</button>
 			</div>

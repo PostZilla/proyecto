@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			myLike: false,
 			msg: " ",
 			user: [],
-			post: [],
+			post: undefined,
 			likes: [],
 			follower: [],
 			following: [],
