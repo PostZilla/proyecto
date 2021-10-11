@@ -32,11 +32,6 @@
     margin-bottom: 5px;
 }
 
-.postBadge{
-    size: 3px;
-    color:#1DA1F2 ;
-    margin-left: 10px;
-}
 
 .post_headerSpecial{
 
@@ -51,10 +46,15 @@
 .postimg{
     width: 600px;
     height: 335px;
+    border-radius: 20px;
+    
     
 }
-.favorite{
-    color:red;
+
+.likeIcon{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
     cursor: pointer;
   
 }
