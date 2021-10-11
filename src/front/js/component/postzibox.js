@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
 import { Context } from "../store/appContext";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import "../../styles/postzibox.scss";
 import Loader from "react-loader-spinner";
+import Link from "react-router";
 
 function Postzibox(props) {
 	const { store, actions } = useContext(Context);
@@ -26,11 +27,12 @@ function Postzibox(props) {
 	return (
 		<div className="postzibox">
 			<div className="postzibox_input">
-				<Avatar src={props.profileimg} />
+				<Avatar className="avatar" src={props.profileimg} />
+
 				<input
 					onChange={e => setText(e.target.value)}
 					value={text}
-					placeholder="What´s happening?"
+					placeholder="¿Qué está pasando?"
 					type="text"
 				/>
 			</div>
@@ -56,4 +58,5 @@ function Postzibox(props) {
 Postzibox.propTypes = {
 	profileimg: PropTypes.string
 };
+
 export default Postzibox;

@@ -56,7 +56,12 @@
     height: 24px;
     margin-right: 5px;
     cursor: pointer;
-  
+}
+
+.likeIcon:active{
+    background:rgba(255,66,17,0.6);
+    border-radius: 5px;
+ 
 }
 
 .buttonFollow{
