@@ -3,19 +3,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-import RepeatIcon from "@material-ui/icons/Repeat";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import PublishIcon from "@material-ui/icons/Publish";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
-	let heart = store.likes.find((value, index) => {
-		return value == props.postid;
-	});
 	console.log(props);
 	return (
 		<div className="post">
@@ -58,7 +51,6 @@ function Post(props) {
 				)}
 
 				<div className="post_footer">
-					<ChatBubbleOutlineIcon fontSize="small" />
 					<FavoriteBorderIcon className="favorite" onClick={() => actions.addLike(props.postid)} />
 				</div>
 			</div>

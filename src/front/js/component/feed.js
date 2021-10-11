@@ -9,6 +9,7 @@ function Feed() {
 
 	useEffect(() => {
 		actions.getPosts();
+		actions.getUser();
 	}, []);
 
 	return (
@@ -16,7 +17,10 @@ function Feed() {
 			<div>
 				<h2>Home</h2>
 			</div>
-			<Postzibox />
+			{!!store.user &&
+				store.user.map((value, index) => (
+					<Postzibox userid={value.user.id} profileimg={value.user.profile_image_url} key={index} />
+				))}
 
 			{!!store.post &&
 				store.post.map((value, index) => (

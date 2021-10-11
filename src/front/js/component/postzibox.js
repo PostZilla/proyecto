@@ -26,7 +26,7 @@ function Postzibox(props) {
 	return (
 		<div className="postzibox">
 			<div className="postzibox_input">
-				<Avatar src={props.profileimg} />
+				<Avatar src={props.userid} />
 				<input
 					onChange={e => setText(e.target.value)}
 					value={text}
@@ -54,6 +54,7 @@ function Postzibox(props) {
 	);
 }
 Postzibox.propTypes = {
-	profileimg: PropTypes.string
+	profileimg: PropTypes.string,
+	userid: PropTypes.number
 };
 export default Postzibox;
