@@ -5,6 +5,7 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import Heart from "../../img/heart.png";
+import DateTime from "react-router-dom";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -34,6 +35,7 @@ function Post(props) {
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
+							<DateTime className="postDate" />
 							{false ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
