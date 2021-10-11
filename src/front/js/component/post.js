@@ -24,9 +24,7 @@ function Post(props) {
 	return (
 		<div className="post">
 			<div className="post_avatar">
-				<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
-					<Avatar className="avatar" src={props.profileimg} />
-				</Link>
+				<Avatar className="avatar" src={props.profileimg} />
 			</div>
 			<div className="post_body">
 				<div className="post_header">
@@ -35,7 +33,7 @@ function Post(props) {
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
-							<DateTime className="postDate" />
+
 							{false ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir

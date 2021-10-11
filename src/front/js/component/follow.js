@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
+import ClearIcon from "@material-ui/icons/Clear";
+import "../../styles/follow.scss";
 
 function Follow(props) {
 	const { store, actions } = useContext(Context);
@@ -8,7 +10,7 @@ function Follow(props) {
 	return (
 		<div>
 			@{props.username}
-			<button onClick={() => actions.delFollow()}>X</button>
+			<ClearIcon className="equis" onClick={() => actions.delFollow()} />
 		</div>
 	);
 }
