@@ -5,7 +5,6 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import Heart from "../../img/heart.png";
-import DateTime from "react-router-dom";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -81,7 +80,8 @@ Post.propTypes = {
 	name: PropTypes.string,
 	userid: PropTypes.number,
 	postid: PropTypes.number,
-	isFollowing: PropTypes.bool
+	isFollowing: PropTypes.bool,
+	date: PropTypes.number
 };
 
 export default Post;

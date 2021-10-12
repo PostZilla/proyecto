@@ -47,9 +47,9 @@ function Postzibox(props) {
 
 					{file != "" ? <span>{file.name}</span> : null}
 
-					<button onClick={() => post()} className="postzibox_button">
+					<span className="btn btn-light btn-file" onClick={() => post()}>
 						Post
-					</button>
+					</span>
 				</div>
 			)}
 		</div>
