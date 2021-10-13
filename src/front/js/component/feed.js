@@ -17,10 +17,7 @@ function Feed() {
 			<div>
 				<h2>Home</h2>
 			</div>
-			{!!store.user &&
-				store.user.map((value, index) => (
-					<Postzibox userid={value.user.id} profileimg={value.user.profile_image_url} key={index} />
-				))}
+			<Postzibox />
 
 			{!!store.post &&
 				store.post.map((value, index) => (
