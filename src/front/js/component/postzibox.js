@@ -4,7 +4,6 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import "../../styles/postzibox.scss";
 import Loader from "react-loader-spinner";
-import Link from "react-router";
 
 function Postzibox(props) {
 	const { store, actions } = useContext(Context);
