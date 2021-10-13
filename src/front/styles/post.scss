@@ -59,8 +59,8 @@
 }
 
 .likeIcon:active{
-    background:rgba(255,66,17,0.6);
     border-radius: 5px;
+    transform: scale(0.98);
  
 }
 
@@ -73,6 +73,14 @@
     width: 105;
     height: 40px;
     border: none;
+    
+}
+
+.buttonFollow:active{
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+   
+    /* Lowering the shadow */
 }
 .postCounter{
     font-size: 15px;
