@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
-import { Link } from "react-router-dom";
+import ClearIcon from "@material-ui/icons/Clear";
+import "../../styles/follow.scss";
 
 function Follow(props) {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
-			<Link to={{ pathname: `${props.userid}`, state: props.userid }}>@{props.username}</Link>
-			<button type="button" className="btn btn-light" onClick={() => actions.delFollow(props.userid)}>
-				x
-			</button>
+			@{props.username}
+			<ClearIcon className="equis" onClick={() => actions.delFollow()} />
 		</div>
 	);
 }

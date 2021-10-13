@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
-import Like from "../../img/like.png";
 import Heart from "../../img/heart.png";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
 	console.log(props);
+
+	const [like, setLike] = useState(0);
+	const [isLike, setIsLike] = useState(false);
+
+	const likeHandle = () => {
+		setLike(isLike ? like - 1 : like + 1);
+	};
+
 	return (
 		<div className="post">
 			<div className="post_avatar">
-				<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
-					<Avatar src={props.profileimg} />
-				</Link>
+				<Avatar className="avatar" src={props.profileimg} />
 			</div>
 			<div className="post_body">
 				<div className="post_header">
@@ -24,6 +29,7 @@ function Post(props) {
 							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
+
 							{false ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
@@ -52,8 +58,10 @@ function Post(props) {
 
 				<div className="post_footer">
 					<div className="postBottomLeft">
-						<img className="likeIcon" src={Like} alt="" />
-						<img className="likeIcon" src={Heart} alt="" onClick={() => actions.addLike(props.postid)} />
+						<img className="likeIcon" src={Heart} onClick={likeHandle} alt="" />
+						<span className="postCounter">
+							A <b>{like}</b> personas les gusta esto
+						</span>
 					</div>
 				</div>
 			</div>
@@ -69,7 +77,8 @@ Post.propTypes = {
 	name: PropTypes.string,
 	userid: PropTypes.number,
 	postid: PropTypes.number,
-	isFollowing: PropTypes.bool
+	isFollowing: PropTypes.bool,
+	date: PropTypes.number
 };
 
 export default Post;
