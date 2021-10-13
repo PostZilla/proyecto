@@ -8,9 +8,6 @@ import Heart from "../../img/heart.png";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
-	let heart = store.likes.find((value, index) => {
-		return value == props.postid;
-	});
 	console.log(props);
 
 	const [like, setLike] = useState(0);

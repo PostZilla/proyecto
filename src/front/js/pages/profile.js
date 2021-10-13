@@ -9,27 +9,13 @@ export default function profile() {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getSinglePost();
+		actions.getPosts();
 	}, []);
 	return (
 		<>
-			<div className="profile">
+			<div className="App">
 				<Sidebar />
-				{!!store.singlePost &&
-					store.singlePost
-						.reverse()
-						.map((value, index) => (
-							<SingleFeed
-								text={value.text}
-								username={value.user.username}
-								profileimg={value.user.profile_image_url}
-								img={value.img}
-								name={value.user.name}
-								userid={value.user.id}
-								postid={value.id}
-								key={index}
-							/>
-						))}{" "}
+				<SingleFeed />
 				<Widgets />
 			</div>
 		</>

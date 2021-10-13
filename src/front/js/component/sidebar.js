@@ -5,6 +5,7 @@ import { faBookmark, faDragon, faEllipsisH, faEnvelope, faListAlt, faUser } from
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
 function Sidebar() {
 	return (
@@ -12,9 +13,11 @@ function Sidebar() {
 			<div className="Postzilla_icon">
 				<img src={PostZilla} width="80" height="70" color="blue" />
 			</div>
-			<div className="Home">
-				<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
-			</div>
+			<Link to={"/home"}>
+				<div className="Home">
+					<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
+				</div>
+			</Link>
 			<div className="Explore">
 				<FontAwesomeIcon icon={faSearch} /> <div className="Space">Explore</div>
 			</div>

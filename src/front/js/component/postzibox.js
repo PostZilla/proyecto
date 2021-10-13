@@ -55,7 +55,8 @@ function Postzibox(props) {
 	);
 }
 Postzibox.propTypes = {
-	profileimg: PropTypes.string
+	profileimg: PropTypes.string,
+	userid: PropTypes.number
 };
 
 export default Postzibox;

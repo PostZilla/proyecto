@@ -14,7 +14,9 @@ function Follow(props) {
 		</div>
 	);
 }
+
 Follow.propTypes = {
-	username: PropTypes.string
+	username: PropTypes.string,
+	userid: PropTypes.number
 };
 export default Follow;

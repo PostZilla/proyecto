@@ -1,17 +1,18 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			api: "https://3001-coral-newt-0j7y0x8w.ws-eu18.gitpod.io",
 			isAuthenticate: false,
 			isRegitred: false,
 			myFollower: false,
 			myLike: false,
 			msg: " ",
-			user: [],
+			user: undefined,
 			post: undefined,
-			likes: [],
-			follower: [],
-			following: [],
-			singlePost: [],
+			likes: undefined,
+			follower: undefined,
+			following: undefined,
+			singlePost: undefined,
 			isLoading: false
 		},
 		actions: {
@@ -64,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getUser: id => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/api/user" + id, {
+				fetch(process.env.BACKEND_URL + "/api/user/" + id, {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -159,7 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getSinglePost: id => {
 				const store = getStore();
-				fetch(process.env.BACKEND_URL + "/api/posts/" + id, {
+				fetch(process.env.BACKEND_URL + "/forgot-password" + id, {
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -259,16 +260,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ msg: data.msg, myFollower: false });
+						setStore({ follower: data, myFollower: false });
 					});
 			},
-			addLike: id => {
+			addLike: (user, post) => {
 				const store = getStore();
 
 				fetch(process.env.BACKEND_URL + "/api/like", {
 					method: "POST",
 					body: JSON.stringify({
-						id: id
+						user: user,
+						post: post
 					}),
 					headers: {
 						"Content-type": "application/json",
@@ -287,11 +289,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},
 
-			addLike: newItem => {
-				let myStore = getStore();
-				let newLike = myStore.likes.concat(newItem);
-				setStore({ likes: newLike, myLike: true });
-			},
 			deleteLike: delItem => {
 				let storeCopy = getStore();
 				let newLike = storeCopy.likes.filter((value, index) => {
