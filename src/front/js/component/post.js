@@ -5,6 +5,7 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import Heart from "../../img/heart.png";
+import ThumbDown from "@fortawesome/fontawesome-svg-core";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -32,7 +33,10 @@ function Post(props) {
 							{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
 								props.userid
 							) ? (
-								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
+								<button
+									type="button"
+									className="buttonUnfollow"
+									onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
 								</button>
 							) : (
@@ -59,12 +63,22 @@ function Post(props) {
 
 				<div className="post_footer">
 					<div className="postBottomLeft">
-						<img
-							className="likeIcon"
-							src={Heart}
-							onClick={() => actions.addLike(props.postid, "like")}
-							alt=""
-						/>
+						{!!store.like_id && store.like_id.includes(props.postid) ? (
+							<img
+								className="likeIcon"
+								src={Heart}
+								onClick={() => actions.addLike(props.postid, "like")}
+								alt=""
+							/>
+						) : (
+							<img
+								className="likeIcon"
+								src={Heart}
+								onClick={() => actions.addLike(props.postid, "unlike")}
+								alt=""
+							/>
+						)}
+
 						<span className="postCounter">
 							A <b>{props.likes}</b> personas les gusta esto
 						</span>
