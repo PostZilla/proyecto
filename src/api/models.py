@@ -122,9 +122,10 @@ class Post(db.Model):
         posts = list(map(lambda post: post.serialize(), posts))
         return posts
 
-    def get_post(id):
-        post = Post.query.filter_by(user_id=id).first()
-        return post
+    def get_post(user_id):
+        posts = Post.query.filter_by(user_id=user_id).all()
+        posts = list(map(lambda post: post.serialize(), posts))
+        return posts
 
     def delete_post(id):
         post = Post.query.get(id)

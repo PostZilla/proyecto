@@ -3,19 +3,20 @@ import { Context } from "../store/appContext";
 import "../../styles/feed.scss";
 import Jumbobox from "./jumbobox";
 import SinglePosts from "./singleposts";
+import { PropTypes } from "prop-types";
 
-function SingleFeed() {
+function SingleFeed(props) {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getPosts();
+		actions.getSinglePost(props.user_id);
 	}, []);
 
 	return (
 		<div className="feed">
 			<Jumbobox />
-			{!!store.post &&
-				store.post.map((value, index) => (
+			{!!store.singlePost &&
+				store.singlePost.map((value, index) => (
 					<SinglePosts
 						text={value.text}
 						username={value.user.username}
@@ -30,5 +31,7 @@ function SingleFeed() {
 		</div>
 	);
 }
-
+SingleFeed.propTypes = {
+	user_id: PropTypes.string
+};
 export default SingleFeed;

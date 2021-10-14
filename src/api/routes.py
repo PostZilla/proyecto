@@ -51,12 +51,12 @@ def sign_in():
     return jsonify({"token": token}), 200
 
 
-@api.route('/user/<int:id>', methods=['GET'])
+@api.route('/user', methods=['GET'])
 @jwt_required()
-def get_user(id):
-    user= get_jwt_identity()
+def get_user():
 
-    print (user)
+    user_id= get_jwt_identity()
+    user= User.get_user(user_id)
     return jsonify(user),200
 
 @api.route('/search', methods=["GET"])
@@ -102,12 +102,19 @@ def get_all_post():
 
     return jsonify(posts), 200
 
-@api.route('/posts/<int:id>', methods=['GET'])
+@api.route('/posts/<int:user_id>', methods=['GET'])
 @jwt_required()
-def get_post(id):
+def get_post(user_id):
+    print(user_id)
+    post = Post.get_post(user_id)
+    print(post)
+    return jsonify(post), 200
 
-    post = Post.get_post(id)
-    return post, 200
+@api.route('/post', methods=['DELETE'])
+@jwt_required()
+def delete_post(id):
+    post = Post.delete_post(id)
+    return jsonify(post),200
 
 @api.route('/follow', methods=['POST'])
 @jwt_required()
@@ -121,7 +128,6 @@ def new_follow():
     user= User.query.get(user_id)
     follow= user.addFollow(friend)
 
-    print(follow)
     db.session.add(follow)
     db.session.commit()
     return {"message": "seguidor agregado"}, 200
@@ -132,7 +138,6 @@ def get_all_follows():
     user_id = get_jwt_identity()
 
     follower = User.getFollows(user_id)
-    print(follower)
     return jsonify(follower)
 
 @api.route('/follower/<int:id>', methods=['GET'])
@@ -148,16 +153,19 @@ def is_following(id):
     return jsonify(following)
 
 
-@api.route('/follows/<int:id>', methods=['DELETE'])
+@api.route('/unfollow/<int:id>', methods=['GET'])
 @jwt_required()
 def unfollow(id):
 
-    user_id = get_jwt_identity()
-    user= User.query.get(user_id)
-    unfollow= user.unfollow(user)
+    user = get_jwt_identity()
+    friend= User.query.get(id)
+    user_info= User.query.get(user)
+
+    unfollow= user_info.unfollow(friend)
 
     db.session.add(unfollow)
     db.session.commit()
+    return{"message": "seguidor eliminado"}, 200
 
 @api.route('/like', methods=['POST'])
 @jwt_required()
@@ -170,4 +178,4 @@ def create_like():
     post_id = body['post_id']
     Like.create_like(user_id, post_id)
     
-    return {"message": "people created"}, 200
+    return {"message": "te gusta!"}, 200

@@ -4,10 +4,12 @@ import SingleFeed from "../component/singlefeed";
 import Sidebar from "../component/sidebar";
 import Widgets from "../component/widgets";
 import { Context } from "../store/appContext";
+import { useParams } from "react-router-dom";
 
 export default function profile() {
 	const { store, actions } = useContext(Context);
-
+	let { theid } = useParams();
+	console.log(theid);
 	useEffect(() => {
 		actions.getPosts();
 	}, []);
@@ -15,7 +17,7 @@ export default function profile() {
 		<>
 			<div className="App">
 				<Sidebar />
-				<SingleFeed />
+				<SingleFeed user_id={theid} />
 				<Widgets />
 			</div>
 		</>

@@ -23,10 +23,14 @@ function Postzibox(props) {
 		console.log(e.target.files[0]);
 	};
 
+	useEffect(() => {
+		actions.getUser();
+	}, []);
+
 	return (
 		<div className="postzibox">
 			<div className="postzibox_input">
-				<Avatar className="avatar" src={props.profileimg} />
+				<Avatar className="avatar" src={!!store.user && store.user.profile_image_url} />
 
 				<input
 					onChange={e => setText(e.target.value)}

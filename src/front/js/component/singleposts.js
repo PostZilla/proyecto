@@ -14,7 +14,7 @@ function SinglePosts(props) {
 		<>
 			<div className="post">
 				<div className="post_avatar">
-					<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
+					<Link to={{ pathname: props.userid, state: props.userid }}>
 						<Avatar src={props.profileimg} />
 					</Link>
 				</div>
@@ -22,7 +22,7 @@ function SinglePosts(props) {
 					<div className="post_header">
 						<div className="post_headerText">
 							<h3>
-								<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
+								<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
 
 								<span className="post_headerSpecial Space">@{props.username}</span>
 								{false ? (

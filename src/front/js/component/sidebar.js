@@ -7,7 +7,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
-function Sidebar() {
+import PropTypes from "prop-types";
+
+function Sidebar(props) {
 	return (
 		<div className="sidebar">
 			<div className="Postzilla_icon">
@@ -18,30 +20,16 @@ function Sidebar() {
 					<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 				</div>
 			</Link>
-			<div className="Explore">
-				<FontAwesomeIcon icon={faSearch} /> <div className="Space">Explore</div>
-			</div>
-			<div className="Notification">
-				<FontAwesomeIcon icon={faBell} /> <div className="Space">Notification</div>
-			</div>
-			<div className="Messages">
-				<FontAwesomeIcon icon={faEnvelope} /> <div className="Space">Messages</div>
-			</div>
-			<div className="Bookmark">
-				<FontAwesomeIcon icon={faBookmark} /> <div className="Space">Bookmark</div>
-			</div>
-			<div className="List">
-				<FontAwesomeIcon icon={faListAlt} /> <div className="Space">List</div>
-			</div>
 			<div className="Profile">
-				<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
+				<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
+					<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
+				</Link>
 			</div>
-			<div className="More">
-				<FontAwesomeIcon icon={faEllipsisH} /> <div className="Space">More</div>
-			</div>
-			<button className="sidebar_postzi">Postzi</button>
 		</div>
 	);
 }
+Sidebar.propTypes = {
+	userid: PropTypes.number
+};
 
 export default Sidebar;
