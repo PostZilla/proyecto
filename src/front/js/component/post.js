@@ -29,7 +29,7 @@ function Post(props) {
 							<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
-
+		
 							{store.follower_id.includes(props.userid) ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
