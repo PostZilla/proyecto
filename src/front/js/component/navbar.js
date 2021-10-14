@@ -53,20 +53,17 @@ export const Navbar = () => {
 							<SearchIcon className="search_InputIcon" />
 							<input
 								className="search "
-								type="text"
-								placeholder="Search Postzilla..."
+								type="search"
+								placeholder="Buscar en Postzilla"
 								onChange={e => onChangeHandler(e.target.value)}
 								value={text}
 								onBlur={() => setSuggestions([])}
 							/>
 						</div>
+
 						{suggestions &&
 							suggestions.map((suggestion, i) => (
-								<div
-									onClick={() => setText(suggestion.usernames)}
-									key={i}
-									className="suggestion justify-content-md-center">
-									{" "}
+								<div onClick={() => setText(suggestion.usernames)} key={i} className="list-group">
 									{suggestion.username}
 								</div>
 							))}
