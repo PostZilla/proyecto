@@ -26,11 +26,11 @@ function Post(props) {
 				<div className="post_header">
 					<div className="post_headerText">
 						<h3>
-							<Link to={{ pathname: `${props.userid}`, state: props.userid }}>{props.name}</Link>
+							<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
 
-							{false ? (
+							{store.follower_id.includes(props.userid) ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
 								</button>
@@ -62,6 +62,10 @@ function Post(props) {
 						<span className="postCounter">
 							A <b>{like}</b> personas les gusta esto
 						</span>
+
+						<button type="button" className="Space btn btn-dark btn-sm">
+							Borrar
+						</button>
 					</div>
 				</div>
 			</div>

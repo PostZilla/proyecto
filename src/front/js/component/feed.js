@@ -9,7 +9,6 @@ function Feed() {
 
 	useEffect(() => {
 		actions.getPosts();
-		actions.getUser();
 	}, []);
 
 	return (
@@ -17,6 +16,7 @@ function Feed() {
 			<div>
 				<h2>Home</h2>
 			</div>
+
 			<Postzibox />
 
 			{!!store.post &&

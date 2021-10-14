@@ -10,7 +10,7 @@ function Follow(props) {
 	return (
 		<div>
 			@{props.username}
-			<ClearIcon className="equis" onClick={() => actions.delFollow()} />
+			<ClearIcon className="equis" onClick={() => actions.delFollow(props.userid)} />
 		</div>
 	);
 }
