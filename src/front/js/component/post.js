@@ -29,8 +29,9 @@ function Post(props) {
 							<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
 
 							<span className="post_headerSpecial Space">@{props.username}</span>
-
-							{store.follower_id.includes(props.userid) ? (
+							{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
+								props.userid
+							) ? (
 								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
 									Dejar de Seguir
 								</button>
@@ -58,9 +59,14 @@ function Post(props) {
 
 				<div className="post_footer">
 					<div className="postBottomLeft">
-						<img className="likeIcon" src={Heart} onClick={likeHandle} alt="" />
+						<img
+							className="likeIcon"
+							src={Heart}
+							onClick={() => actions.addLike(props.postid, "like")}
+							alt=""
+						/>
 						<span className="postCounter">
-							A <b>{like}</b> personas les gusta esto
+							A <b>{props.likes}</b> personas les gusta esto
 						</span>
 
 						<button type="button" className="Space btn btn-dark btn-sm">
@@ -82,7 +88,8 @@ Post.propTypes = {
 	userid: PropTypes.number,
 	postid: PropTypes.number,
 	isFollowing: PropTypes.bool,
-	date: PropTypes.number
+	date: PropTypes.number,
+	likes: PropTypes.number
 };
 
 export default Post;

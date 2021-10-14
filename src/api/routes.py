@@ -167,15 +167,17 @@ def unfollow(id):
     db.session.commit()
     return{"message": "seguidor eliminado"}, 200
 
-@api.route('/like', methods=['POST'])
+@api.route('/like/<int:post_id>/<action>', methods=['GET'])
 @jwt_required()
-def create_like():
-    body = request.get_json()
-    if body is None:
-        return {"error": "The body is null or undefined"}, 400
-    
-    user_id = get_jwt_identity()
-    post_id = body['post_id']
-    Like.create_like(user_id, post_id)
-    
-    return {"message": "te gusta!"}, 200
+def create_like(post_id,action):
+    user = get_jwt_identity()
+    user_info= User.query.get(user)
+    post=Post.query.filter_by(id=post_id).first()
+    if action=="like":
+        user_info.like_post(post)
+        db.session.commit()
+    if action=="unlike":
+        user_info.unlike_post(post)
+        db.session.commit()
+
+    return {"message": action}, 200
