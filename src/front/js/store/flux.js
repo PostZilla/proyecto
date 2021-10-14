@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			following: undefined,
 			singlePost: undefined,
 			isLoading: false,
-			follower_id: []
+			follower_id: [],
+			like_id: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -306,14 +307,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getPosts();
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
-			},
-
-			deleteLike: delItem => {
-				let storeCopy = getStore();
-				let newLike = storeCopy.likes.filter((value, index) => {
-					return value != delItem;
-				});
-				setStore({ follower: newLike });
 			}
 		}
 	};
