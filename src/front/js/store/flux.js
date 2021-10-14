@@ -283,15 +283,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getFollows();
 					});
 			},
-			addLike: (user, post) => {
+			addLike: (post_id, action) => {
 				const store = getStore();
+				const actions = getActions();
 
-				fetch(process.env.BACKEND_URL + "/api/like", {
-					method: "POST",
-					body: JSON.stringify({
-						user: user,
-						post: post
-					}),
+				fetch(process.env.BACKEND_URL + "/api/like/" + post_id + "/" + action, {
+					method: "GET",
+
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -304,7 +302,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("like", data);
-						setStore({ likes: data, myLike: true });
+						setStore({ msg: data.message });
+						actions.getPosts();
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},

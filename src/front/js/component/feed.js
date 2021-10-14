@@ -30,6 +30,7 @@ function Feed() {
 						userid={value.user.id}
 						postid={value.id}
 						key={index}
+						likes={value.likes}
 					/>
 				))}
 		</div>
