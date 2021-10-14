@@ -11,10 +11,10 @@ function Post(props) {
 	console.log(props);
 
 	const [like, setLike] = useState(0);
-	const [isLike, setIsLike] = useState(false);
+	const [isLiked, setIsLiked] = useState(false);
 
 	const likeHandle = () => {
-		setLike(isLike ? like - 1 : like + 1);
+		setLike(isLiked ? like - 1 : like + 1);
 	};
 
 	return (
