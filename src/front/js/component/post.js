@@ -11,7 +11,6 @@ function Post(props) {
 	const { store, actions } = useContext(Context);
 	console.log(props);
 
-
 	const [like, setLike] = useState(0);
 	const [isLiked, setIsLiked] = useState(false);
 	const [user_ids, setUserIds] = useState([]);
@@ -31,7 +30,6 @@ function Post(props) {
 						<div className="post_headerText">
 							<h3>
 								<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
-
 
 								<span className="post_headerSpecial Space">@{props.username}</span>
 								{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
@@ -61,54 +59,7 @@ function Post(props) {
 					) : (
 						<div />
 					)}
-
-					<div className="post_footer">
-						<div className="postBottomLeft">
-							<img
-								className="likeIcon"
-								src={Heart}
-								onClick={() => actions.addLike(props.postid, "like")}
-								alt=""
-							/>
-							<span className="postCounter">
-								A <b>{props.likes}</b> personas les gusta esto
-							</span>
-							{!!store.user && store.user.id !== props.userid ? null : (
-
-							<span className="post_headerSpecial Space">@{props.username}</span>
-							{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
-								props.userid
-							) ? (
-								<button
-									type="button"
-									className="buttonUnfollow"
-									onClick={() => actions.delFollow(props.userid)}>
-									Dejar de Seguir
-								</button>
-							) : (
-
-								<button
-									type="button"
-									onClick={() => actions.delPost(props.postid)}
-									className="Space btn btn-dark btn-sm">
-									Borrar
-								</button>
-							)}
-
-						</div>
-						</h3>
-					</div>
-					<div className="post_headerDescription">
-						<p>{props.text}</p>
-					</div>
 				</div>
-				{props.img != "" ? (
-					<div className="imgbox">
-						<img className="postimg" src={props.img} alt="" />
-					</div>
-				) : (
-					<div />
-				)}
 
 				<div className="post_footer">
 					<div className="postBottomLeft">
@@ -131,11 +82,14 @@ function Post(props) {
 						<span className="postCounter">
 							A <b>{props.likes}</b> personas les gusta esto
 						</span>
-
-						<button type="button" className="Space btn btn-dark btn-sm">
-							Borrar
-						</button>
-
+						{!!store.user && store.user.id !== props.userid ? null : (
+							<button
+								type="button"
+								onClick={() => actions.delPost(props.postid)}
+								className="Space btn btn-dark btn-sm">
+								Borrar
+							</button>
+						)}
 					</div>
 				</div>
 			</div>

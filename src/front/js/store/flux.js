@@ -14,9 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			singlePost: undefined,
 			isLoading: false,
 			follower_id: [],
-			post_id: [],
 			like_id: [],
-			user_ids: [],
+			user_ids: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -227,8 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						const post_id = data.map(element => element.id);
-						setStore({ msg: data.message, post_id: post_id });
+						setStore({ msg: data.message });
 						actions.getPosts();
 					});
 			},
