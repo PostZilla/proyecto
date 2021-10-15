@@ -17,7 +17,7 @@ export default function profile() {
 		<>
 			<div className="App">
 				<Sidebar />
-				<SingleFeed userid={theid} />
+				<SingleFeed user_id={theid} />
 				<Widgets />
 			</div>
 		</>

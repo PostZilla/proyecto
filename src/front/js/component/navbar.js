@@ -12,9 +12,6 @@ export const Navbar = props => {
 	const [text, setText] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 
-	useEffect(() => {
-		actions.getSinglePost(props.userid);
-	}, []);
 	useEffect(
 		() => {
 			if (store.isAuthenticate) {
