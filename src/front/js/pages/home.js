@@ -10,18 +10,9 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	useEffect(
-		() => {
-			if (store.isAuthenticate == false) {
-				history.goBack();
-				alert("Vuelve a iniciar sesion");
-			}
-		},
-		[store.isAuthenticate]
-	),
-		useEffect(() => {
-			actions.getUser();
-		}, []);
+	useEffect(() => {
+		actions.getUser();
+	}, []);
 
 	return (
 		<div className="App">
@@ -30,4 +21,5 @@ export const Home = () => {
 			<Widgets />
 		</div>
 	);
+};
 };

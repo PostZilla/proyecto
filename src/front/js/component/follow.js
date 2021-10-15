@@ -8,7 +8,7 @@ function Follow(props) {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div>
+		<div className="follower">
 			@{props.username}
 			<ClearIcon className="equis" onClick={() => actions.delFollow(props.userid)} />
 		</div>

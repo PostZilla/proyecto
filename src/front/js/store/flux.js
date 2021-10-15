@@ -14,7 +14,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			singlePost: undefined,
 			isLoading: false,
 			follower_id: [],
-			like_id: [],
 			user_ids: []
 		},
 		actions: {

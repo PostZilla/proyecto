@@ -46,8 +46,9 @@
 }
 .postimg{
     width: 600px;
-    height: 335px;
+    height: 360px;
     border-radius: 20px;
+    position:sticky
     
     
 }
@@ -70,12 +71,13 @@
 .buttonFollow{
     margin-left: 25px;
     background-color: #fff314;
-    font-size: 1.25rem;
+    font-size: 1rem;
     border-radius: 10px;
-    font-weight: 900;
+    font-weight: 500;
     width: 105;
-    height: 40px;
-    border: none;
+    height: 30px;
+    border-color: #fff314;
+    float: right;
     
 }
 
@@ -91,11 +93,12 @@
 
 .buttonUnfollow{
     margin-left: 200px;
-    background-color: #f10808;
-    font-size: 1.25rem;
+    background-color: #69696949;
+    font-size: 1rem;
     border-radius: 10px;
-    font-weight: 900;
-    width: 170px;
-    height: 40px;
+    font-weight: 500;
+    width: 130px;
+    height: 30px;
     border: none;
+    float: right;
 }

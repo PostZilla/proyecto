@@ -20,7 +20,7 @@ function Sidebar(props) {
 					<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 				</div>
 			</Link>
-			<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
+			<Link to={{ pathname: props.userid, state: props.userid }}>
 				<div className="Profile">
 					<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
 				</div>
