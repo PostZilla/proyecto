@@ -35,7 +35,9 @@ function Post(props) {
 								{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
 									props.userid
 								) ? (
-									<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
+									<button
+										className="btn btn-light buttonUnfollow btn-sm"
+										onClick={() => actions.delFollow(props.userid)}>
 										Dejar de Seguir
 									</button>
 								) : (
@@ -51,45 +53,46 @@ function Post(props) {
 						<div className="post_headerDescription">
 							<p>{props.text}</p>
 						</div>
-					</div>
-					{props.img != "" ? (
-						<div className="imgbox">
-							<img className="postimg" src={props.img} alt="" />
-						</div>
-					) : (
-						<div />
-					)}
-				</div>
 
-				<div className="post_footer">
-					<div className="postBottomLeft">
-						{store.user_ids.includes(props.userid) ? (
-							<img
-								className="likeIcon"
-								src={Heart}
-								onClick={() => actions.addLike(props.postid, "unlike")}
-								alt=""
-							/>
+						{props.img != "" ? (
+							<div className="imgbox">
+								<img className="postimg" src={props.img} alt="" />
+							</div>
 						) : (
-							<img
-								className="likeIcon"
-								src={Heart}
-								onClick={() => actions.addLike(props.postid, "like")}
-								alt=""
-							/>
+							<div />
 						)}
+					</div>
 
-						<span className="postCounter">
-							A <b>{props.likes}</b> personas les gusta esto
-						</span>
-						{!!store.user && store.user.id !== props.userid ? null : (
-							<button
-								type="button"
-								onClick={() => actions.delPost(props.postid)}
-								className="Space btn btn-dark btn-sm">
-								Borrar
-							</button>
-						)}
+					<div className="post_footer">
+						<div className="postBottomLeft">
+							{store.user_ids.includes(props.userid) ? (
+								<img
+									className="likeIcon"
+									src={Heart}
+									onClick={() => actions.addLike(props.postid, "unlike")}
+									alt=""
+								/>
+							) : (
+								<img
+									className="likeIcon"
+									src={Heart}
+									onClick={() => actions.addLike(props.postid, "like")}
+									alt=""
+								/>
+							)}
+
+							<span className="postCounter">
+								A <b>{props.likes}</b> personas les gusta esto
+							</span>
+							{!!store.user && store.user.id !== props.userid ? null : (
+								<button
+									type="button"
+									onClick={() => actions.delPost(props.postid)}
+									className="Space btn btn-dark btn-sm">
+									Borrar
+								</button>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
