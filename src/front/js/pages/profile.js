@@ -11,14 +11,13 @@ export default function profile() {
 	let { theid } = useParams();
 	console.log(theid);
 	useEffect(() => {
-		actions.getPosts();
 		actions.getSinglePost();
 	}, []);
 	return (
 		<>
 			<div className="App">
 				<Sidebar />
-				<SingleFeed user_id={theid} />
+				<SingleFeed userid={theid} />
 				<Widgets />
 			</div>
 		</>

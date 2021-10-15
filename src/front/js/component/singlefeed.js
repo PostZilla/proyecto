@@ -4,13 +4,13 @@ import "../../styles/feed.scss";
 import Jumbobox from "./jumbobox";
 import SinglePosts from "./singleposts";
 import { PropTypes } from "prop-types";
+import { useParams } from "react-router-dom";
 
 function SingleFeed(props) {
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		actions.getSinglePost(props.user_id);
-		actions.getUser();
 	}, []);
 
 	return (
@@ -37,4 +37,5 @@ function SingleFeed(props) {
 SingleFeed.propTypes = {
 	user_id: PropTypes.string
 };
+
 export default SingleFeed;

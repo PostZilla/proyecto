@@ -51,8 +51,7 @@ class User(db.Model):
         user = User.query.filter_by(id=id).first()
         return User.serialize(user)
 
-
-    
+       
     def get_all_user():
         usernames = User.query.all()
         usernames = list(map(lambda user: user.serialize(), usernames))

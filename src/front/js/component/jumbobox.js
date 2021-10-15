@@ -7,9 +7,7 @@ import { Context } from "../store/appContext";
 
 function Jumbobox(props) {
 	const { store, actions } = useContext(Context);
-	useEffect(() => {
-		actions.getUser();
-	}, []);
+
 	return (
 		<div className="profileRight">
 			<div className="profileRightTop">
@@ -19,19 +17,12 @@ function Jumbobox(props) {
 						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
 						alt=""
 					/>
-					<img
-						className="profileuserImg"
-						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
-						alt=""
-					/>
-					<span className="profileInfoName"> Tus Posts </span>
 				</div>
 			</div>
 		</div>
 	);
 }
 Jumbobox.propTypes = {
-	profileimg: PropTypes.string,
-	name: PropTypes.string
+	user_id: PropTypes.string
 };
 export default Jumbobox;
