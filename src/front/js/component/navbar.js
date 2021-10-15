@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
 import "../../styles/navbar.scss";
 import SearchIcon from "@material-ui/icons/Search";
+import { PropTypes } from "prop-types";
 
-export const Navbar = () => {
+export const Navbar = props => {
 	const { store, actions } = useContext(Context);
 	const [usernames, setUsernames] = useState([]);
 	const [text, setText] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 
+	useEffect(() => {
+		actions.getSinglePost(props.userid);
+	}, []);
 	useEffect(
 		() => {
 			if (store.isAuthenticate) {
@@ -49,7 +53,7 @@ export const Navbar = () => {
 			<div className="container">
 				{store.isAuthenticate ? (
 					<>
-						<div className="searchInput">
+						<div className="nav-item dropdown searchInput">
 							<SearchIcon className="search_InputIcon" />
 							<input
 								className="search "
@@ -59,14 +63,16 @@ export const Navbar = () => {
 								value={text}
 								onBlur={() => setSuggestions([])}
 							/>
-						</div>
 
-						{suggestions &&
-							suggestions.map((suggestion, i) => (
-								<div onClick={() => setText(suggestion.usernames)} key={i} className="list-group">
-									{suggestion.username}
-								</div>
-							))}
+							{suggestions &&
+								suggestions.map((suggestion, i) => (
+									<ul onClick={() => setText(suggestion.usernames)} key={i} className="list-group">
+										<Link to={{ pathname: props.userid, state: props.userid }}>
+											<div>{suggestion.username}</div>
+										</Link>
+									</ul>
+								))}
+						</div>
 
 						<ul className="navbar-nav ml-auto ">
 							<li className="nav-item">
@@ -103,4 +109,8 @@ export const Navbar = () => {
 			</div>
 		</nav>
 	);
+};
+Navbar.propTypes = {
+	profileimg: PropTypes.string,
+	userid: PropTypes.number
 };
