@@ -20,11 +20,11 @@ function Sidebar(props) {
 					<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 				</div>
 			</Link>
-			<div className="Profile">
-				<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
+			<Link to={{ pathname: `${props.userid}`, state: props.userid }}>
+				<div className="Profile">
 					<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
-				</Link>
-			</div>
+				</div>
+			</Link>
 		</div>
 	);
 }

@@ -28,52 +28,8 @@
 margin-left: 15px;
 
 }
-.Explore{
-  font-size: 20px;
-  font-weight: 800;
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding-top: 25px;
-}
-.Explore:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-  
-}
-.Notification{
-  font-size: 20px;
-  font-weight: 800;
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding-top: 25px;
-}
-.Notification:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-}
-.Messages{
-  font-size: 20px;
-  font-weight: 800;
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding-top: 25px;
-}
-.Messages:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-}
+
+
 .Bookmark{
   font-size: 20px;
   font-weight: 800;
@@ -82,28 +38,7 @@ margin-left: 15px;
   cursor: pointer;
   padding-top: 25px;
 }
-.Bookmark:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-}
-.List{
-  font-size: 20px;
-  font-weight: 800;
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding-top: 25px;
-}
-.List:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-}
+
 .Profile{
   font-size: 20px;
   font-weight: 800;
@@ -111,6 +46,8 @@ margin-left: 15px;
   display: flex;
   cursor: pointer;
   padding-top: 25px;
+  width: 160px;
+
 }
 .Profile:hover{
   background-color: #fff314;
@@ -119,38 +56,6 @@ margin-left: 15px;
   color: #4d4d00
  
 }
-.More{
-  font-size: 20px;
-  font-weight: 800;
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding-top: 25px;
-  
-}
-
-.More:hover{
-  background-color: #fff314;
-  border-radius: 10px;
-  width: 160px;
-  color: #4d4d00
- 
-}
-.sidebar_postzi {
-  background-color: #fff314;
-  border: none;
-  color:black;
-  font-weight: 900; 
-  text-transform: inherit ;
-  border-radius: 10px ;
-  height: 50px;
-  margin-top: 20px ;
-  width: 210px;
-  font-size: 1.25rem;
-}
-.Postzilla_icon{
-  margin-left: 20px;
-  margin-bottom: 20px;
-  size: 30px;
-
+a{
+  width: 200px;
 }
