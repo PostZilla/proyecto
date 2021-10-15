@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ function Post(props) {
 
 	const [like, setLike] = useState(0);
 	const [isLiked, setIsLiked] = useState(false);
+	const [user_ids, setUserIds] = useState([]);
 
 	const likeHandle = () => {
 		setLike(isLiked ? like - 1 : like + 1);
@@ -63,18 +64,18 @@ function Post(props) {
 
 				<div className="post_footer">
 					<div className="postBottomLeft">
-						{!!store.like_id && store.like_id.includes(props.postid) ? (
+						{store.user_ids.includes(props.userid) ? (
 							<img
 								className="likeIcon"
 								src={Heart}
-								onClick={() => actions.addLike(props.postid, "like")}
+								onClick={() => actions.addLike(props.postid, "unlike")}
 								alt=""
 							/>
 						) : (
 							<img
 								className="likeIcon"
 								src={Heart}
-								onClick={() => actions.addLike(props.postid, "unlike")}
+								onClick={() => actions.addLike(props.postid, "like")}
 								alt=""
 							/>
 						)}

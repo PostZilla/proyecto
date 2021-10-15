@@ -143,6 +143,11 @@ class Post(db.Model):
         post = Post.query.get(id)
         db.session.delete(post)
         db.session.commit()
+
+    def getLikes(id):
+        post = Post.query.get(id)
+        likes = list(map(lambda follow : follow.serialize(), post.likes))
+        return likes
     
 
 
@@ -152,3 +157,9 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": User.serialize(self.user),
+            "post_id": Post.serialize(self.post)
+        }

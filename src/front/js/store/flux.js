@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			singlePost: undefined,
 			isLoading: false,
 			follower_id: [],
-			like_id: []
+			like_id: [],
+			user_ids: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -40,7 +41,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						localStorage.setItem("token", data.token);
 						setStore({ isAuthenticate: true });
 					})
-					.catch(error => console.error("[ERROR IN LOGIN]", error));
+					.catch(error => {
+						setStore({ isAuthenticate: false, msg: "Hubo un error, intentalo de nuevo" });
+						console.error("[ERROR IN LOGIN]", error);
+					});
 			},
 			register: formData => {
 				const store = getStore();
@@ -58,7 +62,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data);
 						setStore({ isRegitred: true, msg: data.msg, isLoading: false });
 					})
-					.catch(error => console.error("[ERROR IN LOGIN]", error));
+					.catch(error => {
+						setStore({ msg: "Hubo un error, intentalo de nuevo", isLoading: false });
+						console.error("[ERROR IN LOGIN]", error);
+					});
 			},
 			signOut: () => {
 				localStorage.removeItem("token");
@@ -155,7 +162,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("post dataa", data);
+
 						setStore({ post: data.reverse() });
+						return data;
+					})
+					.then(data => {
+						data.map(item => {
+							console.log("item", item);
+							fetch(`${process.env.BACKEND_URL}/api/like/post/${item.id}`, {
+								method: "GET",
+								headers: {
+									Authorization: `Bearer ${localStorage.getItem("token")}`,
+									"Content-type": "application/json"
+								}
+							})
+								.then(resp => {
+									if (resp.ok) {
+										return resp.json();
+									}
+								})
+								.then(data => {
+									console.log("data", store.user_ids);
+									let user_ids = data.post_likes.map(element => element.user_id.id);
+									setStore({ user_ids: [...store.user_ids, ...user_ids] });
+								});
+						});
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
