@@ -75,6 +75,8 @@ def get_user():
     user= User.get_user(user_id)
     return jsonify(user),200
 
+
+
 @api.route('/search', methods=["GET"])
 @jwt_required()
 def get_all_user():
@@ -126,7 +128,7 @@ def get_post(user_id):
     print(post)
     return jsonify(post), 200
 
-@api.route('/post', methods=['DELETE'])
+@api.route('/post/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_post(id):
     post = Post.delete_post(id)

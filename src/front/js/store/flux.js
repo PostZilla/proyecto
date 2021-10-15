@@ -14,8 +14,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			singlePost: undefined,
 			isLoading: false,
 			follower_id: [],
+			post_id: [],
 			like_id: [],
-			user_ids: []
+			user_ids: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -210,7 +211,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
+
 			delPost: id => {
+				const actions = getActions();
 				fetch(process.env.BACKEND_URL + "/api/post/" + id, {
 					method: "DELETE",
 					headers: {
@@ -224,7 +227,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ post: data });
+						const post_id = data.map(element => element.id);
+						setStore({ msg: data.message, post_id: post_id });
+						actions.getPosts();
 					});
 			},
 			addFollower: friend_id => {

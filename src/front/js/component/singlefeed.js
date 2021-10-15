@@ -10,11 +10,13 @@ function SingleFeed(props) {
 
 	useEffect(() => {
 		actions.getSinglePost(props.user_id);
+		actions.getUser();
 	}, []);
 
 	return (
 		<div className="feed">
 			<Jumbobox />
+
 			{!!store.singlePost &&
 				store.singlePost.map((value, index) => (
 					<SinglePosts
@@ -25,6 +27,7 @@ function SingleFeed(props) {
 						name={value.user.name}
 						userid={value.user.id}
 						postid={value.id}
+						likes={value.likes}
 						key={index}
 					/>
 				))}

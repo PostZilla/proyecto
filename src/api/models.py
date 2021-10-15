@@ -7,11 +7,7 @@ user_following=db.Table(
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
-post_liking=db.Table(
-    'user_liking',
-    db.Column('liker_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('liker_id', db.Integer, db.ForeignKey('user.id'))
-)
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -54,6 +50,8 @@ class User(db.Model):
     def get_user(id):
         user = User.query.filter_by(id=id).first()
         return User.serialize(user)
+
+
     
     def get_all_user():
         usernames = User.query.all()
@@ -143,11 +141,14 @@ class Post(db.Model):
         post = Post.query.get(id)
         db.session.delete(post)
         db.session.commit()
+        return {"message": "Post borrado"}
+
 
     def getLikes(id):
         post = Post.query.get(id)
         likes = list(map(lambda follow : follow.serialize(), post.likes))
         return likes
+
     
 
 
