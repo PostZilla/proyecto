@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { Avatar } from "@material-ui/core";
-
 import "../../styles/postzibox.scss";
 import { Context } from "../store/appContext";
 
