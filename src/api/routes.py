@@ -4,12 +4,28 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Post
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager,get_jwt,  set_access_cookies, unset_jwt_cookies, create_access_token, jwt_required, get_jwt_identity
 import cloudinary
 import cloudinary.uploader
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
 
 api = Blueprint('api', __name__)
 
+@api.after_request
+def refresh_expiring_jwts(response):
+    try:
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            set_access_cookies(response, access_token)
+        return response
+    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original respone
+        return response
 
 @api.route('/register', methods=['POST'])
 def create():
@@ -27,7 +43,7 @@ def create():
     upload_result= cloudinary.uploader.upload(image)
     profile_image_url= upload_result["secure_url"]
 
-    User.create(name,last_name, username,email,password, country, profile_image_url)
+    user_create = User.create(name,last_name, username,email,password, country, profile_image_url)
 
     return jsonify({"msg":"Usuario creado! Ahora, inicia sesión."}), 200
 
@@ -183,3 +199,10 @@ def create_like(post_id,action):
         db.session.commit()
 
     return {"message": action}, 200
+
+@api.route('/like/post/<int:post_id>', methods=['GET'])
+@jwt_required()
+def verify_like(post_id):
+    likes = Post.getLikes(post_id)
+    return jsonify({"post_likes": likes}), 200
+

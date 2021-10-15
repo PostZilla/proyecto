@@ -58,6 +58,8 @@
     cursor: pointer;
 }
 
+
+
 .likeIcon:active{
     border-radius: 5px;
     transform: scale(0.98);
@@ -86,4 +88,13 @@
     font-size: 15px;
 }
 
-
+.buttonUnfollow{
+    margin-left: 200px;
+    background-color: #f10808;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    font-weight: 900;
+    width: 170px;
+    height: 40px;
+    border: none;
+}
