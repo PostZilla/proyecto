@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
+import Heart from "../../img/heart.png";
 
 function Feed() {
 	const { store, actions } = useContext(Context);
@@ -30,6 +31,7 @@ function Feed() {
 						userid={value.user.id}
 						postid={value.id}
 						key={index}
+						likes={value.likes}
 					/>
 				))}
 		</div>

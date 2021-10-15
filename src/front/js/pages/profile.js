@@ -12,6 +12,7 @@ export default function profile() {
 	console.log(theid);
 	useEffect(() => {
 		actions.getPosts();
+		actions.getSinglePost();
 	}, []);
 	return (
 		<>

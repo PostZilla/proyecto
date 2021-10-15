@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			following: undefined,
 			singlePost: undefined,
 			isLoading: false,
-			follower_id: []
+			follower_id: [],
+			post_id: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -178,7 +179,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},
+
 			delPost: id => {
+				const actions = getActions();
 				fetch(process.env.BACKEND_URL + "/api/post/" + id, {
 					method: "DELETE",
 					headers: {
@@ -192,7 +195,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ post: data });
+						const post_id = data.map(element => element.id);
+						setStore({ msg: data.message, post_id: post_id });
+						actions.getPosts();
 					});
 			},
 			addFollower: friend_id => {
@@ -283,15 +288,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getFollows();
 					});
 			},
-			addLike: (user, post) => {
+			addLike: (post_id, action) => {
 				const store = getStore();
+				const actions = getActions();
 
-				fetch(process.env.BACKEND_URL + "/api/like", {
-					method: "POST",
-					body: JSON.stringify({
-						user: user,
-						post: post
-					}),
+				fetch(process.env.BACKEND_URL + "/api/like/" + post_id + "/" + action, {
+					method: "GET",
+
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -304,7 +307,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("like", data);
-						setStore({ likes: data, myLike: true });
+						setStore({ msg: data.message });
+						actions.getPosts();
 					})
 					.catch(error => console.error("[ERROR IN LOGIN]", error));
 			},

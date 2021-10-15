@@ -10,70 +10,75 @@ function Post(props) {
 	const { store, actions } = useContext(Context);
 	console.log(props);
 
-	const [like, setLike] = useState(0);
-	const [isLike, setIsLike] = useState(false);
-
-	const likeHandle = () => {
-		setLike(isLike ? like - 1 : like + 1);
-	};
-
 	return (
-		<div className="post">
-			<div className="post_avatar">
-				<Avatar className="avatar" src={props.profileimg} />
-			</div>
-			<div className="post_body">
-				<div className="post_header">
-					<div className="post_headerText">
-						<h3>
-							<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
+		<>
+			<div className="post">
+				<div className="post_avatar">
+					<Avatar className="avatar" src={props.profileimg} />
+				</div>
+				<div className="post_body">
+					<div className="post_header">
+						<div className="post_headerText">
+							<h3>
+								<Link to={{ pathname: props.userid, state: props.userid }}>{props.name}</Link>
 
-							<span className="post_headerSpecial Space">@{props.username}</span>
-		
-							{store.follower_id.includes(props.userid) ? (
-								<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
-									Dejar de Seguir
-								</button>
-							) : (
+								<span className="post_headerSpecial Space">@{props.username}</span>
+								{!!store.user && store.user.id === props.userid ? null : store.follower_id.includes(
+									props.userid
+								) ? (
+									<button className="btn btn-danger" onClick={() => actions.delFollow(props.userid)}>
+										Dejar de Seguir
+									</button>
+								) : (
+									<button
+										type="button"
+										className="buttonFollow"
+										onClick={() => actions.addFollower(props.userid)}>
+										Seguir
+									</button>
+								)}
+							</h3>
+						</div>
+						<div className="post_headerDescription">
+							<p>{props.text}</p>
+						</div>
+					</div>
+					{props.img != "" ? (
+						<div className="imgbox">
+							<img className="postimg" src={props.img} alt="" />
+						</div>
+					) : (
+						<div />
+					)}
+
+					<div className="post_footer">
+						<div className="postBottomLeft">
+							<img
+								className="likeIcon"
+								src={Heart}
+								onClick={() => actions.addLike(props.postid, "like")}
+								alt=""
+							/>
+							<span className="postCounter">
+								A <b>{props.likes}</b> personas les gusta esto
+							</span>
+							{!!store.user && store.user.id !== props.userid ? null : (
 								<button
 									type="button"
-									className="buttonFollow"
-									onClick={() => actions.addFollower(props.userid)}>
-									Seguir
+									onClick={() => actions.delPost(props.postid)}
+									className="Space btn btn-dark btn-sm">
+									Borrar
 								</button>
 							)}
-						</h3>
-					</div>
-					<div className="post_headerDescription">
-						<p>{props.text}</p>
-					</div>
-				</div>
-				{props.img != "" ? (
-					<div className="imgbox">
-						<img className="postimg" src={props.img} alt="" />
-					</div>
-				) : (
-					<div />
-				)}
-
-				<div className="post_footer">
-					<div className="postBottomLeft">
-						<img className="likeIcon" src={Heart} onClick={likeHandle} alt="" />
-						<span className="postCounter">
-							A <b>{like}</b> personas les gusta esto
-						</span>
-
-						<button type="button" className="Space btn btn-dark btn-sm">
-							Borrar
-						</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
+
 Post.propTypes = {
-	id: PropTypes.number,
 	text: PropTypes.string,
 	username: PropTypes.string,
 	img: PropTypes.string,
@@ -82,7 +87,8 @@ Post.propTypes = {
 	userid: PropTypes.number,
 	postid: PropTypes.number,
 	isFollowing: PropTypes.bool,
-	date: PropTypes.number
+	date: PropTypes.number,
+	likes: PropTypes.number
 };
 
 export default Post;

@@ -1,10 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { Avatar } from "@material-ui/core";
 
 import "../../styles/postzibox.scss";
+import { Context } from "../store/appContext";
 
 function Jumbobox(props) {
+	const { store, actions } = useContext(Context);
+	useEffect(() => {
+		actions.getUser();
+	}, []);
 	return (
 		<div className="profileRight">
 			<div className="profileRightTop">
@@ -14,8 +19,12 @@ function Jumbobox(props) {
 						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
 						alt=""
 					/>
-					<Avatar className="" src={props.profileimg} />
-					<span className="profileInfoDescription">{props.name}</span>
+					<img
+						className="profileuserImg"
+						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
+						alt=""
+					/>
+					<span className="profileInfoName"> Tus Posts </span>
 				</div>
 			</div>
 		</div>

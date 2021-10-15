@@ -7,11 +7,7 @@ user_following=db.Table(
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
-post_liking=db.Table(
-    'user_liking',
-    db.Column('liker_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('liker_id', db.Integer, db.ForeignKey('user.id'))
-)
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +19,7 @@ class User(db.Model):
     country = db.Column(db.String(120),unique=False, nullable = False)
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     post = db.relationship("Post", back_populates="user")
-    like = db.relationship("Like", back_populates="user")
+    like = db.relationship("Like", foreign_keys="Like.user_id",backref="user", lazy="dynamic")
     follow = db.relationship('User', secondary=user_following, 
                                primaryjoin=(user_following.c.follower_id == id), 
                                secondaryjoin=(user_following.c.followed_id == id), 
@@ -54,6 +50,8 @@ class User(db.Model):
     def get_user(id):
         user = User.query.filter_by(id=id).first()
         return User.serialize(user)
+
+
     
     def get_all_user():
         usernames = User.query.all()
@@ -91,6 +89,17 @@ class User(db.Model):
         follows= list(map(lambda follow : follow.serialize(),user.follow))
         return follows
     
+    def like_post(self,post):
+        if not self.has_liked_post(post):
+            like= Like(user_id=self.id,post_id=post.id)
+            db.session.add(like)
+
+    def unlike_post(self,post):
+        if self.has_liked_post(post):
+            Like.query.filter_by(user_id=self.id,post_id=post.id).delete()
+
+    def has_liked_post(self,post):
+        return Like.query.filter(Like.user_id==self.id,Like.post_id==post.id).count()>0
 
 
 class Post(db.Model):
@@ -100,7 +109,7 @@ class Post(db.Model):
     img = db.Column(db.String(255), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User", back_populates="post")
-    like = db.relationship("Like", back_populates="post")
+    likes=db.relationship("Like",backref="post",lazy="dynamic")
 
 
     def serialize(self):
@@ -108,7 +117,8 @@ class Post(db.Model):
             "id": self.id,
             "user": User.serialize(self.user),
             "text": self.text,
-            "img": self.img
+            "img": self.img,
+            "likes":self.likes.count()
         }
     
     def create_post(user_id, text, img):
@@ -131,6 +141,7 @@ class Post(db.Model):
         post = Post.query.get(id)
         db.session.delete(post)
         db.session.commit()
+        return {"message": "Post borrado"}
     
 
 
@@ -138,30 +149,5 @@ class Like(db.Model):
     __tablename__ = 'like'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship("User", back_populates="like")
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    post = db.relationship("Post", back_populates="like")
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "user": User.serialize(self.user),
-            "post": Post.serialize(self.post)
-        }
-
-
-    def create_like(user_id, post_id):
-        like = Like(user_id=user_id, post_id=post_id)
-        db.session.add(like)
-        db.session.commit()
-                    
     
-    def get_all_likes():
-        likes = Like.query.all()
-        likes = list(map(lambda like: like.serialize(), likes))
-        return likes
-
-    def delete_like(id):
-        like = Like.query.get(id)
-        db.session.delete(like)
-        db.session.commit()
