@@ -206,7 +206,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log("SINGLEPOST", data);
-						setStore({ singlePost: data });
+						setStore({ singlePost: data.reverse() });
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},

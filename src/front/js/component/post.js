@@ -69,14 +69,14 @@ function Post(props) {
 								<img
 									className="likeIcon"
 									src={Heart}
-									onClick={() => actions.addLike(props.postid, "unlike")}
+									onClick={() => actions.addLike(props.postid, "like")}
 									alt=""
 								/>
 							) : (
 								<img
 									className="likeIcon"
 									src={Heart}
-									onClick={() => actions.addLike(props.postid, "like")}
+									onClick={() => actions.addLike(props.postid, "unlike")}
 									alt=""
 								/>
 							)}
