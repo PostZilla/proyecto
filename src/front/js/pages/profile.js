@@ -11,7 +11,6 @@ export default function profile() {
 	let { theid } = useParams();
 	console.log(theid);
 	useEffect(() => {
-		actions.getPosts();
 		actions.getSinglePost();
 	}, []);
 	return (

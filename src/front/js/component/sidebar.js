@@ -22,7 +22,7 @@ function Sidebar(props) {
 			</Link>
 			<Link to={{ pathname: props.userid, state: props.userid }}>
 				<div className="Profile">
-					<FontAwesomeIcon icon={faUser} /> <div className="Space">Profile</div>
+					<FontAwesomeIcon icon={faUser} /> <div className="Space">Perfil</div>
 				</div>
 			</Link>
 		</div>

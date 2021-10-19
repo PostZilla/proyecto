@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			myFollower: false,
 			myLike: false,
 			msg: " ",
-			user: undefined,
+			user: [],
 			post: undefined,
 			likes: undefined,
 			follower: undefined,
@@ -205,7 +205,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						setStore({ singlePost: data });
+						console.log("SINGLEPOST", data);
+						setStore({ singlePost: data.reverse() });
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},

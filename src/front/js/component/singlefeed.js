@@ -37,4 +37,5 @@ function SingleFeed(props) {
 SingleFeed.propTypes = {
 	user_id: PropTypes.string
 };
+
 export default SingleFeed;

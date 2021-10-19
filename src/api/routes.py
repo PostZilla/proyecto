@@ -76,7 +76,6 @@ def get_user():
     return jsonify(user),200
 
 
-
 @api.route('/search', methods=["GET"])
 @jwt_required()
 def get_all_user():
