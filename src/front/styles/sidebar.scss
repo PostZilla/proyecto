@@ -10,6 +10,7 @@
   font-size: 20px;
   font-weight: 800;
   align-items: center;
+  justify-content: center;
   display: flex;
   cursor: pointer;
   padding-top: 25px;
@@ -21,11 +22,15 @@
   background-color: #fff314;
   border-radius: 10px;
   width: 160px;
-  color: #4d4d00
+  color: #4d4d00;
+  align-items: center;
+  justify-content: center;
  
 }
 .Space{
 margin-left: 15px;
+align-self: center;
+
 
 }
 
@@ -43,6 +48,7 @@ margin-left: 15px;
   font-size: 20px;
   font-weight: 800;
   align-items: center;
+  justify-content: center;
   display: flex;
   cursor: pointer;
   padding-top: 25px;
@@ -53,7 +59,9 @@ margin-left: 15px;
   background-color: #fff314;
   border-radius: 10px;
   width: 160px;
-  color: #4d4d00
+  color: #4d4d00;
+  align-items: center;
+  justify-content: center;
  
 }
 a{

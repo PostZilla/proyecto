@@ -86,8 +86,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(data => {
-						console.log("user dataa", data);
-						setStore({ user: data });
+						if (data !== undefined) {
+							console.log("user dataa", data);
+							setStore({ user: data });
+						}
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));
 			},

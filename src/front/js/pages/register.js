@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/login.scss";
 import Loader from "react-loader-spinner";
+import Toastr from "toastr2";
 
 const Register = () => {
 	const { store, actions } = useContext(Context);
@@ -27,6 +28,8 @@ const Register = () => {
 		formData.append("File", file);
 		actions.register(formData);
 	};
+
+	const toastr = new Toastr();
 
 	useEffect(
 		() => {

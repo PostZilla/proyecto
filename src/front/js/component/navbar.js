@@ -27,7 +27,9 @@ export const Navbar = props => {
 						}
 					})
 					.then(json => {
-						setUsernames(json.data);
+						if (json !== undefined) {
+							setUsernames(json.data);
+						}
 					});
 			}
 		},
@@ -58,13 +60,16 @@ export const Navbar = props => {
 								placeholder="Buscar en Postzilla"
 								onChange={e => onChangeHandler(e.target.value)}
 								value={text}
-								onBlur={() => setSuggestions([])}
 							/>
 
 							{suggestions &&
 								suggestions.map((suggestion, i) => (
 									<ul onClick={() => setText(suggestion.usernames)} key={i} className="list-group">
-										<Link to={{ pathname: props.userid, state: props.userid }}>
+										<Link
+											to={{ pathname: suggestion.id, state: suggestion.id }}
+											onClick={() => {
+												setSuggestions([]);
+											}}>
 											<div>{suggestion.username}</div>
 										</Link>
 									</ul>

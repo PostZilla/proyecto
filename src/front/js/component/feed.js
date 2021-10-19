@@ -4,10 +4,19 @@ import "../../styles/feed.scss";
 import Postzibox from "./postzibox.js";
 import Post from "./post.js";
 import Heart from "../../img/heart.png";
+import Lottie from "react-lottie";
+import * as animationData from "./post.json";
 
 function Feed() {
 	const { store, actions } = useContext(Context);
-
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: animationData.default,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice"
+		}
+	};
 	useEffect(() => {
 		actions.getPosts();
 	}, []);
@@ -34,6 +43,10 @@ function Feed() {
 						likes={value.likes}
 					/>
 				))}
+
+			{!!store.post && store.post.length === 0 ? (
+				<Lottie options={defaultOptions} height={300} width={300} />
+			) : null}
 		</div>
 	);
 }

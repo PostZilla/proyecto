@@ -8,6 +8,8 @@ import "bootstrap/dist/css/bootstrap.css";
 //include your index.scss file into the bundle
 import "../styles/index.scss";
 
+import "toastr2/dist/toastr.min.css";
+
 //import your own components
 import Layout from "./layout";
 

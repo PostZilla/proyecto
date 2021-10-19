@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/sidebar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faDragon, faEllipsisH, faEnvelope, faListAlt, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +8,11 @@ import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 
 function Sidebar(props) {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="sidebar">
 			<div className="Postzilla_icon">
@@ -20,7 +23,7 @@ function Sidebar(props) {
 					<FontAwesomeIcon icon={faHome} /> <div className="Space">Home</div>
 				</div>
 			</Link>
-			<Link to={{ pathname: props.userid, state: props.userid }}>
+			<Link to={{ pathname: !!store.user && store.user.id, state: store.user.id }}>
 				<div className="Profile">
 					<FontAwesomeIcon icon={faUser} /> <div className="Space">Perfil</div>
 				</div>
