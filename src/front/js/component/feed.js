@@ -45,7 +45,10 @@ function Feed() {
 				))}
 
 			{!!store.post && store.post.length === 0 ? (
-				<Lottie options={defaultOptions} height={300} width={300} />
+				<>
+					<h3 className="text">¡Empieza a Postear!</h3>
+					<Lottie options={defaultOptions} height={300} width={300} />
+				</>
 			) : null}
 		</div>
 	);

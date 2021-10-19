@@ -77,9 +77,9 @@ def get_user():
 
 @api.route('/user/<int:id>', methods=['GET'])
 @jwt_required()
-def get_user(id):
+def get_user_id(id):
 
-    user= User.get_user(id)
+    user= User.get_use(id)
     return jsonify(user),200
 
 

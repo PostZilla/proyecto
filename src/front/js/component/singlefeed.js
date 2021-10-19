@@ -4,10 +4,19 @@ import "../../styles/feed.scss";
 import Jumbobox from "./jumbobox";
 import SinglePosts from "./singleposts";
 import { PropTypes } from "prop-types";
-
+import Lottie from "react-lottie";
+import * as animationData from "./post.json";
 function SingleFeed(props) {
 	const { store, actions } = useContext(Context);
 
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: animationData.default,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice"
+		}
+	};
 	useEffect(() => {
 		actions.getSinglePost(props.user_id);
 		actions.getUser();
@@ -31,6 +40,13 @@ function SingleFeed(props) {
 						key={index}
 					/>
 				))}
+
+			{!!store.singlePost && store.singlePost.length === 0 ? (
+				<>
+					<h3 className="text">¡Nada por aquí!</h3>
+					<Lottie options={defaultOptions} height={300} width={300} />
+				</>
+			) : null}
 		</div>
 	);
 }
