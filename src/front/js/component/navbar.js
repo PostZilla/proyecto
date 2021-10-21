@@ -75,17 +75,6 @@ export const Navbar = props => {
 									</ul>
 								))}
 						</div>
-
-						<ul className="navbar-nav ml-auto ">
-							<li className="nav-item">
-								<Link
-									onClick={() => actions.signOut()}
-									className="navbar-brand navbtn btn btn-light"
-									to={"/"}>
-									Cerrar sesión
-								</Link>
-							</li>
-						</ul>
 					</>
 				) : (
 					<>

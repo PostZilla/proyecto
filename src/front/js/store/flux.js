@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			myLike: false,
 			msg: " ",
 			user: [],
+			userbyid: [],
 			post: undefined,
 			likes: undefined,
 			follower: undefined,
@@ -87,8 +88,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						if (data !== undefined) {
-							console.log("user dataa", data);
+							console.log("userid dataa", data);
 							setStore({ user: data });
+						}
+					})
+					.catch(error => console.error("[ERROR TO GET POSTS]", error));
+			},
+			getUserbyID: id => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/user/" + id, {
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`
+					}
+				})
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						} else {
+							console.error("[Error response]", resp);
+						}
+					})
+					.then(data => {
+						if (data !== undefined) {
+							console.log("user dataa", data);
+							setStore({ userbyid: data });
 						}
 					})
 					.catch(error => console.error("[ERROR TO GET POSTS]", error));

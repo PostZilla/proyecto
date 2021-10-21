@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
 import ClearIcon from "@material-ui/icons/Clear";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/follow.scss";
 
 function Follow(props) {
@@ -10,7 +12,7 @@ function Follow(props) {
 	return (
 		<div className="follower">
 			@{props.username}
-			<ClearIcon className="equis" onClick={() => actions.delFollow(props.userid)} />
+			<FontAwesomeIcon icon={faUserTimes} className="equis" onClick={() => actions.delFollow(props.userid)} />
 		</div>
 	);
 }

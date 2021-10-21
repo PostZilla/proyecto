@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar(props) {
+function Sidebar() {
 	const { store, actions } = useContext(Context);
 
 	return (
@@ -28,11 +29,14 @@ function Sidebar(props) {
 					<FontAwesomeIcon icon={faUser} /> <div className="Space">Perfil</div>
 				</div>
 			</Link>
+
+			<Link onClick={() => actions.signOut()} to={"/"}>
+				<div className="logout">
+					<FontAwesomeIcon icon={faSignOutAlt} /> <div className="Space">Cerrar Sesión</div>
+				</div>
+			</Link>
 		</div>
 	);
 }
-Sidebar.propTypes = {
-	userid: PropTypes.number
-};
 
 export default Sidebar;

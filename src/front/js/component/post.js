@@ -5,7 +5,6 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import Heart from "../../img/heart.png";
-import ThumbDown from "@fortawesome/fontawesome-svg-core";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -85,12 +84,13 @@ function Post(props) {
 								A <b>{props.likes}</b> personas les gusta esto
 							</span>
 							{!!store.user && store.user.id !== props.userid ? null : (
-								<button
-									type="button"
-									onClick={() => actions.delPost(props.postid)}
-									className="Space btn btn-dark btn-sm">
-									Borrar
-								</button>
+								<div className="trash">
+									<i
+										className="far fa-trash-alt btn btn-light btn-sm"
+										type="button"
+										onClick={() => actions.delPost(props.postid)}
+									/>
+								</div>
 							)}
 						</div>
 					</div>

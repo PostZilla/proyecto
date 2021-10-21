@@ -86,12 +86,13 @@ function SinglePosts(props) {
 								A <b>{props.likes}</b> personas les gusta esto
 							</span>
 							{!!store.user && store.user.id !== props.userid ? null : (
-								<button
-									type="button"
-									onClick={() => actions.delPost(props.postid)}
-									className="Space btn btn-dark btn-sm">
-									Borrar
-								</button>
+								<div className="trash">
+									<i
+										className="far fa-trash-alt btn btn-light btn-sm"
+										type="button"
+										onClick={() => actions.delPost(props.postid)}
+									/>
+								</div>
 							)}
 						</div>
 					</div>

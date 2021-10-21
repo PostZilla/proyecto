@@ -72,11 +72,11 @@
     margin-left: 25px;
     background-color: #fff314;
     font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 500;
     width: 105;
     height: 30px;
-    border-color: #fff314;
+    border-color: transparent;
     float: right;
     
 }
@@ -95,10 +95,17 @@
     margin-left: 200px;
     background-color: #69696949;
     font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 500;
     width: 130px;
     height: 30px;
     border: none;
     float: right;
+}
+.trash{
+    float: right;
+    margin-left: 550px;
+    background-color: #E1E8ED;
+    border-radius: 10px;
+
 }

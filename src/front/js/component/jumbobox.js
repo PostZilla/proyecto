@@ -17,12 +17,15 @@ function Jumbobox(props) {
 						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
 						alt=""
 					/>
+					<img className="profileuserImg" src={props.profileimg} alt="" />
+					<span className="profileInfoName"> Perfil de {props.name} </span>
 				</div>
 			</div>
 		</div>
 	);
 }
 Jumbobox.propTypes = {
-	user_id: PropTypes.string
+	profileimg: PropTypes.string,
+	name: PropTypes.string
 };
 export default Jumbobox;
