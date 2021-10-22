@@ -19,7 +19,7 @@ function SingleFeed(props) {
 	};
 	useEffect(() => {
 		actions.getSinglePost(props.user_id);
-		actions.getUserbyID(props.userbyid);
+		actions.getUserbyID(props.userby_id);
 	}, []);
 
 	return (
@@ -55,7 +55,7 @@ function SingleFeed(props) {
 }
 SingleFeed.propTypes = {
 	user_id: PropTypes.string,
-	userbyid: PropTypes.string
+	userby_id: PropTypes.string
 };
 
 export default SingleFeed;
