@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
+imp;
 import "../../styles/navbar.scss";
 import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
