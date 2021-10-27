@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
-imp;
+import Postzi from "../../img/T-rex.png";
 import "../../styles/navbar.scss";
 import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
@@ -80,7 +80,7 @@ export const Navbar = props => {
 				) : (
 					<>
 						<Link className="navbar-brand" to={"/"}>
-							<img src={PostZilla} width="80" height="70" />
+							<img src={Postzi} width="160" height="110" />
 						</Link>
 						<div className="collapse navbar-collapse" id="navbarToggle">
 							<ul className="navbar-nav ml-auto">

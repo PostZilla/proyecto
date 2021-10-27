@@ -7,6 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PostZilla from "../../img/PostZilla.png";
+import Postzi from "../../img/T-rex.png";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +18,7 @@ function Sidebar() {
 	return (
 		<div className="sidebar">
 			<div className="Postzilla_icon">
-				<img src={PostZilla} width="80" height="70" color="blue" />
+				<img src={Postzi} width="160" height="110" color="blue" />
 			</div>
 			<Link to={"/home"}>
 				<div className="Home">
