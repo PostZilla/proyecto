@@ -79,7 +79,7 @@ def get_user():
 @jwt_required()
 def get_user_id(id):
 
-    user= User.get_use(id)
+    user= User.get_user(id)
     return jsonify(user),200
 
 

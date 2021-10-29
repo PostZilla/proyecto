@@ -55,7 +55,7 @@ function SingleFeed(props) {
 }
 SingleFeed.propTypes = {
 	user_id: PropTypes.string,
-	userby_id: PropTypes.string
+	userby_id: PropTypes.number
 };
 
 export default SingleFeed;

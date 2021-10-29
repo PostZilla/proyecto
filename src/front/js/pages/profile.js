@@ -10,9 +10,7 @@ export default function profile() {
 	const { store, actions } = useContext(Context);
 	let { theid } = useParams();
 	console.log(theid);
-	useEffect(() => {
-		actions.getSinglePost();
-	}, []);
+
 	return (
 		<>
 			<div className="App">
