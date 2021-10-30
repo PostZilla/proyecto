@@ -80,7 +80,7 @@ export const Navbar = props => {
 				) : (
 					<>
 						<Link className="navbar-brand" to={"/"}>
-							<img src={Postzi} width="160" height="110" />
+							<img src={PostZilla} width="90" height="80" />
 						</Link>
 						<div className="collapse navbar-collapse" id="navbarToggle">
 							<ul className="navbar-nav ml-auto">

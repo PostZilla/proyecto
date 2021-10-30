@@ -18,7 +18,7 @@ function Sidebar() {
 	return (
 		<div className="sidebar">
 			<div className="Postzilla_icon">
-				<img src={Postzi} width="160" height="110" color="blue" />
+				<img src={PostZilla} width="90" height="90" color="blue" />
 			</div>
 			<Link to={"/home"}>
 				<div className="Home">
