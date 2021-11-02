@@ -19,15 +19,12 @@ function SingleFeed(props) {
 	};
 	useEffect(() => {
 		actions.getSinglePost(props.user_id);
-		actions.getUserbyID(props.userby_id);
+		actions.getUserbyID(props.user_id);
 	}, []);
 
 	return (
 		<div className="feed">
-			{!!store.userbyid &&
-				store.userbyid.map((value, index) => (
-					<Jumbobox profileimg={value.profile_image_url} name={value.name} key={index} />
-				))}
+			{!!store.userbyid && <Jumbobox profileimg={store.userbyid.profile_image_url} name={store.userbyid.name} />}
 
 			{!!store.singlePost &&
 				store.singlePost.map((value, index) => (
