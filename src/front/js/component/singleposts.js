@@ -6,7 +6,7 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import Heart from "../../img/heart.png";
-import Like from "../../img/like.png";
+import disLike from "../../img/disLike.png";
 import "../../styles/profile.scss";
 
 function SinglePosts(props) {
@@ -75,7 +75,7 @@ function SinglePosts(props) {
 							/>
 							<img
 								className="likeIcon"
-								src={Like}
+								src={disLike}
 								onClick={() => actions.addLike(props.postid, "unlike")}
 								alt=""
 							/>

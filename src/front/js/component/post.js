@@ -5,7 +5,7 @@ import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "../../styles/post.scss";
 import Heart from "../../img/heart.png";
-import Like from "../../img/like.png";
+import disLike from "../../img/disLike.png";
 
 function Post(props) {
 	const { store, actions } = useContext(Context);
@@ -73,7 +73,7 @@ function Post(props) {
 							/>
 							<img
 								className="likeIcon"
-								src={Like}
+								src={disLike}
 								onClick={() => actions.addLike(props.postid, "unlike")}
 								alt=""
 							/>
