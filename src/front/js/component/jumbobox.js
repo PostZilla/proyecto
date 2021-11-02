@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { Avatar } from "@material-ui/core";
+import Header from "../../img/header.jpg";
 
 import "../../styles/postzibox.scss";
 import { Context } from "../store/appContext";
@@ -12,11 +13,7 @@ function Jumbobox(props) {
 		<div className="profileRight">
 			<div className="profileRightTop">
 				<div className="profileCover">
-					<img
-						className="profileCoverImg"
-						src="https://img.freepik.com/vector-gratis/fondo-comic-amarillo-diseno-plano_23-2148798165.jpg?size=626&ext=jpg"
-						alt=""
-					/>
+					<img className="profileCoverImg" src={Header} alt="" />
 					<img className="profileuserImg" src={props.profileimg} alt="" />
 					<span className="profileInfoName"> Perfil de {props.name} </span>
 				</div>
