@@ -6,6 +6,7 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import Heart from "../../img/heart.png";
+import Like from "../../img/like.png";
 import "../../styles/profile.scss";
 
 function SinglePosts(props) {
@@ -66,21 +67,18 @@ function SinglePosts(props) {
 
 					<div className="post_footer">
 						<div className="postBottomLeft">
-							{store.user_ids.includes(props.userid) ? (
-								<img
-									className="likeIcon"
-									src={Heart}
-									onClick={() => actions.addLike(props.postid, "unlike")}
-									alt=""
-								/>
-							) : (
-								<img
-									className="likeIcon"
-									src={Heart}
-									onClick={() => actions.addLike(props.postid, "like")}
-									alt=""
-								/>
-							)}
+							<img
+								className="likeIcon"
+								src={Heart}
+								onClick={() => actions.addLike(props.postid, "like")}
+								alt=""
+							/>
+							<img
+								className="likeIcon"
+								src={Like}
+								onClick={() => actions.addLike(props.postid, "unlike")}
+								alt=""
+							/>
 
 							<span className="postCounter">
 								A <b>{props.likes}</b> personas les gusta esto
