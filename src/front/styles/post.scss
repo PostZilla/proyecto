@@ -48,7 +48,8 @@
     width: 600px;
     height: 360px;
     border-radius: 20px;
-    position:sticky
+    margin-left: 60px;
+   
     
     
 }
@@ -56,8 +57,8 @@
 .likeIcon{
     width: 24px;
     height: 24px;
-    margin-right: 5px;
-    cursor: pointer;
+    margin-left: 05px;
+    margin-top: -5px;
 }
 
 
@@ -73,12 +74,17 @@
     background-color: #fff314;
     font-size: 1rem;
     border-radius: 8px;
-    font-weight: 500;
+    font-weight: 400;
     width: 105;
-    height: 30px;
+    height: 40px;
     border-color: transparent;
     float: right;
     
+}
+
+.fa-user-plus{
+    padding-bottom: 8px;
+    margin-left: 2px;
 }
 
 .buttonFollow:active{
@@ -88,24 +94,38 @@
     /* Lowering the shadow */
 }
 .postCounter{
-    font-size: 15px;
+    font-size: 18px;
+    margin-left: 10px;
+   
+
+    
 }
 
 .buttonUnfollow{
-    margin-left: 200px;
+    margin-left: 25px;
     background-color: #69696949;
     font-size: 1rem;
     border-radius: 8px;
-    font-weight: 500;
-    width: 130px;
-    height: 30px;
-    border: none;
+    font-weight: 400;
+    width: 105;
+    height: 40px;
+    border-color: transparent;
     float: right;
 }
+.fa-user-times{
+    padding-bottom: 8px;
+    margin-left: 2px;
+
+}
 .trash{
+    margin-left: 400px;
     float: right;
-    margin-left: 550px;
     background-color: #E1E8ED;
     border-radius: 10px;
+    
 
+}
+
+.postBottomLeft{
+    padding-left: 55px;
 }

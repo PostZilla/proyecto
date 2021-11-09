@@ -24,7 +24,7 @@ function Feed() {
 	return (
 		<div className="feed">
 			<div>
-				<h2>Home</h2>
+				<h2 style={{ paddingLeft: "5px" }}>Home</h2>
 			</div>
 
 			<Postzibox />
