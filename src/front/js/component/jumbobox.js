@@ -15,7 +15,7 @@ function Jumbobox(props) {
 				<div className="profileCover">
 					<img className="profileCoverImg" src={Header} alt="" />
 					<img className="profileuserImg" src={props.profileimg} alt="" />
-					<h3 className="profileInfoName"> Perfil de {props.name} </h3>
+					<strong className="profileInfoName"> Perfil de {props.name} </strong>
 				</div>
 			</div>
 		</div>
