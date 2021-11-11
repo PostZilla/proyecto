@@ -38,16 +38,23 @@ function SinglePosts(props) {
 									props.userid
 								) ? (
 									<button
-										className="btn btn-light buttonUnfollow btn-sm"
+										type="button"
+										className="buttonUnfollow"
+										data-toggle="tooltip"
+										data-placement="left"
+										title="Dejar de Seguir"
 										onClick={() => actions.delFollow(props.userid)}>
-										Dejar de Seguir
+										<i className="fas fa-user-times" />
 									</button>
 								) : (
 									<button
 										type="button"
 										className="buttonFollow"
+										data-toggle="tooltip"
+										data-placement="left"
+										title="Seguir"
 										onClick={() => actions.addFollower(props.userid)}>
-										Seguir
+										<i className="fas fa-user-plus" />
 									</button>
 								)}
 							</h3>

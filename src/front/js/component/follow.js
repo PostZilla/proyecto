@@ -12,7 +12,14 @@ function Follow(props) {
 	return (
 		<div className="follower">
 			@{props.username}
-			<FontAwesomeIcon icon={faUserTimes} className="equis" onClick={() => actions.delFollow(props.userid)} />
+			<FontAwesomeIcon
+				icon={faUserTimes}
+				className="equis"
+				data-toggle="tooltip"
+				data-placement="left"
+				title="Dejar de Seguir"
+				onClick={() => actions.delFollow(props.userid)}
+			/>
 		</div>
 	);
 }

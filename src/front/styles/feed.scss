@@ -1,8 +1,10 @@
 .feed {
 flex: 0.4;
-border-right: 1px solid #E1E8ED;
+border-right: 3px solid #E1E8ED;
+border-left: 3px solid #E1E8ED;
 min-width: fit-content;
 overflow-y: scroll;
+
 
 }
 
@@ -14,9 +16,11 @@ overflow-y: scroll;
     top: 0;
     background-color: white;
     z-index: 100;
-    border: 1px solid #E1E8ED;
-    padding: 15px 20px;
+  
+    padding: 10px 20px;
 }
+
+
 
 .feed_header> h2 {
     font-size: 20px;
