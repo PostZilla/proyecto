@@ -55,8 +55,8 @@
 }
 
 .likeIcon{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin-left: 05px;
     margin-top: -5px;
 }
@@ -72,19 +72,19 @@
 .buttonFollow{
     margin-left: 25px;
     background-color: #fff314;
-    font-size: 1rem;
+    font-size: 15px;
     border-radius: 8px;
     font-weight: 400;
-    width: 105;
-    height: 40px;
+    width: 30px;
+    height: 28px;
     border-color: transparent;
     float: right;
     
 }
 
 .fa-user-plus{
-    padding-bottom: 8px;
-    margin-left: 2px;
+    margin-left: 1px;
+    font-size: 13px;
 }
 
 .buttonFollow:active{
@@ -92,7 +92,7 @@
 
 }
 .postCounter{
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 10px;
    
 
@@ -105,18 +105,19 @@
     font-size: 1rem;
     border-radius: 8px;
     font-weight: 400;
-    width: 105;
-    height: 40px;
+    width: 30px;
+    height: 28px;
     border-color: transparent;
     float: right;
 }
 .fa-user-times{
-    padding-bottom: 8px;
-    margin-left: 2px;
+    margin-left: 1px;
+    font-size: 13px;
+
 
 }
 .trash{
-    margin-left: 400px;
+    margin-left: 460px;
     float: right;
     background-color: #E1E8ED;
     border-radius: 10px;
